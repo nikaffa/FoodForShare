@@ -14,10 +14,10 @@
 - Anam Shaikh, Kashif Munir, Veronika Fatikhova
 
 # User Stories
-!["User Stories"](https://docs.google.com/document/d/1wN_HSyOs_5pPAxjusD0tA-LqukT5xFITwNQYWRkN_hA/edit?usp=sharing)
+["User Stories"](https://docs.google.com/document/d/1wN_HSyOs_5pPAxjusD0tA-LqukT5xFITwNQYWRkN_hA/edit?usp=sharing)
 
 # Database
-!["DB"](https://docs.google.com/document/d/13Ae0vL9Pr8YtYeyCeEgJ_CP7I6zf0FANkW2JOAl0K6g/edit?usp=sharing)
+["DB"](https://docs.google.com/document/d/13Ae0vL9Pr8YtYeyCeEgJ_CP7I6zf0FANkW2JOAl0K6g/edit?usp=sharing)
 
 # Wireframes
 
