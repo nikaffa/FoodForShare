@@ -3,6 +3,7 @@
 - ShareForCare
 - ShareWithCare
 - FeedPeople
+- FoodShare or ShareFood
 
 ### Project description - What problem your app solves
 - An app for personal users and restaurants to donate their extra food to local community
