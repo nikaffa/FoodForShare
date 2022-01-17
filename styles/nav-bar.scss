@@ -1,0 +1,158 @@
+@import 'variable';
+
+.nav-bar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 8px 32px;
+  background-color: $secondary-color;
+  position: absolute;
+  width: 1920px;
+  height: 58px;
+  left: 0px;
+  top: 1px;
+  border: 2px $primary-color;
+  box-sizing: border-box;
+}
+
+.nav-tabs {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0px;
+  position: static;
+  width: 330px;
+  height: 40px;
+  left: 72px;
+  top: 9px;
+  border-radius: 4px;
+  flex: none;
+  order: 2;
+  flex-grow: 0;
+  margin: 0px 16px;
+
+  donations-button {
+    position: absolute;
+    width: 134px;
+    height: 42px;
+    left: 242px;
+    top: 9px;
+    background: #FFFFFF;
+    border: 2px solid #000000;
+    box-sizing: border-box;
+    border-radius: 8px;
+
+    text {
+      position: absolute;
+      left: 0px;
+      right: 0px;
+      top: 0px;
+      bottom: -1px;
+      font-family: $font-family;
+      font-style: normal;
+      font-weight: 600;
+      font-size: 16px;
+      line-height: 16px;
+      display: flex;
+      align-items: center;
+      text-align: center;
+      color: #000000;
+
+    }
+  }
+
+  reservations-button {
+    position: absolute;
+    width: 134px;
+    height: 42px;
+    left: 401px;
+    top: 9px;
+    background: #FFFFFF;
+    border: 2px solid #000000;
+    box-sizing: border-box;
+    border-radius: 8px;
+
+    text {
+      position: absolute;
+      left: 0px;
+      right: 0px;
+      top: 0px;
+      bottom: -1px;
+      font-family: Open Sans;
+      font-style: normal;
+      font-weight: 600;
+      font-size: 16px;
+      line-height: 16px;
+      display: flex;
+      align-items: center;
+      text-align: center;
+      color: #000000;
+
+    }
+  }
+
+}
+
+.white-space {
+  position: static;
+  width: 1320px;
+  height: 32px;
+  left: 418px;
+  top: 13px;
+  background: $secondary-color;
+  flex: none;
+  order: 3;
+  flex-grow: 1;
+  margin: 0px 16px;
+}
+
+.nav-button {
+  position: absolute;
+  width: 134px;
+  height: 42px;
+  left: 1558px;
+  top: 9px;
+  background: $secondary-color;
+  border: 2px solid $primary-color;
+  box-sizing: border-box;
+  border-radius: 8px;
+
+  login {
+    position: absolute;
+    left: 0px;
+    right: 0px;
+    top: 0px;
+    bottom: -1px;
+    font-family: Open Sans;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 16px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: $text-color;
+  }
+}
+
+#logo {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 12px 8px;
+  position: static;
+  width: 54px;
+  height: 40px;
+  left: 0px;
+  top: 0px;
+  border-radius: 4px;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+  margin: 0px 16px;
+
+  image {
+  content:url('Foodforshare.png')
+  }
+}
