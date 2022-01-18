@@ -9,8 +9,7 @@ const express = require('express');
 const router  = express.Router();
 
 module.exports = (db) => {
-  //Route for
-  router.get("/", (req, res) => {
+  router.get("/new", (req, res) => {
     res.redirect("/")
   });
 
@@ -42,6 +41,6 @@ module.exports = (db) => {
   });
 
 
-
   return router;
 };
+ 
