@@ -10,3 +10,6 @@ CREATE TABLE users (
   location VARCHAR(15) NOT NULL,
   phone VARCHAR(15) NOT NULL
 );
+
+insert into users (name, email, password, location, phone ) values('ABC Restaurant', 'abc@restaurant.com', 'pwd', 'abc locations', '6476474677');
+insert into users (name, email, password, location, phone ) values('XYZ Food Bank', 'xyz@foodbank.com', 'pwd', 'xyz locations', '6476474677');
