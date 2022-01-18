@@ -8,8 +8,3 @@ CREATE TABLE donations (
   donation_date timestamp NOT NULL,
   Status VARCHAR(15) NOT NULL
 );
-
-
-insert into donations (user_id, donation_date, Status) values(1, '1-1-2022', 'Pick-Up');
-insert into donations (user_id, donation_date, Status) values(1, '2-1-2022', 'Pick-Up');
-
