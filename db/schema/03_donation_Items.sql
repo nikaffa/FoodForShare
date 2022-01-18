@@ -7,10 +7,9 @@ CREATE TABLE donation_Items (
   donation_id INTEGER REFERENCES donations(id) ON DELETE CASCADE,
   name VARCHAR(64) NOT NULL,
   food_type VARCHAR(15) NOT NULL,
-  Description VARCHAR(255) NOT NULL,
-  Image VARCHAR(164) NOT NULL,
-  Freshness timestamp NOT NULL,
-  ready_time_seconds INTEGER,
-  Quantity SMALLINT NOT NULL,
-  Leftover SMALLINT NOT NULL
+  description VARCHAR(255) NOT NULL,
+  image VARCHAR(164),
+  freshness timestamp NOT NULL,
+  quantity SMALLINT NOT NULL,
+  leftover SMALLINT NOT NULL
 );
