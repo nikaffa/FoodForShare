@@ -2,14 +2,14 @@ import React from "react";
 import styled from "styled-components";
 
 const ButtonWrapper = styled.button`
-  border: none;
+  border: #black solid 1em;
   outline: none;
-  color: #black;
+  color: #white;
   padding: 6px 1em;
   font-size: ${({ size }) => (size ? size + "px" : "18px")};
   font-weight: 600;
   border-radius: 3px;
-  background-color: #a1e8fe;
+  background-color: #white;
   cursor: pointer;
   transition: all 200ms ease-in-out;
   &:hover {

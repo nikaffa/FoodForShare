@@ -16,8 +16,9 @@ const LogoImage = styled.div`
   }
 `;
 
-const LogoTitle = styled.h2`
+export const LogoTitle = styled.h2`
   margin: 0;
+  font: Roboto;
   font-size: ${({ size }) => (size ? size + "px" : "20px")};
   color: ${({ color }) => (color ? color : "#E4488E")};
   font-weight: 900;
@@ -29,7 +30,7 @@ const StyledLink = styled(Link)`
 `;
 
 export function BrandLogo(props) {
-  const { logoSize, textSize, color, hideLogo } = props;
+  const { logoSize, hideLogo } = props;
 
   return (
     <BrandLogoContainer>
@@ -40,11 +41,6 @@ export function BrandLogo(props) {
           </LogoImage>
         </Link>
       )}
-      <StyledLink to="/">
-        <LogoTitle size={textSize} color={color}>
-          FoodforShare
-        </LogoTitle>
-      </StyledLink>
     </BrandLogoContainer>
   );
 }
