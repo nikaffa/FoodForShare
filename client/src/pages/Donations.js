@@ -11,19 +11,18 @@ const StyledInnerContainer = styled(InnerPageContainer)`
   margin-top: 4em;
 `;
 
-export default function Donation(props) {
+export default function Donations(props) {
   const { action } = useParams();
 
   return (
     <PageContainer>
       <Navbar/>
       <Marginer direction="vertical" margin="2em"/>
-      <Link to="/donations">
-        <Button size="0.25px">Go Back</Button>
+      <Link to="/donation/new">
+        <Button size="0.25px">Add Donation</Button>
       </Link>
       <StyledInnerContainer>
         <BackgroundContainer>
-        <DonationForm initialActive={action} />
         </BackgroundContainer>
       </StyledInnerContainer>
     </PageContainer>

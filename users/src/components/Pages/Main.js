@@ -21,6 +21,7 @@ export default function Main (props) {
   return (
     <BackgroundContainer>
       <PageContainer>
+        <Inner
         <Navbar />
       <PageContainer>
         <Marginer direction="vertical" margin="5em" />
