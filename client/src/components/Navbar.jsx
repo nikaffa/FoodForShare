@@ -9,14 +9,18 @@ import { useMediaQuery } from "react-responsive";
 
 
 const NavbarContainer = styled.div`
-  width: 100%;
+  width: 95.7%;
   height: 35px;
+  max-width: ${deviceSize.laptop}px;
+  max-height: ${deviceSize.laptop}px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0 1.5em;
   border: 1px solid #707070;
   background-color: #fff;
+  @media screen and (max-width: ${deviceSize.mobile}px) {
+    padding: 5px;
 `
 ;
 
@@ -24,6 +28,7 @@ const AccessibilityContainer = styled.div`
   height: 100%;
   display: flex;
   align-items: center;
+  
 `;
 
 const AnchorLink = styled(Link)`
@@ -32,9 +37,10 @@ const AnchorLink = styled(Link)`
   cursor: pointer;
   text-decoration: none;
   outline: none;
+  text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.25);
   transition: all 200ms ease-in-out;
   &:hover {
-    filter: contrast(0.6);
+    color: #white;
   }
 `;
 
@@ -58,7 +64,7 @@ export default function Navbar(props) {
       {!isMobile && <AnchorLink to="/donations">Donations</AnchorLink>}
       {!isMobile && <Marginer direction="horizontal" margin={25} />}
       {!isMobile && <AnchorLink to="/reservations">Reservations</AnchorLink>}
-      {!isMobile && <Marginer direction="horizontal" margin={200} />}
+      {!isMobile && <Marginer direction="horizontal" margin={20} />}
       {!isMobile && <Seperator />}
       {!isMobile && <Marginer direction="horizontal" margin={8} />}
       {!isMobile && <AnchorLink to="/login">Login</AnchorLink>}

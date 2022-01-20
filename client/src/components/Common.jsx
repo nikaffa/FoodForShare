@@ -37,13 +37,14 @@ export const Input = styled.input`
   width: 500px;
   height: 32px;
   outline: none;
-  border: #black solid 1px;
-  
-  box-shadow: 0px 0px 2.5px rgba(15, 15, 15, 0.19);
+  border: #707070 solid 1px;
+
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 8px;
   padding: 0 10px;
   transition: all, 200ms ease-in-out;
   box-sizing: border-box;
-  border-bottom: 1.4px solid #black;
+  border-bottom: 1.4px solid #707070;
   &::placeholder {
     color: rgba(170, 170, 170, 1);
   }
@@ -59,23 +60,21 @@ export const Input = styled.input`
 
 export const SubmitButton = styled.button`
   padding: 6px 1em;
-  width: 80%;
+  width: 100%;
   color: #fff;
   font-size: 15px;
   font-weight: 600;
   border: none;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 100px 100px 100px 100px;
   cursor: pointer;
   transition: all, 240ms ease-in-out;
-  background: #38B6FF; /* fallback for old browsers */
-  background: #38B6FF
-  ); /* Chrome 10-25, Safari 5.1-6 */
-  background: #38B6FF
-  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: #38B6FF;
+  &:hover {
+    background-color: #707070;
+    color: #fff;
+  }
   &:focus {
     outline: none;
-  }
-  &:hover {
-    filter: brightness(1.03);
   }
 `;

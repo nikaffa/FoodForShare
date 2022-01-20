@@ -5,6 +5,8 @@ import Home from "./pages/Home"
 import Donation from "./pages/Donation"
 import DonationSearch from "./pages/DonationSearch"
 import Donations from "./pages/Donations"
+import Reservation from "./pages/Reservation";
+import Reservations from "./pages/Reservations";
 
 function App() {
   return (
@@ -17,6 +19,10 @@ function App() {
         <Route path="/donation/search" element={<DonationSearch/>}>
         </Route>
         <Route path="/donations" element={<Donations/>}>
+        </Route>
+        <Route path="/reservation/new" element={<Reservation/>}>
+        </Route>
+        <Route path="/reservations" element={<Reservations/>}>
         </Route>
       </Routes>
     </Router>

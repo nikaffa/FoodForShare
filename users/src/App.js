@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Donation from "./components/Pages/Donation";
 import Donations from "./components/Pages/Donations";
 import Reservation from "./components/Pages/Reservation";
@@ -12,25 +12,24 @@ function App() {
   return (
     <div className="App">
       <Router>
-        <Switch>
-          <Route exact path='/' component={Main}/>
+        <Routes>
+          <Route path='/' element={<Main />}/>
+          <Route path='/search' element={<Search />}/>
+          <Route path='/donation/new' element={<Donation />}/>
+          <Route path='/donations' element={<Donations />}/>
+          <Route path='/reservation/new' element={<Reservation />}/>
+          <Route path='/reservations' element={<Reservations />}/>
           
-          {/* <Route path='/donation/new' component={Donation}/>
-          <Route path='/donations' component={Donations}/>
-          <Route path='/reservation/new' component={Reservation}/>
-          <Route path='/reservations' component={Reservations}/>
-          <Route path='/Search' component={Search}/>
-          <Route component={Error}/> */}
-        </Switch>
+        </Routes>
       </Router>
     </div>
   );
 }
 
-function Home () {
-  return (
-    <h2>I am here</h2> 
-  )
-}
+// function Home () {
+//   return (
+//     <h2>I am here</h2> 
+//   )
+// }
 
 export default App;
