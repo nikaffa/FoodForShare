@@ -1,5 +1,4 @@
 import React from "react";
-import styled from "styled-components";
 import { BrandLogo } from "../components/BrandLogo";
 import { Marginer } from "../components/Marginer";
 import {PageContainer, InnerPageContainer, BackgroundContainer}from "../components/PageContainer";
@@ -14,7 +13,7 @@ export default function Main (props) {
     <PageContainer>
       <Navbar useTransparent />
       <Marginer direction="vertical" margin="5em"/>
-      <BrandLogo />
+      <BrandLogo logoSize/>
       <InnerPageContainer>
         <BackgroundContainer>
           <Marginer direction="vertical" margin="5em" />

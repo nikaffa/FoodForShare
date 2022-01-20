@@ -7,6 +7,7 @@ import {
   Input,
   SubmitButton,
 } from "./Common";
+import { Link } from "react-router-dom";
 
 export function DonationForm(props) {
 
@@ -29,7 +30,9 @@ export function DonationForm(props) {
         <Input placeholder="Address" />
       </FormContainer>
       <Marginer direction="vertical" margin="1em" />
-      <SubmitButton>Save Donation</SubmitButton>
+      <Link to="/donation/new">
+        <SubmitButton>Save Donation</SubmitButton>
+      </Link>
       <Marginer direction="vertical" margin={5} />
     </BoxContainer>
   );

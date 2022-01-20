@@ -38,8 +38,7 @@ export const Input = styled.input`
   height: 32px;
   outline: none;
   border: #black solid 1px;
-  border-radius: 100px 100px 100px 100px;
-  cursor: pointer;
+  
   box-shadow: 0px 0px 2.5px rgba(15, 15, 15, 0.19);
   padding: 0 10px;
   transition: all, 200ms ease-in-out;
@@ -60,7 +59,7 @@ export const Input = styled.input`
 
 export const SubmitButton = styled.button`
   padding: 6px 1em;
-  width: 30%;
+  width: 80%;
   color: #fff;
   font-size: 15px;
   font-weight: 600;
@@ -77,6 +76,6 @@ export const SubmitButton = styled.button`
     outline: none;
   }
   &:hover {
-    background-color: #707070;
-    color: #fff;
+    filter: brightness(1.03);
+  }
 `;
