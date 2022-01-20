@@ -20,9 +20,10 @@ export const LogoTitle = styled.h2`
   margin: 0;
   font: Roboto;
   font-size: ${({ size }) => (size ? size + "px" : "20px")};
-  color: ${({ color }) => (color ? color : "#E4488E")};
+  color: ${({ color }) => (color ? color : "#white")};
   font-weight: 900;
   margin-left: 6px;
+  
 `;
 
 const StyledLink = styled(Link)`
