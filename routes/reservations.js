@@ -13,31 +13,28 @@ module.exports = (db) => {
     res.redirect("/")
   });
 
-  router.get("/:id", (req, res) => {
-    db.query(`SELECT * FROM users where id = ${req.params.id};`)
-      .then(data => {
-        const users = data.rows;
-        res.json({ users });
-      })
-      .catch(err => {
-        res
-          .status(500)
-          .json({ error: err.message });
-      });
+//(shows user their own reservations)
+  router.get("/", (request, response) => {
+    db.query(`SELECT * FROM reservations`).then(({ rows: donations }) => {
+      response.json(
+        donations.reduce(
+          (previous, current) => ({ ...previous, [current.id]: current }),
+          {}
+        )
+      );
+    });
   });
 
-  router.get("/login/:id", (req, res) => {
-    db.query(`SELECT * FROM users where id = ${req.params.id};`)
-      .then(data => {
-        const users = data.rows;
-        //req.session.user_id = req.params.id
-        res.json({ users });
-      })
-      .catch(err => {
-        res
-          .status(500)
-          .json({ error: err.message });
-      });
+  //(shows user their own reservations)
+  router.get("/:id", (request, response) => {
+    db.query(`SELECT * FROM reservations where user_id=$1::integer`, [Number(request.params.id)]).then(({ rows: reservations }) => {
+      response.json(
+        reservations.reduce(
+          (previous, current) => ({ ...previous, [current.id]: current }),
+          {}
+        )
+      );
+    });
   });
 
 
