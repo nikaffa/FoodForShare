@@ -7,7 +7,7 @@ import { Button } from "../components/Button";
 import { Marginer } from "../components/Marginer";
 
 const StyledInnerContainer = styled(InnerPageContainer)`
-  margin-top: 4em;
+  margin-top: 1em;
 `;
 
 export default function Donations(props) {

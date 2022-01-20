@@ -15,9 +15,8 @@ export const FormContainer = styled.form`
   width: 100%;
   display: flex;
   align-items: flex-start;
-  padding: 20px;
+  padding: 5px;
   flex-direction: column;
-  border: 1px dashed #7B61FF;
   border-radius: 5px;
 `;
 
@@ -64,7 +63,7 @@ export const Input = styled.input`
 
 export const SubmitButton = styled.button`
   padding: 6px 1em;
-  width: 100%;
+  width: ${({ size }) => (size ? size + "px" : "18px")};
   color: #fff;
   font-size: 15px;
   font-weight: 600;

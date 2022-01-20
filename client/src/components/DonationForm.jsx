@@ -8,6 +8,8 @@ import {
   SubmitButton,
 } from "./Common";
 import { Link } from "react-router-dom";
+import DropDown from "./FreshnessDropDown";
+import QuantityDropDown from "./QuantityDropDown";
 
 export function DonationForm(props) {
 
@@ -21,17 +23,22 @@ export function DonationForm(props) {
         <Marginer direction="vertical" margin="1em" />
         <Input placeholder="FoodType" />
         <Marginer direction="vertical" margin="1em" />
-        <Input placeholder="Freshness" />
+        {/* <Input placeholder="Freshness"> */}
+          <DropDown/>
+        {/* </Input> */}
+        
         <Marginer direction="vertical" margin="1em" />
         <Input type="description" placeholder="Description" />
         <Marginer direction="vertical" margin="1em" />
-        <Input placeholder="Quantity"/>
+        <QuantityDropDown>
+          <Input/>
+        </QuantityDropDown>
         <Marginer direction="vertical" margin="1em" />
         <Input placeholder="Address" />
       </FormContainer>
       <Marginer direction="vertical" margin="1em" />
       <Link to="/donation/new">
-        <SubmitButton>Save Donation</SubmitButton>
+        <SubmitButton size={'25px'}>Save Donation</SubmitButton>
       </Link>
       <Marginer direction="vertical" margin={5} />
     </BoxContainer>
