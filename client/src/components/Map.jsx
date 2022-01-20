@@ -1,13 +1,10 @@
-import React, { useContext, useState, useCallback, useRef } from "react";
+import React, { useState, useCallback, useRef } from "react";
 import { Marginer } from "./Marginer";
 import { LogoTitle } from "./BrandLogo";
 import {
   BoxContainer,
-  FormContainer,
-  Input,
-  SubmitButton,
 } from "./Common";
-import { Link } from "react-router-dom";
+//import { Link } from "react-router-dom";
 
 //map
 import {
@@ -62,7 +59,7 @@ const libraries = ["places"];
 
 //map container style
 const mapContainerStyle = {
-  height: "70vh",
+  height: "50vh",
   width: "100vw",
 };
 const center = {
@@ -74,7 +71,7 @@ const options = {
   zoomControl: true,
 };
  
-export function DonationSearch(props) {
+export function Map(props) {
 
   //hook to run google script
   const { isLoaded, loadError } = useLoadScript({
@@ -102,9 +99,6 @@ export function DonationSearch(props) {
 
   return (
     <BoxContainer>
-      <Locate panTo={panTo} /> 
-      <SearchMe panTo={panTo} />
-      
       <GoogleMap
           id="map"
           mapContainerStyle={mapContainerStyle}
@@ -113,6 +107,9 @@ export function DonationSearch(props) {
           options={options}
           onLoad={onMapLoad}
         >
+        <Locate panTo={panTo} /> 
+        <SearchMe panTo={panTo} />
+
           {places.places.map((place) => (
             <Marker 
             key={place.properties.ID}
