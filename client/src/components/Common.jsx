@@ -8,13 +8,17 @@ export const BoxContainer = styled.div`
   align-items: center;
   margin: 10px;
   background: #white;
+  
 `;
 
 export const FormContainer = styled.form`
   width: 100%;
   display: flex;
+  align-items: flex-start;
+  padding: 20px;
   flex-direction: column;
-  
+  border: 1px dashed #7B61FF;
+  border-radius: 5px;
 `;
 
 export const MutedLink = styled.a`

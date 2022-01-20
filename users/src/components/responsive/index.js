@@ -1,3 +1,3 @@
 export const deviceSize = {
-  mobile: 720,
+  mobile: "720px",
 };
