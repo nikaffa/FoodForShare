@@ -5,7 +5,6 @@ import { LogoTitle } from "./BrandLogo";
 import {
   BoxContainer,
 } from "./Common";
-//import { Link } from "react-router-dom";
 
 //map
 import {
@@ -27,63 +26,6 @@ import {
 } from "@reach/combobox";
 import "@reach/combobox/styles.css";
 
-const places = {
-  "places": [
-    {
-      "properties": {
-        "NAME": "Restaurant",
-        "ADDRESS": "8720 Russell Road",
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [-75.3372987731628, 45.383321536272049]
-      }
-    },
-    {
-      "properties": {
-        "NAME": "Food bank",
-        "ADDRESS": "1490 Youville Drive",
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [-75.546518086577947, 45.467134581917357]
-      }
-    }, 
-  ]
-}
-
-// {
-//   1: {
-//   id: 1,
-//   user_id: 1,
-//   donation_date: "2022-01-01T08:00:00.000Z",
-//   status: "Pick-Up"
-//   },
-//   2: {
-//   id: 2,
-//   user_id: 1,
-//   donation_date: "2022-02-01T08:00:00.000Z",
-//   status: "Pick-Up"
-//   },
-//   3: {
-//   id: 3,
-//   user_id: 1,
-//   donation_date: "2022-03-01T08:00:00.000Z",
-//   status: "Pick-Up"
-//   },
-//   4: {
-//   id: 4,
-//   user_id: 1,
-//   donation_date: "2022-04-01T07:00:00.000Z",
-//   status: "Pick-Up"
-//   },
-//   5: {
-//   id: 5,
-//   user_id: 2,
-//   donation_date: "2022-04-01T07:00:00.000Z",
-//   status: "Pick-Up"
-//   }
-//   }
 
 //google maps library
 const libraries = ["places"];
@@ -94,8 +36,8 @@ const mapContainerStyle = {
   width: "100vw",
 };
 const center = {
-  lat: 45.4211,
-  lng: -75.6903
+  lat: 43.651070,
+  lng: -79.347015
 };
 const options = {
   disableDefaultUI: true,
@@ -104,24 +46,24 @@ const options = {
  
 export function Map(props) {
 
-  // //sets locations to be shown on the map
-  //   useEffect(() => {
-  //     axios.get("http://localhost:8080/donations")
-  //     .then(res => { 
-  //       console.log(res);
-  //       setPlaces(res.data);  
-  //     })
-  //   }, [])
+  const [places, setPlaces] = useState([]);
+  const [selected, setSelected] = useState(null);
 
-  //hook to run google script
+  //sets places to be shown on the map
+  useEffect(() => {
+    axios.get("http://localhost:8080/users")
+    .then(res => { 
+      setPlaces(res.data); 
+    })
+  }, [])
+
+  //runs google script
   const { isLoaded, loadError } = useLoadScript({
-    googleMapsApiKey: process.env.REACT_APP_API_KEY,
+    googleMapsApiKey: 'AIzaSyCECGSXk2qCMz9NrHdnuVwYFiwQbpANhKE',
     libraries: libraries,
   });
 
-  const [selected, setSelected] = useState(null);
-  const [places, setPlaces] = useState([]);
-  //const [donationItems, setDonationItems] = useState([]);
+  
 
   //retains state without rerenders
   const mapRef = useRef();
@@ -151,13 +93,12 @@ export function Map(props) {
         >
         <Locate panTo={panTo} /> 
         <SearchMe panTo={panTo} />
-
-        {places.map((place) => (
+        {places.places.map((place) => (
           <Marker 
-          key={place.id}
+          // key={place.id}
           position={{
-            lat: place.location.coordinates[1],
-            lng: place.location.coordinates[0]
+            lat: place.geometry.coordinates[1],
+            lng: place.geometry.coordinates[0]
           }}
           onClick={() => {
             setSelected(place);
@@ -166,14 +107,13 @@ export function Map(props) {
           
         {selected && (
           <InfoWindow
-            position={{ lat: selected.location.coordinates[1], lng: selected.location.coordinates[0] }}
+            position={{ lat: selected.geometry.coordinates[1], lng: selected.geometry.coordinates[0] }}
             onCloseClick={() => {
               setSelected(null);
             }}
           >
           <div>
-            <h2>{selected.name}</h2>
-            <p><strong>{selected.properties.LEFTOVER}</strong> portions left</p>
+            <h2>{selected.properties.NAME}</h2>
           </div>
         </InfoWindow>
         )}
