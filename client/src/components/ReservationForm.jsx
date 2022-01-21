@@ -23,8 +23,8 @@ export default function ReservationForm(props) {
         <Marginer direction="vertical" margin="1em" />
       </FormContainer>
       <Marginer direction="vertical" margin="1em" />
-      <Link to="/donation/new">
-        <SubmitButton>Save Reservation</SubmitButton>
+      <Link to="/reservation/new">
+        <SubmitButton size={'25px'}>Save Reservation</SubmitButton>
       </Link>
       <Marginer direction="vertical" margin={5} />
     </BoxContainer>

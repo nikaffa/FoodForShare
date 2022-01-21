@@ -8,13 +8,16 @@ export const BoxContainer = styled.div`
   align-items: center;
   margin: 10px;
   background: #white;
+  
 `;
 
 export const FormContainer = styled.form`
   width: 100%;
   display: flex;
+  align-items: flex-start;
+  padding: 5px;
   flex-direction: column;
-  
+  border-radius: 5px;
 `;
 
 export const MutedLink = styled.a`
@@ -60,7 +63,7 @@ export const Input = styled.input`
 
 export const SubmitButton = styled.button`
   padding: 6px 1em;
-  width: 100%;
+  width: ${({ size }) => (size ? size + "px" : "18px")};
   color: #fff;
   font-size: 15px;
   font-weight: 600;

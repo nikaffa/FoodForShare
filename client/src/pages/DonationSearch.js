@@ -8,7 +8,7 @@ import { Marginer } from "../components/Marginer";
 import { Map } from "../components/Map";
 
 const StyledInnerContainer = styled(InnerPageContainer)`
-  margin-top: 4em;
+  margin-top: 1em;
 `;
 
 export default function DonationSearch(props) {
