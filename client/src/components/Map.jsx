@@ -27,34 +27,68 @@ import {
 } from "@reach/combobox";
 import "@reach/combobox/styles.css";
 
-// const places = {
-//   "places": [
-//     {
-//       "properties": {
-//         "ID": 960,
-//         "NAME": "Restaurant",
-//         "ADDRESS": "8720 Russell Road",
-//         "LEFTOVER": "5"
-//       },
-//       "geometry": {
-//         "type": "Point",
-//         "coordinates": [-75.3372987731628, 45.383321536272049]
-//       }
-//     },
-//     {
-//       "properties": {
-//         "ID": 9600,
-//         "NAME": "Food bank",
-//         "ADDRESS": "1490 Youville Drive",
-//         "LEFTOVER": "2"
-//       },
-//       "geometry": {
-//         "type": "Point",
-//         "coordinates": [-75.546518086577947, 45.467134581917357]
-//       }
-//     }, 
-//   ]
-// }
+const places = {
+  "places": [
+    {
+      "properties": {
+        "ID": 960,
+        "NAME": "Restaurant",
+        "ADDRESS": "8720 Russell Road",
+        "LEFTOVER": "5"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-75.3372987731628, 45.383321536272049]
+      }
+    },
+    {
+      "properties": {
+        "ID": 9600,
+        "NAME": "Food bank",
+        "ADDRESS": "1490 Youville Drive",
+        "LEFTOVER": "2"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-75.546518086577947, 45.467134581917357]
+      }
+    }, 
+  ]
+}
+
+// {
+//   1: {
+//   id: 1,
+//   user_id: 1,
+//   donation_date: "2022-01-01T08:00:00.000Z",
+//   status: "Pick-Up"
+//   },
+//   2: {
+//   id: 2,
+//   user_id: 1,
+//   donation_date: "2022-02-01T08:00:00.000Z",
+//   status: "Pick-Up"
+//   },
+//   3: {
+//   id: 3,
+//   user_id: 1,
+//   donation_date: "2022-03-01T08:00:00.000Z",
+//   status: "Pick-Up"
+//   },
+//   4: {
+//   id: 4,
+//   user_id: 1,
+//   donation_date: "2022-04-01T07:00:00.000Z",
+//   status: "Pick-Up"
+//   },
+//   5: {
+//   id: 5,
+//   user_id: 2,
+//   donation_date: "2022-04-01T07:00:00.000Z",
+//   status: "Pick-Up"
+//   }
+//   }
+
 //google maps library
 const libraries = ["places"];
 
@@ -74,13 +108,14 @@ const options = {
  
 export function Map(props) {
 
-  //sets locations to be shown on the map
-    useEffect(() => {
-      axios.get("http://localhost:8080/users")
-      .then(res => { 
-        setPlaces(res.data);  
-      })
-    }, [])
+  // //sets locations to be shown on the map
+  //   useEffect(() => {
+  //     axios.get("http://localhost:8080/donations")
+  //     .then(res => { 
+  //       console.log(res);
+  //       setPlaces(res.data);  
+  //     })
+  //   }, [])
 
   //hook to run google script
   const { isLoaded, loadError } = useLoadScript({
