@@ -30,10 +30,8 @@ const places = {
   "places": [
     {
       "properties": {
-        "ID": 960,
         "NAME": "Restaurant",
         "ADDRESS": "8720 Russell Road",
-        "LEFTOVER": "5"
       },
       "geometry": {
         "type": "Point",
@@ -42,10 +40,8 @@ const places = {
     },
     {
       "properties": {
-        "ID": 9600,
         "NAME": "Food bank",
         "ADDRESS": "1490 Youville Drive",
-        "LEFTOVER": "2"
       },
       "geometry": {
         "type": "Point",
@@ -54,6 +50,8 @@ const places = {
     }, 
   ]
 }
+
+console.log(places.place)
 //google maps library
 const libraries = ["places"];
 
