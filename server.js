@@ -7,7 +7,7 @@ const sassMiddleware = require("./lib/sass-middleware");
 const express = require("express");
 const app = express();
 const morgan = require("morgan");
-// const cors = require("cors");
+const cors = require("cors");
 
 // PG database client/connection setup
 const { Pool } = require("pg");
@@ -35,7 +35,7 @@ app.use(
 app.use(express.static("public"));
 
 //Enable cors
-// app.use(cors());
+app.use(cors());
 
 // Separated Routes for each Resource
 // Note: Feel free to replace the example routes below with your own
