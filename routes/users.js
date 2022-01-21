@@ -24,12 +24,13 @@ module.exports = (db) => {
         users.forEach(element => {
           loc={
             "properties": {
+              "ID": element.id,
               "NAME": element.name,
               "ADDRESS": element.address,
             },
             "geometry": {
               "type": "Point",
-              "coordinates": [element.location.x, element.location.y]
+              "coordinates": [element.location.y, element.location.x]
             }
           }
           // places['places'].push(loc);
