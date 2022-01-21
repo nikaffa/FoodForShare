@@ -1,10 +1,10 @@
-import React, { useState, useCallback, useRef } from "react";
+import React, { useState, useCallback, useRef, useEffect } from "react";
+import axios from "axios";
 import { Marginer } from "./Marginer";
 import { LogoTitle } from "./BrandLogo";
 import {
   BoxContainer,
 } from "./Common";
-//import { Link } from "react-router-dom";
 
 //map
 import {
@@ -25,37 +25,8 @@ import {
   ComboboxOption,
 } from "@reach/combobox";
 import "@reach/combobox/styles.css";
-import axios from 'axios';
 
-let places = await axios.get(`/users`)
-  .then(res => {
-    return res.data;
-})
-      // const places = {
-      //   "places": [
-      //     {
-      //       "properties": {
-      //         "NAME": "Restaurant",
-      //         "ADDRESS": "8720 Russell Road",
-      //       },
-      //       "geometry": {
-      //         "type": "Point",
-      //         "coordinates": [-75.3372987731628, 45.383321536272049]
-      //       }
-      //     },
-      //     {
-      //       "properties": {
-      //         "NAME": "Food bank",
-      //         "ADDRESS": "1490 Youville Drive",
-      //       },
-      //       "geometry": {
-      //         "type": "Point",
-      //         "coordinates": [-75.546518086577947, 45.467134581917357]
-      //       }
-      //     }, 
-      //   ]
-      // }
-      console.log(places);
+
 //google maps library
 const libraries = ["places"];
 
@@ -65,8 +36,8 @@ const mapContainerStyle = {
   width: "100vw",
 };
 const center = {
-  lat: 45.4211,
-  lng: -75.6903
+  lat: 43.651070,
+  lng: -79.347015
 };
 const options = {
   disableDefaultUI: true,
@@ -75,13 +46,33 @@ const options = {
  
 export function Map(props) {
 
-  //hook to run google script
+  const [places, setPlaces] = useState([]);
+  const [selected, setSelected] = useState(null);
+  const [donationid, setDonationID] = useState(null);
+
+  //sets places to be shown on the map
+  useEffect(() => {
+    axios.get("/users")
+    .then(res => { 
+      setPlaces(res.data); 
+    })
+  }, [])
+
+  //runs google script
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: process.env.REACT_APP_API_KEY,
     libraries: libraries,
   });
 
-  const [selected, setSelected] = useState(null);
+  const LoadDonations = async (id) => {
+    console.log("Hello")
+    const data2 = await axios.get(`/donations/${id}`)
+    .then(res => { 
+      console.log("Hello")
+      console.log(res.data)
+      setDonationID(res.data); 
+    })
+  };
 
   //retains state without rerenders
   const mapRef = useRef();
@@ -111,36 +102,36 @@ export function Map(props) {
         >
         <Locate panTo={panTo} /> 
         <SearchMe panTo={panTo} />
-
-          {places.places.map((place) => (
-            <Marker 
-            key={place.properties.ID}
-            position={{
-              lat: place.geometry.coordinates[1],
-              lng: place.geometry.coordinates[0]
-            }}
-            onClick={() => {
-              setSelected(place);
-            }} />
-          ))}
+        {places.map((place) => (
+          <Marker 
+          // key={place.id}
+          position={{
+            lat: place.geometry.coordinates[1],
+            lng: place.geometry.coordinates[0]
+          }}
+          onClick={() => {
+            setSelected(place);
+            LoadDonations(place.properties.id)
+          }} />
+        ))}
           
           {selected && (
-            <InfoWindow
-              position={{ lat: selected.geometry.coordinates[1], lng: selected.geometry.coordinates[0] }}
-              onCloseClick={() => {
-                setSelected(null);
-              }}
-            >
-            <div>
-              <h2>{selected.properties.NAME}</h2>
-              <p><strong>{selected.properties.LEFTOVER}</strong> portions left</p>
-            </div>
-          </InfoWindow>
+          <InfoWindow
+            position={{ lat: selected.geometry.coordinates[1], lng: selected.geometry.coordinates[0] }}
+            onCloseClick={() => {
+              setSelected(null);
+            }}
+          >
+          <div>
+            <h2>{selected.properties.NAME}</h2>
+          </div>
+        </InfoWindow>
         )}
       </GoogleMap>
 
       <Marginer direction="vertical" margin="3em" />
-      <LogoTitle>Food is shown here</LogoTitle>
+
+      {selected && (<LogoTitle>Donations are {selected.properties.id}</LogoTitle>)}
      
     </BoxContainer>
   );
@@ -199,6 +190,8 @@ const SearchMe = ({ panTo }) => {
   const handleInput = (e) => {
     setValue(e.target.value);
   };
+
+
 
   return (
     <div className="search">

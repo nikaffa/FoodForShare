@@ -110,7 +110,6 @@ module.exports = (db) => {
         setTimeout(() => response.status(500).json({}), 1000);
         return;
       }
-      const { val1, val2 } = request.body;
       db.query(
         `UPDATE donations SET status = 'Cancel' where id=$1)`,
         [Number(request.params.id)]
