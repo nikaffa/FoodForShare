@@ -25,33 +25,37 @@ import {
   ComboboxOption,
 } from "@reach/combobox";
 import "@reach/combobox/styles.css";
+import axios from 'axios';
 
-const places = {
-  "places": [
-    {
-      "properties": {
-        "NAME": "Restaurant",
-        "ADDRESS": "8720 Russell Road",
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [-75.3372987731628, 45.383321536272049]
-      }
-    },
-    {
-      "properties": {
-        "NAME": "Food bank",
-        "ADDRESS": "1490 Youville Drive",
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [-75.546518086577947, 45.467134581917357]
-      }
-    }, 
-  ]
-}
-
-console.log(places.place)
+let places = await axios.get(`/users`)
+  .then(res => {
+    return res.data;
+})
+      // const places = {
+      //   "places": [
+      //     {
+      //       "properties": {
+      //         "NAME": "Restaurant",
+      //         "ADDRESS": "8720 Russell Road",
+      //       },
+      //       "geometry": {
+      //         "type": "Point",
+      //         "coordinates": [-75.3372987731628, 45.383321536272049]
+      //       }
+      //     },
+      //     {
+      //       "properties": {
+      //         "NAME": "Food bank",
+      //         "ADDRESS": "1490 Youville Drive",
+      //       },
+      //       "geometry": {
+      //         "type": "Point",
+      //         "coordinates": [-75.546518086577947, 45.467134581917357]
+      //       }
+      //     }, 
+      //   ]
+      // }
+      console.log(places);
 //google maps library
 const libraries = ["places"];
 
