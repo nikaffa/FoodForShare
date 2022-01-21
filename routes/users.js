@@ -11,7 +11,37 @@ const router  = express.Router();
 module.exports = (db) => {
   //Route for
   router.get("/", (req, res) => {
-    res.redirect("/")
+  
+    const places = {
+      "places": []
+    }
+    let loc={};
+
+    db.query(`SELECT * FROM users`)
+      .then(data => {
+        const users = data.rows;
+        users.forEach(element => {
+          loc={
+            "properties": {
+              "NAME": element.name,
+              "ADDRESS": element.address,
+            },
+            "geometry": {
+              "type": "Point",
+              "coordinates": [element.location.x, element.location.y]
+            }
+          }
+          places['places'].push(loc);
+        });
+        res.json({ places });
+      })
+      .catch(err => {
+        res
+          .status(500)
+          .json({ error: err.message });
+      });
+
+      
   });
 
   router.get("/:id", (req, res) => {

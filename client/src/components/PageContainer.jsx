@@ -5,9 +5,10 @@ import { deviceSize } from "../responsive";
 
 const PageWrapper = styled.div`
   width: 100%;
-  min-height: 100%;
+  //height: 100vh;
   padding: 0;
   margin: 0;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -25,7 +26,7 @@ export function PageContainer(props) {
 export const InnerPageContainer = styled.div `
   flex: 1;
   width: 100%;
-  min-height: 70vh;
+  min-height: 83vh;
   padding: 1em;
   display: flex;
   flex-direction: column;

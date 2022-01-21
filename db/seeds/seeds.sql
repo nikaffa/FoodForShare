@@ -1,7 +1,7 @@
-insert into users (name, email, password, location, phone ) 
-            values('ABC Restaurant', 'abc@restaurant.com', 'pwd', '2975 Atlantic Ave, Coquitlam, BC V3B 0J1, CA', '6476474677');
-insert into users (name, email, password, location, phone ) 
-            values('XYZ Food Bank', 'xyz@foodbank.com', 'pwd', '3000 Atlantic Ave, Coquitlam, BC V3B 0J1, CA', '6476474677');
+insert into users (name, email, password, address, location, phone ) 
+            values('ABC Restaurant', 'abc@restaurant.com', 'pwd', '21499 Queen St W, Toronto, ON M6R 1A3', '(43.645580, -79.412040)', '6476474677');
+insert into users (name, email, password, address, location, phone ) 
+            values('XYZ Food Bank', 'xyz@foodbank.com', 'pwd', '6650 Meadowvale Town Centre Cir, Mississauga, ON L5N 4B7', '(43.581501, -79.759941)', '6476474677');
 
 insert into donations (user_id, donation_date, Status) values(1, '1-1-2022', 'Pick-Up');
 insert into donations (user_id, donation_date, Status) values(1, '2-1-2022', 'Pick-Up');

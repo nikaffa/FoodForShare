@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 import { BrandLogo, LogoTitle } from "./BrandLogo";
-import { Button } from "./Button";
 import { Marginer } from "./Marginer";
 import { Link } from "react-router-dom";
 import { deviceSize } from "../responsive";
@@ -13,6 +12,8 @@ const NavbarContainer = styled.div`
   height: 35px;
   max-width: ${deviceSize.laptop}px;
   max-height: ${deviceSize.laptop}px;
+  overflow:hidden;
+  position: sticky; top: 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -27,21 +28,29 @@ const NavbarContainer = styled.div`
 const AccessibilityContainer = styled.div`
   height: 100%;
   display: flex;
+  flex-direction: row;
   align-items: center;
-  
+  padding: 0px;
+  transition: all 200ms ease-in-out;
+  &:hover {
+    color: #707070;
+  }
 `;
 
 const AnchorLink = styled(Link)`
+  font-family: Open Sans;
+  font-style: normal;
   font-size: 12px;
-  color: #7B61FF;
-  cursor: pointer;
-  text-decoration: none;
-  outline: none;
-  text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.25);
+  color: #black;
   transition: all 200ms ease-in-out;
   &:hover {
     color: #white;
   }
+  cursor: pointer;
+  text-decoration: none;
+  outline: none;
+  text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.25);
+  
 `;
 
 const Seperator = styled.div `
@@ -57,6 +66,7 @@ export default function Navbar(props) {
   return (
     <NavbarContainer>
       <BrandLogo>
+       <LogoTitle>FoodforShare</LogoTitle>
         <AnchorLink to="/">
         </AnchorLink>
       </BrandLogo>
