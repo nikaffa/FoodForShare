@@ -1,5 +1,4 @@
 import React from "react";
-import React from "react";
 //import styled from "styled-components";
 import { Marginer } from "../../Marginer/index";
 import PageContainer from "../../pageContainer/index";

@@ -10,8 +10,6 @@ import {
 import { Link } from "react-router-dom";
 
 export function DonationForm(props) {
-
-
   return (
     <BoxContainer>
       <LogoTitle>Create a new Donation</LogoTitle>

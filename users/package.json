@@ -21,10 +21,7 @@
     "react-router-dom": "^6.2.1",
     "react-scripts": "5.0.0",
     "styled-components": "^5.3.3",
-<<<<<<< HEAD
-=======
     "use-places-autocomplete": "^1.11.0",
->>>>>>> baba12b5206d5fec1c8bec296c2dd0035405dfc3
     "web-vitals": "^2.1.3"
   },
   "scripts": {

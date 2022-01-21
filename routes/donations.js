@@ -6,6 +6,7 @@
  */
 
 const express = require('express');
+const { redirect } = require('express/lib/response');
 const router  = express.Router();
 
 module.exports = (db) => {
@@ -75,34 +76,52 @@ module.exports = (db) => {
       .catch(error => console.log(error));
   });
 
-
   
-
-
-
-  
-  //(cancels a donations)
-  router.post("/:id/cancel", (request, response) => {
+  //(Adds a donations)
+  router.post("/new", (request, response) => {
     if (process.env.TEST_ERROR) {
       setTimeout(() => response.status(500).json({}), 1000);
       return;
     }
-    const { val1, val2 } = req.body.donations;
+    console.log(request.body)
+    const { title, foodtype, freshness, description, quantity, address } = request.body;
+    console.log(title, foodtype, description, freshness, quantity)
     db.query(
       `
-      WITH inserted_id AS (INSERT INTO donations (user_id, donation_date, status) values ($1, Now(), 'Pick-Up', 0) RETURNING id)
-                        INSERT INTO donation_items (donation_id, menu_item_id, quantity) VALUES ${val} RETURNING (select id from inserted_id)
+      WITH inserted_id AS (INSERT INTO donations (user_id, donation_date, status) values ($1, Now(), 'Pick-Up') RETURNING id)
+                        INSERT INTO donation_items (donation_id, name, food_type, description, image, freshness, quantity, leftover)
+                        VALUES ((select id from inserted_id), $2, $3, $4, $5, $6, $7, $7) RETURNING (select id from inserted_id)
     `,
-      [val1, val2, Number(request.params.id)]
+      [2, title, foodtype, description, '/image', freshness, quantity]
     )
       .then(() => {
         setTimeout(() => {
-          response.status(204).json({});
-          updateAppointment(Number(request.params.id), request.body.donations);
+          response.status(204).json('Record stored in DB.');
         }, 1000);
       })
       .catch(error => console.log(error));
   });
+
+
+
+    //(cancels a donations)
+    router.post("/:id/cancel", (request, response) => {
+      if (process.env.TEST_ERROR) {
+        setTimeout(() => response.status(500).json({}), 1000);
+        return;
+      }
+      const { val1, val2 } = request.body;
+      db.query(
+        `UPDATE donations SET status = 'Cancel' where id=$1)`,
+        [Number(request.params.id)]
+      )
+        .then(() => {
+          setTimeout(() => {
+            response.status(204).json({});
+          }, 1000);
+        })
+        .catch(error => console.log(error));
+    });
 
 
   router.post("/:id/edit", (request, response) => {
@@ -110,10 +129,9 @@ module.exports = (db) => {
       setTimeout(() => response.status(500).json({}), 1000);
       return;
     }
-    const { val1, val2 } = req.body.donations;
+    const { val1, val2 } = request.body;
     db.query(
-      `
-      WITH inserted_id AS (INSERT INTO donations (user_id, donation_date, status) values ($1, Now(), 'Pick-Up', 0) RETURNING id)
+      `UPDATE donations (user_id, donation_date, status) values ($1, Now(), 'Pick-Up', 0) RETURNING id)
                         INSERT INTO donation_items (donation_id, menu_item_id, quantity) VALUES ${val} RETURNING (select id from inserted_id)
     `,
       [val1, val2, Number(request.params.id)]
