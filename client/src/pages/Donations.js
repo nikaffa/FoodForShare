@@ -7,6 +7,26 @@ import { Button } from "../components/Button";
 import { Marginer } from "../components/Marginer";
 import { SubmitButton } from "../components/Common";
 import { ContentCard } from "../components/ContentCard";
+// import Axios from "axios";
+
+// const api = Axios.create({
+//   baseURL: `http://localhost:8080/donations/1`
+// })
+
+// state={
+//   donations:[]
+// }
+
+// constructor() {
+//   super()
+//   api.get('/')
+//   .then(res => {console.log(res.data)
+//     this.setState({donations: res.data})
+//   })
+  
+
+// }
+
 
 const StyledInnerContainer = styled(InnerPageContainer)`
   margin-left: 4em;
@@ -28,6 +48,7 @@ export default function Donations(props) {
       <Marginer direction="vertical" margin="2em"/>
       <StyledInnerContainer>
           <ContentCard layout={'column'}>
+            {/* {this.state.donations.map(donation => <h3 key={donation.id}>{donation.name}</h3>)} */}
             <Marginer direction="vertical" margin="1em"/>
             <Link to="/donation/:id/edit">
               <SubmitButton size={"0.25px"}>Edit</SubmitButton>

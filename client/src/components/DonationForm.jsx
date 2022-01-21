@@ -37,9 +37,7 @@ export function DonationForm(props) {
         <Input placeholder="Address" />
       </FormContainer>
       <Marginer direction="vertical" margin="1em" />
-      <Link to="/donation/new">
-        <SubmitButton size={'25px'}>Save Donation</SubmitButton>
-      </Link>
+
       <Marginer direction="vertical" margin={5} />
     </BoxContainer>
   );

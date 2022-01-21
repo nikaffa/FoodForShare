@@ -53,7 +53,6 @@ const DropDownList = styled("ul")`
   padding: 0;
   margin: 0;
   padding-left: 1em;
-  overflow:auto;
   background: #ffffff;
   border: 2px solid #e5e5e5;
   box-sizing: border-box;
