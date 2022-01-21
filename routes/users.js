@@ -30,7 +30,7 @@ module.exports = (db) => {
             },
             "geometry": {
               "type": "Point",
-              "coordinates": [element.location.x, element.location.y]
+              "coordinates": [element.location.y, element.location.x]
             }
           }
           // places['places'].push(loc);

@@ -4,7 +4,12 @@ import { Marginer } from "./Marginer";
 import { LogoTitle } from "./BrandLogo";
 import {
   BoxContainer,
+  FormContainer,
+  Input,
+  SubmitButton
 } from "./Common";
+import { Link } from "react-router-dom";
+import { ContentCard } from "../components/ContentCard";
 
 //map
 import {
@@ -26,14 +31,13 @@ import {
 } from "@reach/combobox";
 import "@reach/combobox/styles.css";
 
-
 //google maps library
 const libraries = ["places"];
 
 //map container style
 const mapContainerStyle = {
   height: "50vh",
-  width: "100vw",
+  width: "75vw",
 };
 const center = {
   lat: 43.651070,
@@ -48,15 +52,27 @@ export function Map(props) {
 
   const [places, setPlaces] = useState([]);
   const [selected, setSelected] = useState(null);
-  const [food, setFood] = useState(null);
+  const [food, setFood] = useState([]);
 
   //sets places to be shown on the map
   useEffect(() => {
     axios.get("/users")
     .then(res => { 
-      setPlaces(res.data); 
+      setPlaces(res.data);
     })
   }, [])
+
+
+
+ async function getFood (userID)
+    {
+      axios.get(`/donations/${userID}`)
+      .then(res => { 
+        setFood(res.data);
+      })
+    }
+
+
 
   //runs google script
   const { isLoaded, loadError } = useLoadScript({
@@ -64,22 +80,13 @@ export function Map(props) {
     libraries: libraries,
   });
 
-  const LoadDonations = async (id) => {
-    console.log("Hello")
-    const data2 = await axios.get(`/donations/${id}`)
-    .then(res => { 
-      console.log("Hello")
-      console.log(res.data)
-      setDonationID(res.data); 
-    })
-  };
-
   //retains state without rerenders
   const mapRef = useRef();
   //returns a map instance, prevents rerenders
   const onMapLoad = useCallback((map) => {
     mapRef.current = map;
   }, []);
+
 
   //geolocating
   const panTo = useCallback(({ lat, lng }) => {
@@ -102,16 +109,16 @@ export function Map(props) {
         >
         <Locate panTo={panTo} /> 
         <SearchMe panTo={panTo} />
-        {places.map((place) => (
+        {places.map(place => (
           <Marker 
-          // key={place.id}
+          key={place.properties.NAME}
           position={{
             lat: place.geometry.coordinates[1],
             lng: place.geometry.coordinates[0]
           }}
           onClick={() => {
             setSelected(place);
-            LoadDonations(place.properties.id)
+            getFood(place.properties.ID);
           }} />
         ))}
           
@@ -131,8 +138,18 @@ export function Map(props) {
 
       <Marginer direction="vertical" margin="3em" />
 
-      {selected && (<LogoTitle>Donations are {selected.properties.id}</LogoTitle>)}
-     
+      {selected && (
+      <BoxContainer>
+        <LogoTitle>Food is shown here</LogoTitle>
+        <Marginer direction="vertical" margin="3em" />  
+        {food && Object.keys(food).length>0 && (<ContentCard layout={'column'} props={food}>
+          <Marginer direction="vertical" margin="1em" />
+          <Link to="/reservations">
+            <SubmitButton size={'25px'}>Reserve</SubmitButton>
+          </Link> 
+        </ContentCard >)}
+        </BoxContainer>   
+      )}    
     </BoxContainer>
   );
 }

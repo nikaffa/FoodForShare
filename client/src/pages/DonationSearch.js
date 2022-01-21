@@ -20,6 +20,7 @@ export default function DonationSearch(props) {
       <StyledInnerContainer>
         <BackgroundContainer>
         <Map initialActive={action} />
+        
         </BackgroundContainer>
       </StyledInnerContainer>
     </PageContainer>
