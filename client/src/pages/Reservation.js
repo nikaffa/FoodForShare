@@ -19,7 +19,7 @@ export default function Reservation(props) {
       <Navbar/>
       <Marginer direction="vertical" margin="1em"/>
       <Link to="/reservations">
-        <Button size="0.25px">Go Back</Button>
+        <Button size="25px">Go Back</Button>
       </Link>
       <StyledInnerContainer>
         <BackgroundContainer>
