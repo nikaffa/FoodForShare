@@ -4,7 +4,12 @@ import { Marginer } from "./Marginer";
 import { LogoTitle } from "./BrandLogo";
 import {
   BoxContainer,
+  FormContainer,
+  Input,
+  SubmitButton
 } from "./Common";
+import { Link } from "react-router-dom";
+import { ContentCard } from "../components/ContentCard";
 
 //map
 import {
@@ -26,14 +31,13 @@ import {
 } from "@reach/combobox";
 import "@reach/combobox/styles.css";
 
-
 //google maps library
 const libraries = ["places"];
 
 //map container style
 const mapContainerStyle = {
   height: "50vh",
-  width: "100vw",
+  width: "75vw",
 };
 const center = {
   lat: 43.651070,
@@ -48,6 +52,7 @@ export function Map(props) {
 
   const [places, setPlaces] = useState([]);
   const [selected, setSelected] = useState(null);
+  const [food, setFood] = useState([]);
 
   //sets places to be shown on the map
   useEffect(() => {
@@ -57,13 +62,19 @@ export function Map(props) {
     })
   }, [])
 
+  //IN PROGRESS----------sets food to be shown in a form
+  // const getFood = () => {
+  //   axios.get(`http://localhost:8080/donations/${selected.properties.ID}`)
+  //   .then(res => { 
+  //     setFood(res.data); 
+  //   })
+  // }
+
   //runs google script
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: 'AIzaSyCECGSXk2qCMz9NrHdnuVwYFiwQbpANhKE',
     libraries: libraries,
   });
-
-  
 
   //retains state without rerenders
   const mapRef = useRef();
@@ -95,7 +106,7 @@ export function Map(props) {
         <SearchMe panTo={panTo} />
         {places.places.map((place) => (
           <Marker 
-          // key={place.id}
+          key={place.properties.NAME}
           position={{
             lat: place.geometry.coordinates[1],
             lng: place.geometry.coordinates[0]
@@ -121,8 +132,25 @@ export function Map(props) {
 
       <Marginer direction="vertical" margin="3em" />
 
-      {selected && (<LogoTitle>Food is shown here</LogoTitle>)}
-     
+      {selected && (
+      <BoxContainer>
+        <LogoTitle>Food is shown here</LogoTitle>
+        <Marginer direction="vertical" margin="3em" />  
+        <ContentCard layout={'column'}>
+          {/* <div>
+            {
+              <h2>{food}</h2>
+              
+            }
+          </div> */}
+
+          <Marginer direction="vertical" margin="1em" />
+          <Link to="/reservations">
+            <SubmitButton size={'25px'}>Reserve</SubmitButton>
+          </Link> 
+        </ContentCard >         
+        </BoxContainer>   
+      )}    
     </BoxContainer>
   );
 }
