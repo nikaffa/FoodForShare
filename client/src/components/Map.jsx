@@ -74,13 +74,13 @@ const options = {
  
 export function Map(props) {
 
-  /* Makes get request and sets locations to be shown on the map */
-  useEffect(() => {
-    axios.get("http://localhost:8080/donations")
-    .then(res => { 
-      setPlaces(res.data);  
-    })
-  }, [])
+  //sets locations to be shown on the map
+    useEffect(() => {
+      axios.get("http://localhost:8080/users")
+      .then(res => { 
+        setPlaces(res.data);  
+      })
+    }, [])
 
   //hook to run google script
   const { isLoaded, loadError } = useLoadScript({
@@ -121,12 +121,12 @@ export function Map(props) {
         <Locate panTo={panTo} /> 
         <SearchMe panTo={panTo} />
 
-        {places.donations.map((place) => (
+        {places.map((place) => (
           <Marker 
-          key={place.donations.ID}
+          key={place.id}
           position={{
-            lat: place.geometry.coordinates[1],
-            lng: place.geometry.coordinates[0]
+            lat: place.location.coordinates[1],
+            lng: place.location.coordinates[0]
           }}
           onClick={() => {
             setSelected(place);
@@ -135,13 +135,13 @@ export function Map(props) {
           
         {selected && (
           <InfoWindow
-            position={{ lat: selected.geometry.coordinates[1], lng: selected.geometry.coordinates[0] }}
+            position={{ lat: selected.location.coordinates[1], lng: selected.location.coordinates[0] }}
             onCloseClick={() => {
               setSelected(null);
             }}
           >
           <div>
-            <h2>{selected.properties.NAME}</h2>
+            <h2>{selected.name}</h2>
             <p><strong>{selected.properties.LEFTOVER}</strong> portions left</p>
           </div>
         </InfoWindow>
