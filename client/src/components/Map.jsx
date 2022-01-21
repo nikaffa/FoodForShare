@@ -48,7 +48,7 @@ export function Map(props) {
 
   const [places, setPlaces] = useState([]);
   const [selected, setSelected] = useState(null);
-  const [donationid, setDonationID] = useState(null);
+  const [food, setFood] = useState(null);
 
   //sets places to be shown on the map
   useEffect(() => {
