@@ -80,14 +80,15 @@ const ListItem = styled("li")`
 
 const options = ["3 hours", "6 Hours", "9 Hours", "12 Hours", "1 Day", "2 Days", "3 Days"];
 
-export default function DropDown() {
+export default function DropDown(props) {
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedOption, setSelectedOption] = useState(null);
+  const [selectedOption, setSelectedOption] = useState();
 
   const toggling = () => setIsOpen(!isOpen);
 
   const onOptionClicked = value => () => {
     setSelectedOption(value);
+    props.setFreshness(value);
     setIsOpen(false);
     console.log(selectedOption);
   };
