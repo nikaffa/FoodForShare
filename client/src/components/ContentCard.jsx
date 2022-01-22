@@ -1,7 +1,7 @@
-import { Link } from 'react-router-dom'
+// import { Link } from 'react-router-dom'
 import styled from 'styled-components'
-import { SubmitButton } from './Common'
-import { Marginer } from './Marginer'
+// import { SubmitButton } from './Common'
+// import { Marginer } from './Marginer'
 import { InnerPageContainer } from './PageContainer'
 import axios from 'axios';
 export const ContentCard = styled.div`

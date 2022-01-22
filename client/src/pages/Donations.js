@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from "react";
 import styled from "styled-components";
 import Navbar from "../components/Navbar";
-import { BackgroundContainer, InnerPageContainer, PageContainer } from "../components/PageContainer";
-import { Link, useParams } from "react-router-dom";
+import { InnerPageContainer, PageContainer } from "../components/PageContainer";
+import { Link } from "react-router-dom";
 import { Button } from "../components/Button";
 import { Marginer } from "../components/Marginer";
 import { SubmitButton } from "../components/Common";
@@ -37,7 +37,7 @@ export default function Donations(props) {
       <Marginer direction="vertical" margin="2em"/>
       <StyledInnerContainer>
           <ContentCard layout={'column'}>
-            {/* {this.state.donations.map(donation => <h3 key={donation.id}>{donation.name}</h3>)} */}
+            {this.state.donations.map(donation => <h3 key={donation.id}>{donation.name}</h3>)}
             <Marginer direction="vertical" margin="1em"/>
             <Link to="/donation/:id/edit">
               <SubmitButton size={"0.25px"}>Edit</SubmitButton>
