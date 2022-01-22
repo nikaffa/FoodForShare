@@ -60,21 +60,12 @@ export function Map(props) {
     .then(res => { 
       setPlaces(res.data); 
     })
-    axios.get(`http://localhost:8080/donations/${selected.properties.ID}`)
-    .then(res => { 
-      setFood(res.data); 
-    })
+    // axios.get(`http://localhost:8080/donations/${selected.properties.ID}`)
+    // .then(res => { 
+    //   setFood(res.data); 
+    // })
   }, [])
 
-  
-
-  //IN PROGRESS----------sets food to be shown in a form
-  // const getFood = () => {
-  //   axios.get(`http://localhost:8080/donations/${selected.properties.ID}`)
-  //   .then(res => { 
-  //     setFood(res.data); 
-  //   })
-  // }
 
   //runs google script
   const { isLoaded, loadError } = useLoadScript({
@@ -119,7 +110,7 @@ export function Map(props) {
           }}
           onClick={() => {
             setSelected(place);
-            setFood(food);
+            //setFood(food);
           }} />
         ))}
           
