@@ -4,10 +4,7 @@ insert into users (id, name, email, password, address, location, phone )
             values(2, 'XYZ Food Bank', 'xyz@foodbank.com', 'pwd', '6650 Meadowvale Town Centre Cir, Mississauga, ON L5N 4B7', '(43.581501, -79.759941)', '6476474677');
 
 insert into donations (user_id, donation_date, Status) values(1, '1-1-2022', 'Pick-Up');
-insert into donations (user_id, donation_date, Status) values(1, '2-1-2022', 'Pick-Up');
-insert into donations (user_id, donation_date, Status) values(1, '3-1-2022', 'Pick-Up');
-insert into donations (user_id, donation_date, Status) values(1, '4-1-2022', 'Pick-Up');
-insert into donations (user_id, donation_date, Status) values(2, '4-1-2022', 'Pick-Up');
+insert into donations (user_id, donation_date, Status) values(2, '2-1-2022', 'Pick-Up');
 
 
 insert into donation_Items (donation_id, name, food_type, description, image, freshness, quantity, leftover) 
