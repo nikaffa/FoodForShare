@@ -39,6 +39,7 @@ export default function FoodContainer({ foods }) {
           const subset = ['id', 'name', 'freshness', 'image', 'leftover'].reduce((a, e) => (a[e] = food[e], a), {})
           
           //check availability & freshness
+
           if (food.leftover > 0) {
             return (  
             <FoodCard key={`{food.id}.${i}`}>
