@@ -1,12 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Marginer } from "./Marginer";
 import { LogoTitle } from "./BrandLogo";
-import {
-  BoxContainer,
-  FormContainer,
-  Input,
-  SubmitButton,
-} from "./Common";
+import { BoxContainer, FormContainer, Input, SubmitButton } from "./Common";
 import { Link } from "react-router-dom";
 import DropDown from "./FreshnessDropDown";
 import QuantityDropDown from "./QuantityDropDown";

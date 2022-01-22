@@ -23,6 +23,8 @@ function App() {
         </Route>
         <Route path="/donation/:id/edit" element={<DonationEdit/>}>
         </Route>
+        <Route path="/donation/:id/delete" element={<Donations/>}>
+        </Route>
         <Route path="/reservation/new" element={<Reservation/>}>
         </Route>
         <Route path="/reservations" element={<Reservations/>}>
