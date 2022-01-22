@@ -10,25 +10,12 @@ import { SubmitButton } from "../components/Common";
 import { useState } from "react";
 import axios from "axios";
 
-const url = `http://localhost:8080/donations/1`;
 
-const { state, setState } = useState({ donations: [] });
-//const { formData, setFormData } =useState({});
-
-const createDonation = (data) => {
-  console.log(state);
-  axios.post(url, data)
-    .then(res => {
-      console.log(res.data);
-    })
-    .catch((err) => {
-      console.log("Error: ", err);
-    });
-
-};
 
 export default function Donation(props) {
 
+  console.log("IM HERE");
+  
   return (
     <PageContainer>
       <Navbar />

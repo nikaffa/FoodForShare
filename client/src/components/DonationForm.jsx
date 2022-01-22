@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import { Marginer } from "./Marginer";
 import { LogoTitle } from "./BrandLogo";
 import {
@@ -10,30 +10,38 @@ import {
 import { Link } from "react-router-dom";
 import DropDown from "./FreshnessDropDown";
 import QuantityDropDown from "./QuantityDropDown";
+import axios from "axios";
 
-class Form extends Component {
-constructor() {
-   super();
-   this.state = {
-   };
-   this.onInputchange = this.onInputchange.bind(this);
-   this.onSubmitForm = this.onSubmitForm.bind(this);
-  }
+export function DonationForm() {
 
-  onInputchange(event) {
-    this.setState({
-      [event.target.name]: event.target.value
+  const [title, setTitle]  = useState("");
+  const [foodType, setFoodType] = useState("");
+  const [description, setDescription] = useState("");
+  const [freshness, setFreshness] = useState("");
+  const [quantity, setQuantity] = useState("");
+  const [address, setAddress] = useState("");
+
+  const onSubmitForm = function(event) {
+    console.log("IM HERE");
+
+    event.preventDefault();
+    axios.post(`http://localhost:3000/donation/new`,
+    { title: title,
+      foodType: foodType,
+      freshness: freshness, 
+      description: description, 
+      quantity: quantity, 
+      address: address  })
+    .then((res)=>{
+      console.log('HEEERE',res)
+    })
+    .catch((err)=> {
+      console.log('ERROR', err)
     });
+
   }
+  
 
-  onSubmitForm() {
-    console.log(this.state)
- }
-}
-export default Form;
-
-export function DonationForm(props) {
-  const { items } = this.state;
   return (
     <BoxContainer>
       <LogoTitle>Create a new Donation</LogoTitle>
@@ -41,52 +49,49 @@ export function DonationForm(props) {
       <FormContainer>
         <Input 
           name="title"
-          type="text"
           placeholder="Title" 
-          value={this.state.title}
-          onChange={this.onInputchange}
+          value={title}
+          onChange={(event) => setTitle(event.target.value)}
         />
         <Marginer direction="vertical" margin="1em" />
         <Input name="foodtype"
-          type="text"
           placeholder="Food Type" 
-          value={this.state.foodtype}
-          onChange={this.onInputchange} 
+          value={foodType}
+          onChange={(event) => setFoodType(event.target.value)} 
         />
         <Marginer direction="vertical" margin="1em" />
           <DropDown name="freshness"
-            type="text"
-            value={this.state.freshness}
-            onChange={this.onInputchange}
+            value={freshness}
+            onChange={(event) => setFreshness(event.target.value)}
           />
         <Marginer direction="vertical" margin="1em" />
         <Input type="description" name="description"
-          type="text"
           placeholder="Description" 
-          value={this.state.discription}
-          onChange={this.onInputchange} 
+          value={description}
+          onChange={(event) => setDescription(event.target.value)} 
         />
         <Marginer direction="vertical" margin="1em" />
         <QuantityDropDown>
           <Input name="quantity"
             type="number"
-            value={this.state.quantity}
-            onChange={this.onInputchange}
+            value={quantity}
+            onChange={(event) => setQuantity(event.target.value)}
           />
         </QuantityDropDown>
         <Marginer direction="vertical" margin="1em" />
         <Input name="address"
           type="text" 
           placeholder="Address" 
-          value={this.state.address}
-          onChange={this.onInputchange}
+          value={address}
+          onChange={(event) => setAddress(event.target.value)}
         />
       </FormContainer>
       <Marginer direction="vertical" margin="1em" />
       <Link to="/donations">
-        <SubmitButton size={'25px'} onSubmit={this.onSubmitForm}>Save Donation</SubmitButton>
+        <SubmitButton size={'25px'} onSubmit={onSubmitForm}>Save Donation</SubmitButton>
       </Link>
       <Marginer direction="vertical" margin={5} />
     </BoxContainer>
   );
 }
+

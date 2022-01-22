@@ -16,8 +16,8 @@ function App() {
         </Route>
         <Route path="/donation/new" element={<Donation/>}>
         </Route>
-        <Route path="/donation/search" element={<DonationSearch/>}>
-        </Route>
+        {/* <Route path="/donation/search" element={<DonationSearch/>}>
+        </Route> */}
         <Route path="/donations" element={<Donations/>}>
         </Route>
         <Route path="/reservation/new" element={<Reservation/>}>
