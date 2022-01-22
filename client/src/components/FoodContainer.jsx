@@ -35,9 +35,10 @@ export default function FoodContainer({ foods }) {
           const food = foods[i];
 
           return (
-            <FoodCard>
+            <FoodCard key={`{food.id}.${i}`}>
               <h3 >{food.name}</h3>
               <h3 >{food.description}</h3>
+              <h3 >{food.food_type}</h3>
               <h3 >{food.food_type}</h3>
               <h3 >freshness: {food.freshness}</h3>
               <h3 >{food.leftover} portions left</h3>
