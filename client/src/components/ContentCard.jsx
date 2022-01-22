@@ -27,7 +27,7 @@ export const ContentCard = styled.div`
 `
 export default function Card({ item: { title, foodType, freshness, description, quantity, address, status } }) {
 
-    axios.get(`http://localhost:8080/donations`,
+    axios.get(`http://localhost:8080/donations/`,
     { title: title,
       foodType: foodType,
       freshness: freshness, 
