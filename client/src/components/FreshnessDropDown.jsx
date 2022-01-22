@@ -39,6 +39,9 @@ const DropDownHeader = styled("div")`
   Font-family: Roboto;
   Font-size: 14px;
   Color: rgba(170, 170, 170, 1)
+  &:selectedOption {
+    color: #black;
+  }
 `;
 
 const DropDownListContainer = styled("div")`

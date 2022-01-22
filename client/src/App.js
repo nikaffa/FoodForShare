@@ -7,6 +7,7 @@ import DonationSearch from "./pages/DonationSearch"
 import Donations from "./pages/Donations"
 import Reservation from "./pages/Reservation";
 import Reservations from "./pages/Reservations";
+import DonationEdit from "./pages/DonationEdit";
 
 function App() {
   return (
@@ -19,6 +20,10 @@ function App() {
         <Route path="/donation/search" element={<DonationSearch/>}>
         </Route>
         <Route path="/donations" element={<Donations/>}>
+        </Route>
+        <Route path="/donation/:id/edit" element={<DonationEdit/>}>
+        </Route>
+        <Route path="/donation/:id/delete" element={<Donations/>}>
         </Route>
         <Route path="/reservation/new" element={<Reservation/>}>
         </Route>
