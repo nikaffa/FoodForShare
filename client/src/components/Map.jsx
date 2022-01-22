@@ -60,16 +60,19 @@ export function Map(props) {
     .then(res => { 
       setPlaces(res.data); 
     })
-    // axios.get(`http://localhost:8080/donations/${selected.properties.ID}`)
-    // .then(res => { 
-    //   setFood(res.data); 
-    // })
   }, [])
 
+  async function getFood (userID)
+    {
+      axios.get(`http://localhost:8080/donations/${userID}`)
+      .then(res => { 
+        setFood(res.data);
+      })
+    }
 
   //runs google script
   const { isLoaded, loadError } = useLoadScript({
-    googleMapsApiKey: 'AIzaSyCECGSXk2qCMz9NrHdnuVwYFiwQbpANhKE',
+    googleMapsApiKey: process.env.REACT_APP_API_KEY,
     libraries: libraries,
   });
 
@@ -101,6 +104,7 @@ export function Map(props) {
         >
         <Locate panTo={panTo} /> 
         <SearchMe panTo={panTo} />
+
         {places.places.map((place) => (
           <Marker 
           key={place.properties.NAME}
@@ -110,7 +114,7 @@ export function Map(props) {
           }}
           onClick={() => {
             setSelected(place);
-            //setFood(food);
+            getFood(place.properties.ID);
           }} />
         ))}
           
@@ -134,19 +138,15 @@ export function Map(props) {
       <BoxContainer>
         <LogoTitle>Food is shown here</LogoTitle>
         <Marginer direction="vertical" margin="3em" />  
-        <ContentCard layout={'column'}>
-          {/* <div>
-            {
-              <h2>{food}</h2>
-              
-            }
-          </div> */}
 
+        {food && Object.keys(food).length>0 &&
+        (<ContentCard layout={'column'} props={food}>
           <Marginer direction="vertical" margin="1em" />
           <Link to="/reservations">
             <SubmitButton size={'25px'}>Reserve</SubmitButton>
           </Link> 
-        </ContentCard >         
+        </ContentCard >)}
+       
         </BoxContainer>   
       )}    
     </BoxContainer>
