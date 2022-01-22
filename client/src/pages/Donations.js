@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import styled from "styled-components";
 import Navbar from "../components/Navbar";
 import { BackgroundContainer, InnerPageContainer, PageContainer } from "../components/PageContainer";
@@ -7,25 +7,8 @@ import { Button } from "../components/Button";
 import { Marginer } from "../components/Marginer";
 import { SubmitButton } from "../components/Common";
 import { ContentCard } from "../components/ContentCard";
-// import Axios from "axios";
+import axios from "axios";
 
-// const api = Axios.create({
-//   baseURL: `http://localhost:8080/donations/1`
-// })
-
-// state={
-//   donations:[]
-// }
-
-// constructor() {
-//   super()
-//   api.get('/')
-//   .then(res => {console.log(res.data)
-//     this.setState({donations: res.data})
-//   })
-  
-
-// }
 
 
 const StyledInnerContainer = styled(InnerPageContainer)`
@@ -36,7 +19,13 @@ const StyledInnerContainer = styled(InnerPageContainer)`
 `;
 
 export default function Donations(props) {
-  const { action } = useParams();
+
+  const [status, setStatus] = useState(null);
+
+  useEffect(() => {
+      axios.delete('https://localhost:3000/donation/:id/delete')
+          .then(() => setStatus('Delete successful'));
+  }, []);
 
   return (
     <PageContainer>
@@ -55,7 +44,7 @@ export default function Donations(props) {
             </Link>
             <Marginer direction="vertical" margin="1em"/>
             <Link to="/donation/:id/delete">
-              <SubmitButton size={"0.25px"}>Delete</SubmitButton>
+              <SubmitButton size={"0.25px"} onSubmit={status}>Delete</SubmitButton>
             </Link>
             <Marginer direction="vertical" margin="2em"/>
           </ContentCard>

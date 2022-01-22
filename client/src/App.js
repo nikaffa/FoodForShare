@@ -9,6 +9,7 @@ import Reservation from "./pages/Reservation";
 import Reservations from "./pages/Reservations";
 import Basket from "./components/Basket";
 import Product from "./components/Product";
+import DonationEdit from "./pages/DonationEdit";
 
 function App() {
   return (
