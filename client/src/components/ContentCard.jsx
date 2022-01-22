@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { SubmitButton } from './Common'
 import { Marginer } from './Marginer'
 import { InnerPageContainer } from './PageContainer'
-
+import axios from 'axios';
 export const ContentCard = styled.div`
   display: flex;
   width:70%;
@@ -25,13 +25,34 @@ export const ContentCard = styled.div`
     flex-direction: column;
   }
 `
-export default function Card(props) {
+export default function Card({ item: { title, foodType, freshness, description, quantity, address, status } }) {
+
+    axios.get(`http://localhost:3000/donations`,
+    { title: title,
+      foodType: foodType,
+      freshness: freshness, 
+      description: description, 
+      quantity: quantity, 
+      address: address, 
+      status: status
+    })
+    .then((res)=>{
+      console.log('donationsgetreq',res)
+    })
+    .catch((err)=> {
+      console.log('ERROR', err)
+    });
+
   return (
     <InnerPageContainer>
       <div>hello</div>
       <ContentCard props={props}>
         <div>
-          <h2>{props}</h2>
+          <h2>{title}</h2>
+          <p>{description}</p>
+          <p>{freshness}</p>
+          <p>{quantity}</p>
+          <p>{status}</p>
         </div>
         <div>
         </div>

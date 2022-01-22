@@ -1,18 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Marginer } from "./Marginer";
 import { LogoTitle } from "./BrandLogo";
-import {
-  BoxContainer,
-  FormContainer,
-  Input,
-  SubmitButton,
-} from "./Common";
+import { BoxContainer, FormContainer, Input, SubmitButton } from "./Common";
 import { Link } from "react-router-dom";
 import DropDown from "./FreshnessDropDown";
 import QuantityDropDown from "./QuantityDropDown";
 import axios from "axios";
 
-export function DonationForm() {
+export function DonationFormEdit() {
 
   const [title, setTitle]  = useState("");
   const [foodType, setFoodType] = useState("");
@@ -21,30 +16,23 @@ export function DonationForm() {
   const [quantity, setQuantity] = useState("");
   const [address, setAddress] = useState("");
 
-  const onSubmitForm = function(event) {
-    console.log("IM HERE");
+  const [update, setUpdate] = useState(null);
 
-    event.preventDefault();
-    axios.post(`http://localhost:3000/donation/new`,
-    { title: title,
-      foodType: foodType,
-      freshness: freshness, 
-      description: description, 
-      quantity: quantity, 
-      address: address  })
-    .then((res)=>{
-      console.log('HEEERE',res)
-    })
-    .catch((err)=> {
-      console.log('ERROR', err)
-    });
+    useEffect(() => {
+      const data = { title: title,
+        foodType: foodType,
+        freshness: freshness, 
+        description: description, 
+        quantity: quantity, 
+        address: address };
 
-  }
+      axios.put('https://localhost:3000/donation/:id/edit', data)
+          .then(response => setUpdate(response.data.update));
+    }, [title, foodType, freshness, description, quantity, address]);
   
-
   return (
     <BoxContainer>
-      <LogoTitle>Create a new Donation</LogoTitle>
+      <LogoTitle>Edit Current Donation</LogoTitle>
       <Marginer direction="vertical" margin="3em" />
       <FormContainer>
         <Input 
@@ -88,7 +76,7 @@ export function DonationForm() {
       </FormContainer>
       <Marginer direction="vertical" margin="1em" />
       <Link to="/donations">
-        <SubmitButton size={'25px'} onSubmit={onSubmitForm}>Save Donation</SubmitButton>
+        <SubmitButton size={'25px'} onSubmit={update}>Save Donation</SubmitButton>
       </Link>
       <Marginer direction="vertical" margin={5} />
     </BoxContainer>
