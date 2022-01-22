@@ -25,14 +25,15 @@ export const ContentCard = styled.div`
     flex-direction: column;
   }
 `
-export default function Card(props) {
+export default function Card({ item: { title, body, image } }) {
   return (
     <InnerPageContainer>
-      <div>hello</div>
-      <ContentCard props={props}>
+      <ContentCard>
         <div>
-          <h2>{props}</h2>
+          <h2>{title}</h2>
+          <p>{body}</p>
         </div>
+        
         <div>
         </div>
       </ContentCard>
