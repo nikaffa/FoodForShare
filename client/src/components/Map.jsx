@@ -9,7 +9,8 @@ import {
   SubmitButton
 } from "./Common";
 import { Link } from "react-router-dom";
-import { ContentCard } from "../components/ContentCard";
+//import ContentCard from "../components/ContentCard";
+import FoodContainer from "../components/FoodContainer";
 
 //map
 import {
@@ -52,27 +53,23 @@ export function Map(props) {
 
   const [places, setPlaces] = useState([]);
   const [selected, setSelected] = useState(null);
-  const [food, setFood] = useState([]);
+  const [foods, setFoods] = useState({});
 
   //sets places to be shown on the map
   useEffect(() => {
     axios.get("/users")
     .then(res => { 
-      setPlaces(res.data);
+      setPlaces(res.data); 
     })
   }, [])
 
-
-
- async function getFood (userID)
+  async function getFood (userID)
     {
-      axios.get(`/donations/${userID}`)
+      axios.get(`http://localhost:8080/donations/${userID}`)
       .then(res => { 
-        setFood(res.data);
+        setFoods(res.data);
       })
     }
-
-
 
   //runs google script
   const { isLoaded, loadError } = useLoadScript({
@@ -109,7 +106,9 @@ export function Map(props) {
         >
         <Locate panTo={panTo} /> 
         <SearchMe panTo={panTo} />
-        {places.map(place => (
+          
+        {places.places.map((place) => (
+
           <Marker 
           key={place.properties.NAME}
           position={{
@@ -131,24 +130,19 @@ export function Map(props) {
           >
           <div>
             <h2>{selected.properties.NAME}</h2>
+            {/* <h3>{}</h3> */}
           </div>
         </InfoWindow>
         )}
       </GoogleMap>
 
-      <Marginer direction="vertical" margin="3em" />
+      <Marginer direction="vertical" margin="1em" />
 
       {selected && (
       <BoxContainer>
-        <LogoTitle>Food is shown here</LogoTitle>
-        <Marginer direction="vertical" margin="3em" />  
-        {food && Object.keys(food).length>0 && (<ContentCard layout={'column'} props={food}>
-          <Marginer direction="vertical" margin="1em" />
-          <Link to="/reservations">
-            <SubmitButton size={'25px'}>Reserve</SubmitButton>
-          </Link> 
-        </ContentCard >)}
-        </BoxContainer>   
+        {foods && Object.keys(foods).length>0 &&
+        (<FoodContainer  foods={foods} />)}
+      </BoxContainer>   
       )}    
     </BoxContainer>
   );
