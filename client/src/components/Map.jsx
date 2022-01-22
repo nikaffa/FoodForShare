@@ -57,7 +57,7 @@ export function Map(props) {
 
   //sets places to be shown on the map
   useEffect(() => {
-    axios.get("http://localhost:8080/users")
+    axios.get("/users")
     .then(res => { 
       setPlaces(res.data); 
     })
@@ -84,6 +84,7 @@ export function Map(props) {
     mapRef.current = map;
   }, []);
 
+
   //geolocating
   const panTo = useCallback(({ lat, lng }) => {
     mapRef.current.panTo({ lat, lng });
@@ -105,8 +106,9 @@ export function Map(props) {
         >
         <Locate panTo={panTo} /> 
         <SearchMe panTo={panTo} />
-
+          
         {places.places.map((place) => (
+
           <Marker 
           key={place.properties.NAME}
           position={{
@@ -119,7 +121,7 @@ export function Map(props) {
           }} />
         ))}
           
-        {selected && (
+          {selected && (
           <InfoWindow
             position={{ lat: selected.geometry.coordinates[1], lng: selected.geometry.coordinates[0] }}
             onCloseClick={() => {
@@ -199,6 +201,8 @@ const SearchMe = ({ panTo }) => {
   const handleInput = (e) => {
     setValue(e.target.value);
   };
+
+
 
   return (
     <div className="search">

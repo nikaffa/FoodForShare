@@ -13,7 +13,6 @@ const StyledInnerContainer = styled(InnerPageContainer)`
 
 export default function DonationSearch(props) {
   const { action } = useParams();
-
   return (
     <PageContainer>
       <Navbar/>

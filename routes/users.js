@@ -36,7 +36,7 @@ module.exports = (db) => {
           // places['places'].push(loc);
           places.push(loc);
         });
-        res.json({ places });
+        res.json(places);
       })
       .catch(err => {
         res
