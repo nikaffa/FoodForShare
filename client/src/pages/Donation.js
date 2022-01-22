@@ -13,8 +13,6 @@ import axios from "axios";
 
 
 export default function Donation(props) {
-
-  console.log("IM HERE");
   
   return (
     <PageContainer>

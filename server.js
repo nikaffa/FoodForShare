@@ -1,13 +1,15 @@
 // load .env data into process.env
 require("dotenv").config();
+const bodyParser = require('body-parser');
 
 // Web server config
+
 const PORT = process.env.PORT || 8080;
 const sassMiddleware = require("./lib/sass-middleware");
 const express = require("express");
 const app = express();
 const morgan = require("morgan");
-// const cors = require("cors");
+const cors = require("cors");
 
 // PG database client/connection setup
 const { Pool } = require("pg");
@@ -22,6 +24,9 @@ app.use(morgan("dev"));
 
 app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+
 
 app.use(
   "/styles",
@@ -34,8 +39,8 @@ app.use(
 
 app.use(express.static("public"));
 
-//Enable cors
-// app.use(cors());
+// Enable cors
+app.use(cors());
 
 // Separated Routes for each Resource
 // Note: Feel free to replace the example routes below with your own
