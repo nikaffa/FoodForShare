@@ -13,10 +13,19 @@ const FoodCard = styled.div`
   border-radius: 15px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
   padding: 60px;
- 
- 
+  margin: 10px;
   
 `
+const FoodBoxContainer= styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0;
+  background: #white;
+  
+`;
 // align-items: flex-start;
 //   background-color: #fff;
 //   border: solid 0.25px #707070;
@@ -35,41 +44,30 @@ const FoodCard = styled.div`
 //     flex-direction: column;
 //   }
 
-export default function foodCard({ foods }) {
+export default function FoodContainer({ foods }) {
   return (
     <InnerPageContainer>
-      <FoodCard >
-        <div>
-          {Object.keys(foods).map((i) => {
-            const food = foods[i];
-            console.log(food);
-            return (
-              <div>
-                <div>
-                  <h3 >{food.name}</h3>
-                  <h3 >{food.description}</h3>
-                  <h3 >{food.food_type}</h3>
-                  <h3 >{food.freshness}</h3>
-                  <h3 >{food.leftover} portions</h3>
-                  <Link to="/reservations">
-                    <SubmitButton size={'25px'}>Reserve</SubmitButton>
-                  </Link> 
-                </div>
-                <br />
-                <div>
+      <FoodBoxContainer>
+        {Object.keys(foods).map((i) => {
+          const food = foods[i];
+          console.log(food);
 
-                </div>
-                
-              </div>
-            
-            )
-          })}
-
-        </div>
-        
-        <div>
-        </div>
-      </FoodCard>
+          return (
+            <FoodCard>
+              <h3 >{food.name}</h3>
+              <h3 >{food.description}</h3>
+              <h3 >{food.food_type}</h3>
+              <h3 >freshness: {food.freshness}</h3>
+              <h3 >{food.leftover} portions left</h3>
+              <Link to={`/reservation/new`}>
+                <SubmitButton size={'25px'}>Reserve</SubmitButton>
+              </Link> 
+              
+            </FoodCard>
+          )
+          }
+        )}
+      </FoodBoxContainer>
     </InnerPageContainer>
   )
 }

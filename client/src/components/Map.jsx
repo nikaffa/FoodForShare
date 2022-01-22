@@ -10,7 +10,7 @@ import {
 } from "./Common";
 import { Link } from "react-router-dom";
 //import ContentCard from "../components/ContentCard";
-import FoodCard from "../components/FoodCard";
+import FoodContainer from "../components/FoodContainer";
 
 //map
 import {
@@ -138,13 +138,9 @@ export function Map(props) {
 
       {selected && (
       <BoxContainer>
-        <LogoTitle>Food is shown here</LogoTitle>
-        <Marginer direction="vertical" margin="0.5em" />  
-
         {foods && Object.keys(foods).length>0 &&
-        (<FoodCard layout={'column'} foods={foods} />)}
-       
-        </BoxContainer>   
+        (<FoodContainer  foods={foods} />)}
+      </BoxContainer>   
       )}    
     </BoxContainer>
   );
