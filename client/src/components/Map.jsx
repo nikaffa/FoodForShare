@@ -1,15 +1,9 @@
 import React, { useState, useCallback, useRef, useEffect } from "react";
 import axios from "axios";
 import { Marginer } from "./Marginer";
-import { LogoTitle } from "./BrandLogo";
 import {
-  BoxContainer,
-  FormContainer,
-  Input,
-  SubmitButton
+  BoxContainer
 } from "./Common";
-import { Link } from "react-router-dom";
-//import ContentCard from "../components/ContentCard";
 import FoodContainer from "../components/FoodContainer";
 
 //map
