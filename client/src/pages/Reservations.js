@@ -7,7 +7,7 @@ import {
   PageContainer,
 } from "../components/PageContainer";
 import { Marginer } from "../components/Marginer";
-import ReservationItems from "../components/ReservationForm"
+import ReservationsList from "../components/Reservations"
 
 const StyledInnerContainer = styled(InnerPageContainer)`
   margin-top: 4em;
@@ -18,7 +18,7 @@ export default function Reservations() {
     <PageContainer>
       <Navbar />
       <Marginer direction="vertical" margin="2em" />
-        <ReservationItems />
+        <ReservationsList />
       <StyledInnerContainer>
         <BackgroundContainer></BackgroundContainer>
       </StyledInnerContainer>
