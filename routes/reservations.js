@@ -51,7 +51,7 @@ module.exports = (db) => {
 
   //(shows user their own reservations)
   router.get("/:id", (request, response) => {
-    db.query(`SELECT * FROM reservations where user_id=$1::integer`, [Number(request.params.id)]).then(({ rows: reservations }) => {
+    db.query(`SELECT * FROM reservations INNER JOIN reservation_items ON reservations.id=reservation_id where reservations.id=$1::integer`, [Number(request.params.id)]).then(({ rows: reservations }) => {
       response.json(
         reservations.reduce(
           (previous, current) => ({ ...previous, [current.id]: current }),
