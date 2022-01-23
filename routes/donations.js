@@ -82,7 +82,7 @@ module.exports = (db) => {
       return;
     }
     console.log(request.body);
-    const { title, foodType, freshness, description, quantity } = request.body;
+    const { title, foodType, freshness, description, quantity, image } = request.body;
     //console.log(title, foodType, description, freshness, quantity);
     db.query(
       `
@@ -90,7 +90,7 @@ module.exports = (db) => {
                         INSERT INTO donation_items (donation_id, name, food_type, description, image, freshness, quantity, leftover)
                         VALUES ((select id from inserted_id), $2, $3, $4, $5, $6, $7, $7) RETURNING (select id from inserted_id)
     `,
-      [2, title, foodType, description, "/image", freshness, quantity]
+      [2, title, foodType, description, image, freshness, quantity]
     )
       .then((result) => {
         console.log("DB RESULT", result);
