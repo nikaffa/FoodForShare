@@ -13,8 +13,6 @@ import { Marginer } from "../components/Marginer";
 
 
 export default function Donation(props) {
-
-  console.log("IM HERE");
   
   return (
     <PageContainer>

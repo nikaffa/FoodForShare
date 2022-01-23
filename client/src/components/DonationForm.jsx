@@ -22,18 +22,29 @@ export function DonationForm() {
   const [address, setAddress] = useState("");
 
   const onSubmitForm = function(event) {
-    console.log("IM HERE");
 
     event.preventDefault();
-    axios.post(`http://localhost:3000/donation/new`,
-    { title: title,
+
+    console.log({ title: title,
       foodType: foodType,
       freshness: freshness, 
       description: description, 
       quantity: quantity, 
-      address: address  })
+      // address: address  
+    
+    });
+
+    axios.post(`http://localhost:8080/donations/new`,
+    { title: title,
+      foodType: foodType,
+      freshness: freshness, 
+      freshness: freshness,
+      description: description, 
+      quantity: quantity, 
+      // address: address  
+    })
     .then((res)=>{
-      console.log('HEEERE',res)
+      console.log(res)
     })
     .catch((err)=> {
       console.log('ERROR', err)
@@ -61,8 +72,8 @@ export function DonationForm() {
         />
         <Marginer direction="vertical" margin="1em" />
           <DropDown name="freshness"
-            value={freshness}
-            onChange={(event) => setFreshness(event.target.value)}
+            freshness={freshness}
+            setFreshness={setFreshness}
           />
         <Marginer direction="vertical" margin="1em" />
         <Input type="description" name="description"
@@ -71,24 +82,20 @@ export function DonationForm() {
           onChange={(event) => setDescription(event.target.value)} 
         />
         <Marginer direction="vertical" margin="1em" />
-        <QuantityDropDown>
-          <Input name="quantity"
-            type="number"
-            value={quantity}
-            onChange={(event) => setQuantity(event.target.value)}
-          />
-        </QuantityDropDown>
+        <QuantityDropDown name="quantity"
+            quantity={quantity}
+            setQuantity={setQuantity}/>
         <Marginer direction="vertical" margin="1em" />
-        <Input name="address"
+        {/* <Input name="address"
           type="text" 
           placeholder="Address" 
           value={address}
           onChange={(event) => setAddress(event.target.value)}
-        />
+        /> */}
       </FormContainer>
       <Marginer direction="vertical" margin="1em" />
       <Link to="/donations">
-        <SubmitButton size={'25px'} onSubmit={onSubmitForm}>Save Donation</SubmitButton>
+        <SubmitButton size={'25px'} onClick={onSubmitForm}>Save Donation</SubmitButton>
       </Link>
       <Marginer direction="vertical" margin={5} />
     </BoxContainer>
