@@ -22,7 +22,7 @@ export default function Donation(props) {
         <Button size="0.25px">Go Back</Button>
       </Link>
       <InnerPageContainer>
-        <BackgroundContainer>
+        <BackgroundContainer color="#fff0d2" border="1px black dotted" box-shadow="0px 5px 5px rgba(0, 0, 0, 0.25)" >
           <DonationForm/>
         </BackgroundContainer>
       </InnerPageContainer>

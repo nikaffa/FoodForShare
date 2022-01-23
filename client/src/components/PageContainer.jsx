@@ -16,9 +16,9 @@ const PageWrapper = styled.div`
 `;
 
 export function PageContainer(props) {
-  // useEffect(()=> {
-  //   scrollToTop();
-  // },[]);
+  useEffect(()=> {
+     window.scrollTo(0,0);
+   },[]);
 
   return <PageWrapper>{props.children}</PageWrapper>;
 }
@@ -26,6 +26,7 @@ export function PageContainer(props) {
 export const InnerPageContainer = styled.div `
   flex: 1;
   width: 100%;
+  overflow: hidden;
   min-height: 83vh;
   padding: 1em;
   display: flex;
@@ -38,10 +39,12 @@ export const InnerPageContainer = styled.div `
 
 export const BackgroundContainer = styled.div `
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+  // flex-direction: column;
+  // align-items: flex-start;
   padding: 1em;
-  background: #FFF0A2;
+  background: ${({ color }) => (color ? color + "" : "FFF0A2")};
+  box-shadow: ${({box})=> (box ? box + "" : "0px 4px 4px rgba(0, 0, 0, 0.25)")}; 
+  border: ${({border}) => (border ? border + "" : "none")};
   @media screen and (max-width: ${deviceSize.mobile}px) {
     padding: 5px;
   }

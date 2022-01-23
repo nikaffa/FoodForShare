@@ -15,12 +15,12 @@ export default function Main (props) {
       <Marginer direction="vertical" margin="5em"/>
       <BrandLogo logoSize/>
       <InnerPageContainer>
-        <BackgroundContainer>
+        <BackgroundContainer box-shadow="0px 0px 0px rgba(0, 0, 0, 0)">
           <Marginer direction="vertical" margin="5em" />
           <Link to="/donation/new">
             <Button>Share Food</Button>
           </Link>
-          <Marginer direction="vertical" margin="5em" />
+          <Marginer direction="horizontal" margin="5em" />
           <Link to="/donation/search">
             <Button>Search Food</Button>
           </Link>
