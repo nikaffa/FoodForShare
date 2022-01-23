@@ -10,8 +10,8 @@ const BrandLogoContainer = styled.div`
 
 const LogoImage = styled.div`
   animation:
-  width: ${({ size }) => (size ? size + "px" : "2em")};
-  height: ${({ size }) => (size ? size + "px" : "2em")};
+  width: ${({ size }) => (size ? size + "px" : "4em")};
+  height: ${({ size }) => (size ? size + "px" : "4em")};
   img {
     width: 100%;
     height: 100%;
