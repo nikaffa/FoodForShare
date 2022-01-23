@@ -1,5 +1,6 @@
 import React from "react";
 import styled from 'styled-components'
+import useCart from "../hooks/useCart";
 
 import { useState, useCallback, useRef, useEffect, useContext } from "react";
 import {
@@ -22,20 +23,22 @@ const FoodCard = styled.div`
   margin: 10px;`
 
 
-export default function ReservationForm(props) {
-  const cart = JSON.parse(localStorage.getItem("cart"));
-  console.log(cart.length)
+export default function ReservationForm() {
+  const { cart, addItemToCart, removeItemFromCart, decreaseItemQty } = useCart();
+  //const cartR = JSON.parse(localStorage.getItem("cart"));
+console.log(cart)
   return (
     <div>
       {cart.map((food) => {
         return(
-          <FoodCard>
-            <td>Name: {food.name}</td>
-            <td>Freshness: {food.freshness}</td>
-            <td>{food.image}</td>
-            <td>Quantity: {food.qty}</td>
-            <button size={'5px'} >+</button>
-            <button size={'5px'} >-</button>              
+          <FoodCard key={food.id}>
+            <p>Name: {food.name}</p>
+            <p>Freshness: {food.freshness}</p>
+            <p>{food.image}</p>
+            <p>Quantity: {food.qty}</p>
+            <button size={'5px'} onClick={() => addItemToCart(food)}>+</button>
+            <button size={'5px'} onClick={() => decreaseItemQty(food.id)}>-</button>
+            <button size={'5px'} onClick={() => removeItemFromCart(food.id)}>x</button>              
           </FoodCard>
           )
         }

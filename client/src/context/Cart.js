@@ -31,6 +31,21 @@ const Cart = ({ children }) => {
     }
   };
 
+
+  const decreaseItemQty = (id) => {    
+    const exist = cart.find((x) => x.id === id);
+    if (exist) {
+      if(exist.qty<2){
+        removeItemFromCart(id);
+      }
+      setCart(
+        cart.map((x) =>
+          x.id === id ? { ...exist, qty: exist.qty - 1 } : x
+        )
+      );
+    }
+  };
+
   const removeItemFromCart = (id) => {
     const newCart = cart.filter((item) => {
       return item.id !== id;
@@ -42,6 +57,7 @@ const Cart = ({ children }) => {
     cart,
     addItemToCart,
     removeItemFromCart,
+    decreaseItemQty,
   };
 
   return <Context.Provider value={exposed}>{children}</Context.Provider>;
