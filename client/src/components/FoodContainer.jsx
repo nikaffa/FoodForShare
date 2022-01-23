@@ -37,19 +37,24 @@ export default function FoodContainer({ foods }) {
           const food = foods[i];
           //console.log(food);
           const subset = ['id', 'name', 'freshness', 'image', 'leftover'].reduce((a, e) => (a[e] = food[e], a), {})
-          return (  
+          
+          //check availability & freshness
+          if (food.leftover > 0) {
+            return (  
             <FoodCard key={`{food.id}.${i}`}>
               <h3 >{food.name}</h3>
               <h3 >{food.description}</h3>
               <h3 >{food.food_type}</h3>
-              <h3 >{food.food_type}</h3>
               <h3 >freshness: {food.freshness}</h3>
               <h3 >{food.leftover} portions left</h3>
-              <button size={'25px'} onClick={() => addItemToCart(subset)}>Add to Basket</button>              
+              <button size={'25px'} onClick={() => addItemToCart(subset)}>Reserve</button>              
             </FoodCard>
-          )
+            )
           }
-        )}
+          else {
+            return null
+          }
+        })}
       </FoodBoxContainer>
     </InnerPageContainer>
   )

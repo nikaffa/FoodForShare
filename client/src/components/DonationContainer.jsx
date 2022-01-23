@@ -34,17 +34,21 @@ export default function DonationContainer({ donations }) {
         {Object.keys(donations).map((i) => {
           const donation = donations[i];
 
-          return (
+           //check availability & freshness
+          if (donation.leftover > 0) {
+            return (
             <DonationCard key={`{donation.id}.${i}`}>
-              <h3 >{donation.id}</h3>
-              <h3 >{donation.status}</h3>
-              <h3 >{donation.name}</h3>
-             
-              
+              <h3 >ID # {donation.id}</h3>
+              <h3 >Status {donation.status}</h3>
+              <h3 >Food {donation.name}</h3>
+              <h3 >Quantity {donation.quantity}</h3>
+              <h3 >Left {donation.leftover} portions</h3>
             </DonationCard>
-          )
+            ) 
+          }else {
+            return null
           }
-        )}
+        })}
       </FoodBoxContainer>
     </InnerPageContainer>
   )
