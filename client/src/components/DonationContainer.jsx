@@ -1,7 +1,4 @@
-import { Link } from 'react-router-dom'
 import styled from 'styled-components'
-import { SubmitButton } from './Common'
-import { Marginer } from './Marginer'
 import { InnerPageContainer } from './PageContainer'
 
 const DonationCard = styled.div`
