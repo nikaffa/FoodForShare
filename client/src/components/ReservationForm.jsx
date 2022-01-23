@@ -27,21 +27,19 @@ export default function ReservationForm(props) {
   console.log(cart.length)
   return (
     <div>
-      <table>
-        {cart.map((food) => {
-          return(
-            <FoodCard>
-              <td>{food.name}</td>
-              <td>{food.freshness}</td>
-              <td>{food.image}</td>
-              <td>{food.leftover} portions left</td>
-              <button size={'5px'} >+</button>
-              <button size={'5px'} >-</button>              
-            </FoodCard>
-            )
-          }
-        )}
-      </table>
+      {cart.map((food) => {
+        return(
+          <FoodCard>
+            <td>Name: {food.name}</td>
+            <td>Freshness: {food.freshness}</td>
+            <td>{food.image}</td>
+            <td>Quantity: {food.qty}</td>
+            <button size={'5px'} >+</button>
+            <button size={'5px'} >-</button>              
+          </FoodCard>
+          )
+        }
+      )}
     </div>
   );
 }
