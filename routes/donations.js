@@ -5,12 +5,11 @@
  * See: https://expressjs.com/en/guide/using-middleware.html#middleware.router
  */
 
-const express = require('express');
-const { redirect } = require('express/lib/response');
-const router  = express.Router();
+const express = require("express");
+const { redirect } = require("express/lib/response");
+const router = express.Router();
 
 module.exports = (db) => {
-
   //(shows all donations)
   router.get("/", (request, response) => {
     db.query(`SELECT * FROM donations`).then(({ rows: donations }) => {
@@ -25,7 +24,10 @@ module.exports = (db) => {
 
   //(shows user their own donations)
   router.get("/:id", (request, response) => {
-    db.query(`SELECT * FROM donations inner join donation_items on donations.id=donation_id where user_id=$1::integer`, [Number(request.params.id)]).then(({ rows: donations }) => {
+    db.query(
+      `SELECT * FROM donations inner join donation_items on donations.id=donation_id where user_id=$1::integer`,
+      [Number(request.params.id)]
+    ).then(({ rows: donations }) => {
       response.json(
         donations.reduce(
           (previous, current) => ({ ...previous, [current.id]: current }),
@@ -37,7 +39,10 @@ module.exports = (db) => {
 
   //(shows donations in a specific location)
   router.get("/search/:location", (request, response) => {
-    db.query(`SELECT * FROM donations INNER JOIN users ON users.ID=user_id where location like $1::text`, ['%' + request.params.location + '%']).then(({ rows: donations }) => {
+    db.query(
+      `SELECT * FROM donations INNER JOIN users ON users.ID=user_id where location like $1::text`,
+      ["%" + request.params.location + "%"]
+    ).then(({ rows: donations }) => {
       response.json(
         donations.reduce(
           (previous, current) => ({ ...previous, [current.id]: current }),
@@ -46,12 +51,6 @@ module.exports = (db) => {
       );
     });
   });
-
-
-
-
-
-
 
   //(saves new donations)
   router.post("/:id/cancel", (request, response) => {
@@ -73,10 +72,9 @@ module.exports = (db) => {
           //updateAppointment(Number(request.params.id), request.body.donations);
         }, 1000);
       })
-      .catch(error => console.log(error));
+      .catch((error) => console.log(error));
   });
 
-  
   //(Adds a donations)
   router.post("/new", (request, response) => {
     if (process.env.TEST_ERROR) {
@@ -84,7 +82,8 @@ module.exports = (db) => {
       return;
     }
     console.log(request.body);
-    const { title, foodType, freshness, description, quantity, address } = request.body;
+    const { title, foodType, freshness, description, quantity, address } =
+      request.body;
     //console.log(title, foodType, description, freshness, quantity);
     db.query(
       `
@@ -92,17 +91,15 @@ module.exports = (db) => {
                         INSERT INTO donation_items (donation_id, name, food_type, description, image, freshness, quantity, leftover)
                         VALUES ((select id from inserted_id), $2, $3, $4, $5, $6, $7, $7) RETURNING (select id from inserted_id)
     `,
-      [2, title, foodType, description, '/image', freshness, quantity, address]
+      [2, title, foodType, description, "/image", freshness, quantity, address]
     )
       .then(() => {
         setTimeout(() => {
-          response.status(204).json('Record stored in DB.');
+          response.status(204).json("Record stored in DB.");
         }, 1000);
       })
-      .catch(error => console.log(error));
+      .catch((error) => console.log(error));
   });
-
-
 
   //(cancels a donations)
   router.post("/:id/cancel", (request, response) => {
@@ -110,18 +107,16 @@ module.exports = (db) => {
       setTimeout(() => response.status(500).json({}), 1000);
       return;
     }
-    db.query(
-      `UPDATE donations SET status = 'Cancel' where id=$1)`,
-      [Number(request.params.id)]
-    )
+    db.query(`UPDATE donations SET status = 'Cancel' where id=$1)`, [
+      Number(request.params.id),
+    ])
       .then(() => {
         setTimeout(() => {
           response.status(204).json({});
         }, 1000);
       })
-      .catch(error => console.log(error));
+      .catch((error) => console.log(error));
   });
-
 
   router.post("/:id/edit", (request, response) => {
     if (process.env.TEST_ERROR) {
@@ -141,9 +136,8 @@ module.exports = (db) => {
           //updateAppointment(Number(request.params.id), request.body.donations);
         }, 1000);
       })
-      .catch(error => console.log(error));
+      .catch((error) => console.log(error));
   });
 
   return router;
 };
- 

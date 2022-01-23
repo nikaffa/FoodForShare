@@ -1,28 +1,26 @@
 import React from "react";
 import styled from "styled-components";
 import Navbar from "../components/Navbar";
-import { BackgroundContainer, InnerPageContainer, PageContainer } from "../components/PageContainer";
-import { Link, useParams } from "react-router-dom";
-import { Button } from "../components/Button";
+import {
+  BackgroundContainer,
+  InnerPageContainer,
+  PageContainer,
+} from "../components/PageContainer";
 import { Marginer } from "../components/Marginer";
+import ReservationItems from "../components/ReservationForm"
 
 const StyledInnerContainer = styled(InnerPageContainer)`
   margin-top: 4em;
 `;
 
-export default function Reservations(props) {
-  const { action } = useParams();
-
+export default function Reservations() {
   return (
     <PageContainer>
-      <Navbar/>
-      <Marginer direction="vertical" margin="2em"/>
-      <Link to="/reservation/new">
-        <Button size="0.25px">Add Reservation</Button>
-      </Link>
+      <Navbar />
+      <Marginer direction="vertical" margin="2em" />
+        <ReservationItems />
       <StyledInnerContainer>
-        <BackgroundContainer>
-        </BackgroundContainer>
+        <BackgroundContainer></BackgroundContainer>
       </StyledInnerContainer>
     </PageContainer>
   );

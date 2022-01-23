@@ -19,8 +19,7 @@ export default function DonationSearch(props) {
       <Marginer direction="vertical" margin="2em"/>
       <StyledInnerContainer>
         <BackgroundContainer>
-        <Map initialActive={action} />
-        
+          <Map initialActive={action} />
         </BackgroundContainer>
       </StyledInnerContainer>
     </PageContainer>

@@ -1,8 +1,6 @@
-import { Link } from 'react-router-dom'
 import styled from 'styled-components'
-import { SubmitButton } from './Common'
-import { Marginer } from './Marginer'
 import { InnerPageContainer } from './PageContainer'
+import useCart from '../hooks/useCart'
 
 const FoodCard = styled.div`
   display: grid;
@@ -45,24 +43,25 @@ const FoodBoxContainer= styled.div`
 //   }
 
 export default function FoodContainer({ foods }) {
+  const { cart, addItemToCart } = useCart();
+  
+  // console.log(cart)  
+  
   return (
     <InnerPageContainer>
       <FoodBoxContainer>
         {Object.keys(foods).map((i) => {
           const food = foods[i];
-          console.log(food);
-
-          return (
-            <FoodCard>
+          //console.log(food);
+          const subset = ['id', 'name', 'freshness', 'image', 'leftover'].reduce((a, e) => (a[e] = food[e], a), {})
+          return (  
+            <FoodCard key={food.id}>
               <h3 >{food.name}</h3>
               <h3 >{food.description}</h3>
               <h3 >{food.food_type}</h3>
               <h3 >freshness: {food.freshness}</h3>
               <h3 >{food.leftover} portions left</h3>
-              <Link to={`/reservation/new`}>
-                <SubmitButton size={'25px'}>Reserve</SubmitButton>
-              </Link> 
-              
+              <button size={'25px'} onClick={() => addItemToCart(subset)}>Add to Basket</button>              
             </FoodCard>
           )
           }

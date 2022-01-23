@@ -101,7 +101,7 @@ export function Map(props) {
         <Locate panTo={panTo} /> 
         <SearchMe panTo={panTo} />
           
-        {places.places.map((place) => (
+        {places.map((place) => (
 
           <Marker 
           key={place.properties.NAME}
@@ -135,7 +135,7 @@ export function Map(props) {
       {selected && (
       <BoxContainer>
         {foods && Object.keys(foods).length>0 &&
-        (<FoodContainer  foods={foods} />)}
+        (<FoodContainer foods={foods} key="1" />)}
       </BoxContainer>   
       )}    
     </BoxContainer>
