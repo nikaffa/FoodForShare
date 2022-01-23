@@ -78,14 +78,16 @@ const ListItem = styled("li")`
 
 const options = ["1", "2", "3", "4", "5", "6", "7", "8", "9", " "];
 
-export default function QuantityDropDown() {
+export default function QuantityDropDown(props) {
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedOption, setSelectedOption] = useState(null);
+  const [selectedOption, setSelectedOption] = useState();
 
   const toggling = () => setIsOpen(!isOpen);
-
+  
   const onOptionClicked = value => () => {
+    console.log(value);
     setSelectedOption(value);
+    props.setQuantity(value);
     setIsOpen(false);
     console.log(selectedOption);
   };

@@ -1,7 +1,7 @@
-import { Link } from 'react-router-dom'
+// import { Link } from 'react-router-dom'
 import styled from 'styled-components'
-import { SubmitButton } from './Common'
-import { Marginer } from './Marginer'
+// import { SubmitButton } from './Common'
+// import { Marginer } from './Marginer'
 import { InnerPageContainer } from './PageContainer'
 import axios from 'axios';
 export const ContentCard = styled.div`
@@ -27,7 +27,7 @@ export const ContentCard = styled.div`
 `
 export default function Card({ item: { title, foodType, freshness, description, quantity, address, status } }) {
 
-    axios.get(`http://localhost:3000/donations`,
+    axios.get(`http://localhost:8080/donations/`,
     { title: title,
       foodType: foodType,
       freshness: freshness, 
@@ -45,7 +45,10 @@ export default function Card({ item: { title, foodType, freshness, description, 
 
   return (
     <InnerPageContainer>
-      <div>hello</div>
+
+      {/* <div>hello</div> */}
+      {/* <ContentCard props={props}> */}
+
       <ContentCard>
         <div>
           <h2>{title}</h2>
@@ -54,6 +57,7 @@ export default function Card({ item: { title, foodType, freshness, description, 
           <p>{quantity}</p>
           <p>{status}</p>
         </div>
+        
         <div>
         </div>
       </ContentCard>

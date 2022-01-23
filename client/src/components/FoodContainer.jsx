@@ -24,23 +24,6 @@ const FoodBoxContainer= styled.div`
   background: #white;
   
 `;
-// align-items: flex-start;
-//   background-color: #fff;
-//   border: solid 0.25px #707070;
-//   border-radius: 15px;
-//   box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
-//   margin: 40px 0;
-//   padding: 60px;
-//   flex-direction: ${({ layout }) => layout || 'row'};
-//   img {
-//     width: 80%;
-//   }
-//   & > div {
-//     flex: 1;
-//   }
-//   @media (max-width: ${({ theme }) => theme.mobile}) {
-//     flex-direction: column;
-//   }
 
 export default function FoodContainer({ foods }) {
   const { cart, addItemToCart } = useCart();
@@ -55,9 +38,10 @@ export default function FoodContainer({ foods }) {
           //console.log(food);
           const subset = ['id', 'name', 'freshness', 'image', 'leftover'].reduce((a, e) => (a[e] = food[e], a), {})
           return (  
-            <FoodCard key={food.id}>
+            <FoodCard key={`{food.id}.${i}`}>
               <h3 >{food.name}</h3>
               <h3 >{food.description}</h3>
+              <h3 >{food.food_type}</h3>
               <h3 >{food.food_type}</h3>
               <h3 >freshness: {food.freshness}</h3>
               <h3 >{food.leftover} portions left</h3>

@@ -51,7 +51,7 @@ export function Map(props) {
 
   //sets places to be shown on the map
   useEffect(() => {
-    axios.get("/users")
+    axios.get("http://localhost:8080/users")
     .then(res => { 
       setPlaces(res.data); 
     })
@@ -98,7 +98,7 @@ export function Map(props) {
           options={options}
           onLoad={onMapLoad}
         >
-        <Locate panTo={panTo} /> 
+        <Locate panTo={panTo} />
         <SearchMe panTo={panTo} />
           
         {places.map((place) => (
