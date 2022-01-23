@@ -9,29 +9,29 @@ const express = require('express');
 const router  = express.Router();
 
 module.exports = (db) => {
-  
-  
 
-  //(Adds a donations)
+  //(Adds a reservations)
   router.post("/new", (request, response) => {
     if (process.env.TEST_ERROR) {
       setTimeout(() => response.status(500).json({}), 1000);
       return;
     }
-    console.log(request.body)
-    const { title, foodtype, freshness, description, quantity, address } = request.body;
-    console.log(title, foodtype, description, freshness, quantity)
-    db.query(
-      `
-      WITH inserted_id AS (INSERT INTO reservations (user_id, donation_date, status) values ($1, Now(), 'Pick-Up') RETURNING id)
-                        INSERT INTO donation_items (donation_id, name, food_type, description, image, freshness, quantity, leftover)
-                        VALUES ((select id from inserted_id), $2, $3, $4, $5, $6, $7, $7) RETURNING (select id from inserted_id)
-    `,
-      [2, title, foodtype, description, '/image', freshness, quantity]
-    )
+    const cart = request.body;
+    let val = "";
+    let user_id = "2";
+    for (const key in cart) {
+      const { id, qty } = cart[key];
+      console.log(id, qty)
+      val += `((select id from inserted_id), ${cart[key].id}, ${cart[key].qty}), `;
+    }
+    val = val.substring(0, val.length - 2);
+    const queryString = `WITH inserted_id AS (INSERT INTO reservations (user_id, reservation_date, status) values (${user_id}, Now(), 'Waiting') RETURNING id)
+                         INSERT INTO reservation_items (reservation_id, donation_item_id, quantity)
+                         VALUES ${val} RETURNING (select id from inserted_id)`;
+    db.query(queryString)
       .then(() => {
         setTimeout(() => {
-          response.status(204).json('Record stored in DB.');
+          response.status(222).json('Record stored in DB.');
         }, 1000);
       })
       .catch(error => console.log(error));
@@ -51,7 +51,7 @@ module.exports = (db) => {
 
   //(shows user their own reservations)
   router.get("/:id", (request, response) => {
-    db.query(`SELECT * FROM reservations where user_id=$1::integer`, [Number(request.params.id)]).then(({ rows: reservations }) => {
+    db.query(`SELECT * FROM reservations INNER JOIN reservation_items ON reservations.id=reservation_id where reservations.id=$1::integer`, [Number(request.params.id)]).then(({ rows: reservations }) => {
       response.json(
         reservations.reduce(
           (previous, current) => ({ ...previous, [current.id]: current }),

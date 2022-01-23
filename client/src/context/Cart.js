@@ -18,7 +18,8 @@ const Cart = ({ children }) => {
     localStorage.setItem("cart", JSON.stringify(cart));
   }, [cart]);
 
-  const addItemToCart = (product, qty = 1) => {    
+  const addItemToCart = (product, qty = 1) => {
+    localStorage.setItem("cart-status", "")
     const exist = cart.find((x) => x.id === product.id);
     if (exist) {
       setCart(
@@ -53,11 +54,16 @@ const Cart = ({ children }) => {
     setCart(newCart);
   };
 
+  const EmptyCart = () => {
+    setCart([]);
+  };
+
   const exposed = {
     cart,
     addItemToCart,
     removeItemFromCart,
     decreaseItemQty,
+    EmptyCart,
   };
 
   return <Context.Provider value={exposed}>{children}</Context.Provider>;
