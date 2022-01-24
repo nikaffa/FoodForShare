@@ -30,7 +30,7 @@ export function DonationForm() {
       freshness: freshness, 
       description: description, 
       quantity: quantity, 
-      image: image  
+      image: image 
     
     });
 
@@ -38,7 +38,6 @@ export function DonationForm() {
     { title: title,
       foodType: foodType,
       freshness: freshness, 
-      freshness: freshness,
       description: description, 
       quantity: quantity, 
       image: image  
@@ -86,8 +85,8 @@ export function DonationForm() {
             quantity={quantity}
             setQuantity={setQuantity}/>
         <Marginer direction="vertical" margin="1em" />
-        <Input name="address"
-          type="file" 
+        <Input name="image"
+          type="url" 
           placeholder="Image" 
           value={image}
           onChange={(event) => setImage(event.target.value)}
