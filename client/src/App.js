@@ -5,9 +5,8 @@ import Home from "./pages/Home";
 import Donation from "./pages/Donation";
 import DonationSearch from "./pages/DonationSearch";
 import Donations from "./pages/Donations";
-import Reservation from "./pages/Reservation";
+import ReservationNew from "./pages/ReservationNew";
 import Reservations from "./pages/Reservations";
-import Basket from "./components/Basket";
 import DonationEdit from "./pages/DonationEdit";
 
 function App() {
@@ -18,8 +17,7 @@ function App() {
         <Route path="/donation/new" element={<Donation />}></Route>
         <Route path="/donation/search" element={<DonationSearch />}></Route>
         <Route path="/donations" element={<Donations />}></Route>
-        <Route path="/reservation/new" element={<Reservation />}></Route>
-        <Route path="/basket" element={<Basket />}></Route>
+        <Route path="/reservations/new" element={<ReservationNew />}></Route>
         <Route path="/reservations" element={<Reservations />}></Route>
       </Routes>
     </Router>

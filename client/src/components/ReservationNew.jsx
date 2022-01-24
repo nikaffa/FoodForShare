@@ -23,13 +23,30 @@ const FoodCard = styled.div`
   margin: 10px;`
 
 
-export default function ReservationForm() {
-  const { cart, addItemToCart, removeItemFromCart, decreaseItemQty } = useCart();
-  //const cartR = JSON.parse(localStorage.getItem("cart"));
-console.log(cart)
+export default function ReservationCart() {
+  const { cart, addItemToCart, removeItemFromCart, decreaseItemQty, EmptyCart} = useCart();
+  console.log(cart)
+
+  const submitForm = () => {
+    console.log(cart);
+    axios.post(`http://localhost:8080/reservations/new`, cart).then((res)=>{
+      console.log(res.status)
+      if(res.status === 222 || res.status === '222')
+      {
+        localStorage.setItem('cart-status', res.data);
+        EmptyCart();
+      }
+    })
+    .catch((err)=> {
+      console.log('ERROR', err)
+    });
+  }
+
+
   return (
     <div>
-      {cart.map((food) => {
+      {localStorage.getItem("cart-status") && localStorage.getItem("cart-status").length>0 && (localStorage.getItem("cart-status"))}
+      {localStorage.getItem("cart-status") && localStorage.getItem("cart-status").length<1 && cart.map((food) => {
         return(
           <FoodCard key={food.id}>
             <p>Name: {food.name}</p>
@@ -43,6 +60,7 @@ console.log(cart)
           )
         }
       )}
+      {localStorage.getItem("cart-status") && localStorage.getItem("cart-status").length<1 && (<SubmitButton size={'25px'} onClick={submitForm}>Save Reservation</SubmitButton>)}
     </div>
-  );
+  );  
 }

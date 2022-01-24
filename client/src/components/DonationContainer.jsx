@@ -11,6 +11,7 @@ const DonationCard = styled.div`
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
   padding: 60px;
   margin: 10px;
+  font-family: Roboto;
   
 `
 const FoodBoxContainer= styled.div`

@@ -5,30 +5,40 @@ import { Marginer } from "./Marginer";
 import { Link } from "react-router-dom";
 import { deviceSize } from "../responsive";
 import { useMediaQuery } from "react-responsive";
-
+import UserDropDown from "./UserDropDown";
 
 const NavbarContainer = styled.div`
   width: 95.7%;
-  height: 35px;
+  height: 55px;
   max-width: ${deviceSize.laptop}px;
   max-height: ${deviceSize.laptop}px;
   overflow:hidden;
-  position: sticky; top: 0;
+  position: sticky; top: 0px;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   padding: 0 1.5em;
-  border: 1px solid #707070;
+  //border: 1px solid #707070;
+  cursor: pointer;
+  transition: all, 240ms ease-in-out;
+  &:focus {
+    background: transparent;
+    outline: none;
+  }
+
   background-color: #fff;
   @media screen and (max-width: ${deviceSize.mobile}px) {
     padding: 5px;
+
+  
 `
 ;
 
 const AccessibilityContainer = styled.div`
   height: 100%;
   display: flex;
-  flex-direction: row;
+  //flex-direction: row;
   align-items: center;
   padding: 0px;
   transition: all 200ms ease-in-out;
@@ -38,9 +48,10 @@ const AccessibilityContainer = styled.div`
 `;
 
 const AnchorLink = styled(Link)`
-  font-family: Open Sans;
+  font-family: Roboto;
+  font-weight:600;
   font-style: normal;
-  font-size: 12px;
+  font-size: 15px;
   color: #black;
   transition: all 200ms ease-in-out;
   &:hover {
@@ -49,35 +60,35 @@ const AnchorLink = styled(Link)`
   cursor: pointer;
   text-decoration: none;
   outline: none;
-  text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.25);
   
 `;
 
 const Seperator = styled.div `
-  min-height: 35%;
-  width: 1px;
-  background-color: #7B61FF;`;
+  min-height: 55%;
+  width: 3px;
+  background-color: #7B99ea;`;
 
 export default function Navbar(props) {
-
   const isMobile = useMediaQuery({ maxWidth: deviceSize });
-  const { textSize, color,} = props;
-
+  const { logoSize, color,} = props;
+  
   return (
     <NavbarContainer>
-      <BrandLogo>
+      <BrandLogo size={logoSize}>
        <LogoTitle>FoodforShare</LogoTitle>
         <AnchorLink to="/">
         </AnchorLink>
       </BrandLogo>
       <AccessibilityContainer>
-      {!isMobile && <AnchorLink to="/donations">Donations</AnchorLink>}
-      {!isMobile && <Marginer direction="horizontal" margin={25} />}
-      {!isMobile && <AnchorLink to="/reservations">Reservations</AnchorLink>}
-      {!isMobile && <Marginer direction="horizontal" margin={20} />}
-      {!isMobile && <Seperator />}
-      {!isMobile && <Marginer direction="horizontal" margin={8} />}
-      {!isMobile && <AnchorLink to="/login">Login</AnchorLink>}
+        {!isMobile && <AnchorLink to="/donations">Donations</AnchorLink>}
+        {!isMobile && <Marginer direction="horizontal" margin={25} />}
+        {!isMobile && <AnchorLink to="/reservations">Reservations</AnchorLink>}
+        {!isMobile && <Marginer direction="horizontal" margin={25} />}
+        {!isMobile && <AnchorLink to="/reservations/new">Reservation Cart</AnchorLink>}
+        {!isMobile && <Marginer direction="horizontal" margin={20} />}
+        {!isMobile && <Seperator />}
+        {!isMobile && <Marginer direction="horizontal" margin={20} />}
+        {!isMobile && <UserDropDown name="user"  />}
       </AccessibilityContainer>
     </NavbarContainer>
   );
