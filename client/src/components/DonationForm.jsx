@@ -27,18 +27,18 @@ export function DonationForm() {
 
     console.log({ title: title,
       foodType: foodType,
-      freshness: freshness, 
+      freshness: Number(freshness.split(' ')[0]), 
       description: description, 
       quantity: quantity, 
       // address: address  
     
     });
 
+  
     axios.post(`http://localhost:8080/donations/new`,
     { title: title,
       foodType: foodType,
-      freshness: freshness, 
-      freshness: freshness,
+      freshness: Number(freshness.split(' ')[0]),
       description: description, 
       quantity: quantity, 
       // address: address  

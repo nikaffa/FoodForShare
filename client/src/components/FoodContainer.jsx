@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 import { InnerPageContainer } from './PageContainer'
 import useCart from '../hooks/useCart'
+import Countdown from 'react-countdown';
 
 const FoodCard = styled.div`
   display: grid;
@@ -35,19 +36,28 @@ export default function FoodContainer({ foods }) {
       <FoodBoxContainer>
         {Object.keys(foods).map((i) => {
           const food = foods[i];
-          //console.log(food);
+         
           const subset = ['id', 'name', 'freshness', 'image', 'leftover'].reduce((a, e) => (a[e] = food[e], a), {})
           
-          //check availability & freshness
+          const date = new Date(food.donation_date);
+          const timeLeft = date.getTime() + food.freshness * 3600000;
+          const isFresh = Date.now()-(date.getTime() + food.freshness * 3600000);
+          const renderer = ({days, hours, minutes, seconds}) => {
+            return (
+              <span>{days} days {hours} hours {minutes}:{seconds} minutes</span>
+            )
+          }
 
-          if (food.leftover > 0) {
+          //check availability & freshness
+          if (food.leftover > 0 && isFresh < 0 ) {
             return (  
             <FoodCard key={`{food.id}.${i}`}>
               <h3 >{food.name}</h3>
               <h3 >{food.description}</h3>
               <h3 >{food.food_type}</h3>
-              <h3 >freshness: {food.freshness}</h3>
-              <h3 >{food.leftover} portions left</h3>
+              <h3>Ends in <strong><Countdown date={timeLeft} renderer={renderer} /></strong></h3>
+              <h3 >{food.leftover} left</h3>
+              
               <button size={'25px'} onClick={() => addItemToCart(subset)}>Reserve</button>              
             </FoodCard>
             )

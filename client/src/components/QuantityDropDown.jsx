@@ -89,7 +89,7 @@ export default function QuantityDropDown(props) {
     setSelectedOption(value);
     props.setQuantity(value);
     setIsOpen(false);
-    console.log(selectedOption);
+    // console.log(selectedOption);
   };
 
   return (
