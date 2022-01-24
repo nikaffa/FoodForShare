@@ -1,5 +1,4 @@
 import React from "react";
-import {useNavigate} from 'react-router-dom';
 import styled from 'styled-components'
 import useCart from "../hooks/useCart";
 
@@ -46,8 +45,8 @@ export default function ReservationCart() {
 
   return (
     <div>
-      {localStorage.getItem("cart-status").length>0 && (localStorage.getItem("cart-status"))}
-      {localStorage.getItem("cart-status").length<1 && cart.map((food) => {
+      {localStorage.getItem("cart-status") && localStorage.getItem("cart-status").length>0 && (localStorage.getItem("cart-status"))}
+      {localStorage.getItem("cart-status") && localStorage.getItem("cart-status").length<1 && cart.map((food) => {
         return(
           <FoodCard key={food.id}>
             <p>Name: {food.name}</p>
@@ -61,7 +60,7 @@ export default function ReservationCart() {
           )
         }
       )}
-      {localStorage.getItem("cart-status").length<1 && (<SubmitButton size={'25px'} onClick={submitForm}>Save Reservation</SubmitButton>)}
+      {localStorage.getItem("cart-status") && localStorage.getItem("cart-status").length<1 && (<SubmitButton size={'25px'} onClick={submitForm}>Save Reservation</SubmitButton>)}
     </div>
   );  
 }

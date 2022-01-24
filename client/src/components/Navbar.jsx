@@ -5,7 +5,7 @@ import { Marginer } from "./Marginer";
 import { Link } from "react-router-dom";
 import { deviceSize } from "../responsive";
 import { useMediaQuery } from "react-responsive";
-
+import UserDropDown from "./UserDropDown";
 
 const NavbarContainer = styled.div`
   width: 95.7%;
@@ -69,10 +69,9 @@ const Seperator = styled.div `
   background-color: #7B99ea;`;
 
 export default function Navbar(props) {
-
   const isMobile = useMediaQuery({ maxWidth: deviceSize });
   const { logoSize, color,} = props;
-
+  
   return (
     <NavbarContainer>
       <BrandLogo size={logoSize}>
@@ -81,13 +80,15 @@ export default function Navbar(props) {
         </AnchorLink>
       </BrandLogo>
       <AccessibilityContainer>
-      {!isMobile && <AnchorLink to="/donations">Donations</AnchorLink>}
-      {!isMobile && <Marginer direction="horizontal" margin={25} />}
-      {!isMobile && <AnchorLink to="/reservations">Reservations</AnchorLink>}
-      {!isMobile && <Marginer direction="horizontal" margin={20} />}
-      {!isMobile && <Seperator />}
-      {!isMobile && <Marginer direction="horizontal" margin={20} />}
-      {!isMobile && <AnchorLink to="/login">Login</AnchorLink>}
+        {!isMobile && <AnchorLink to="/donations">Donations</AnchorLink>}
+        {!isMobile && <Marginer direction="horizontal" margin={25} />}
+        {!isMobile && <AnchorLink to="/reservations">Reservations</AnchorLink>}
+        {!isMobile && <Marginer direction="horizontal" margin={25} />}
+        {!isMobile && <AnchorLink to="/reservations/new">Reservation Cart</AnchorLink>}
+        {!isMobile && <Marginer direction="horizontal" margin={20} />}
+        {!isMobile && <Seperator />}
+        {!isMobile && <Marginer direction="horizontal" margin={20} />}
+        {!isMobile && <UserDropDown name="user"  />}
       </AccessibilityContainer>
     </NavbarContainer>
   );
