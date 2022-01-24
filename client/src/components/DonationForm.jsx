@@ -19,7 +19,7 @@ export function DonationForm() {
   const [description, setDescription] = useState("");
   const [freshness, setFreshness] = useState("");
   const [quantity, setQuantity] = useState("");
-  const [address, setAddress] = useState("");
+  const [image, setImage] = useState("");
 
   const onSubmitForm = function(event) {
 
@@ -30,7 +30,7 @@ export function DonationForm() {
       freshness: freshness, 
       description: description, 
       quantity: quantity, 
-      // address: address  
+      image: image 
     
     });
 
@@ -38,10 +38,9 @@ export function DonationForm() {
     { title: title,
       foodType: foodType,
       freshness: freshness, 
-      freshness: freshness,
       description: description, 
       quantity: quantity, 
-      // address: address  
+      image: image  
     })
     .then((res)=>{
       console.log(res)
@@ -86,12 +85,12 @@ export function DonationForm() {
             quantity={quantity}
             setQuantity={setQuantity}/>
         <Marginer direction="vertical" margin="1em" />
-        {/* <Input name="address"
-          type="text" 
-          placeholder="Address" 
-          value={address}
-          onChange={(event) => setAddress(event.target.value)}
-        /> */}
+        <Input name="image"
+          type="url" 
+          placeholder="Image" 
+          value={image}
+          onChange={(event) => setImage(event.target.value)}
+        />
       </FormContainer>
       <Marginer direction="vertical" margin="1em" />
       <Link to="/donations">
