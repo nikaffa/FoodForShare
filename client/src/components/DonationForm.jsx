@@ -30,7 +30,7 @@ export function DonationForm() {
       freshness: Number(freshness.split(' ')[0]), 
       description: description, 
       quantity: quantity, 
-      image: image  
+      image: image 
     
     });
 
@@ -86,8 +86,8 @@ export function DonationForm() {
             quantity={quantity}
             setQuantity={setQuantity}/>
         <Marginer direction="vertical" margin="1em" />
-        <Input name="address"
-          type="file" 
+        <Input name="image"
+          type="url" 
           placeholder="Image" 
           value={image}
           onChange={(event) => setImage(event.target.value)}
