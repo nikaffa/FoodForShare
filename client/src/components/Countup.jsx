@@ -12,8 +12,9 @@ const CounterContainer = styled.div`
   background: #fff;
   align-item: center;
   margin: 1em;
-  border-top: 1px solid #707070;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+  border-top: 10px double #707070;
+  border-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.15);
 `;
 
 const Count = styled.div `
