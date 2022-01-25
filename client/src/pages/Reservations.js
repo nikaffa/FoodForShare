@@ -17,7 +17,7 @@ export default function Reservations() {
   return (
     <PageContainer>
       <Navbar />
-      <Marginer direction="vertical" margin="4em" />
+      {/* <Marginer direction="vertical" margin="0em" /> */}
       <StyledInnerContainer>
         <ReservationsList />
       </StyledInnerContainer>
