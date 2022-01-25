@@ -17,11 +17,14 @@ export default function Reservations() {
   return (
     <PageContainer>
       <Navbar />
-      <Marginer direction="vertical" margin="2em" />
-        <ReservationsList />
+      <Marginer direction="vertical" margin="4em" />
       <StyledInnerContainer>
-        <BackgroundContainer></BackgroundContainer>
+        <ReservationsList />
       </StyledInnerContainer>
+        
+      {/* <StyledInnerContainer>
+        <BackgroundContainer></BackgroundContainer>
+      </StyledInnerContainer> */}
     </PageContainer>
   );
 }
