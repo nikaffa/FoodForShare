@@ -28,6 +28,7 @@
     "react-countdown": "^2.3.2",
     "react-icons": "^4.3.1",
     "react-router-dom": "^5.0.0",
+    "react-scroll-to-top": "^1.0.8",
     "sass": "^1.35.1",
     "styled-components": "^5.3.3",
     "use-places-autocomplete": "^1.11.0"

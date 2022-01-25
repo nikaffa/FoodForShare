@@ -95,7 +95,9 @@ export function DonationForm() {
       </FormContainer>
       <Marginer direction="vertical" margin="1em" />
       <Link to="/donations">
-        <SubmitButton size={'25px'} onClick={onSubmitForm}>Save Donation</SubmitButton>
+        <SubmitButton size={'25px'} onClick={onSubmitForm}>
+          Save Donation
+        </SubmitButton>
       </Link>
       <Marginer direction="vertical" margin={5} />
     </BoxContainer>

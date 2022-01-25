@@ -6,9 +6,7 @@ import { BackgroundContainer, InnerPageContainer, PageContainer } from "../compo
 import { Link } from "react-router-dom";
 import { Button } from "../components/Button";
 import { Marginer } from "../components/Marginer";
-// import { SubmitButton } from "../components/Common";
-// import { useState } from "react";
-// import axios from "axios";
+import ScrollToTop from "react-scroll-to-top";
 
 
 
