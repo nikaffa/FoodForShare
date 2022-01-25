@@ -6,7 +6,7 @@ import { Button } from "../components/Button"
 import Navbar from "../components/Navbar";
 import { Link } from "react-router-dom";
 import Counter from "../components/Countup";
-
+import { Carousel } from "../components/Carousel";
 
 
 export default function Main (props) {
