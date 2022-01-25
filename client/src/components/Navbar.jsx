@@ -80,6 +80,8 @@ export default function Navbar(props) {
         </AnchorLink>
       </BrandLogo>
       <AccessibilityContainer>
+        {!isMobile && <AnchorLink to="/donation/new">Donate</AnchorLink>}
+        {!isMobile && <Marginer direction="horizontal" margin={25} />}
         {!isMobile && <AnchorLink to="/donations">Donations</AnchorLink>}
         {!isMobile && <Marginer direction="horizontal" margin={25} />}
         {!isMobile && <AnchorLink to="/reservations">Reservations</AnchorLink>}

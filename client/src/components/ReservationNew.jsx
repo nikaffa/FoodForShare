@@ -12,6 +12,7 @@ import {
 } from "./Common";
 import { Link } from "react-router-dom";
 import axios from "axios";
+
 const FoodCard = styled.div`
   display: grid;
   width:70%;
@@ -32,7 +33,7 @@ export default function ReservationCart() {
   const submitForm = () => {
     console.log(cart);
     axios.post(`/reservations/new`, {user, cart}).then((res)=>{
-      console.log(res.status)
+      //console.log(res.status)
       if(res.status === 222 || res.status === '222')
       {
         localStorage.setItem('cart-status', res.data);
@@ -53,7 +54,7 @@ export default function ReservationCart() {
           <FoodCard key={food.id}>
             <p>Name: {food.name}</p>
             <p>Freshness: {food.freshness}</p>
-            <p>{food.image}</p>
+            <p><image src={food.image} alt={food.name} /></p>
             <p>Quantity: {food.qty}</p>
             <button size={'5px'} onClick={() => addItemToCart(food)}>+</button>
             <button size={'5px'} onClick={() => decreaseItemQty(food.id)}>-</button>

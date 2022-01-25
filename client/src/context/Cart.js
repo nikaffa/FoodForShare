@@ -22,9 +22,11 @@ const Cart = ({ children }) => {
     localStorage.setItem("cart-status", "")
     const exist = cart.find((x) => x.id === product.id);
     if (exist) {
+      console.log(product.leftover , exist.qty)
       setCart(
         cart.map((x) =>
-          x.id === product.id ? { ...exist, qty: exist.qty + 1 } : x
+          (product.leftover > exist.qty && 
+            x.id === product.id ? { ...exist, qty: exist.qty + 1 } : x)
         )
       );
     } else {
@@ -41,7 +43,8 @@ const Cart = ({ children }) => {
       }
       setCart(
         cart.map((x) =>
-          x.id === id ? { ...exist, qty: exist.qty - 1 } : x
+          (exist.qty>1 && x.id === id ? { ...exist, qty: exist.qty - 1 } : x
+          )
         )
       );
     }

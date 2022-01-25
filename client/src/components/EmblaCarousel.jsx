@@ -36,7 +36,7 @@ export default function EmblaCarousel ({ foods }){
           {Object.keys(foods).map((i) => {
           const food = foods[i];
          
-          const subset = ['id', 'name', 'freshness', 'image', 'leftover'].reduce((a, e) => (a[e] = food[e], a), {})
+          const subset = ['id', 'name', 'freshness', 'image', 'donation_id', 'leftover'].reduce((a, e) => (a[e] = food[e], a), {})
           
           const date = new Date(food.donation_date);
           const timeLeft = date.getTime() + food.freshness * 3600000;

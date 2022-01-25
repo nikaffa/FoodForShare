@@ -15,8 +15,8 @@ export function DonationForm() {
   const [freshness, setFreshness] = useState("");
   const [quantity, setQuantity] = useState("");
   const [image, setImage] = useState("");
+  const [update, setUpdate] = useState(null);
   const { user } = useUser();
-
 
   const onSubmitForm = function (event) {
     event.preventDefault();
@@ -41,17 +41,34 @@ export function DonationForm() {
 
     axios
       .post(`http://localhost:8080/donations/new`, { user, form_data })
-      .then((res) => {
-        console.log(res);
+      .then((response) => {
+        if(response.status === 222 || response.status === '222')
+        {
+          ClearForm();
+          setUpdate("Thank you for your donation. Donation sucessfully saved.")
+          return(
+            <>Thank you for your donation. Donation sucessfully saved.</>
+          )
+        }
       })
       .catch((err) => {
         console.log("ERROR", err);
       });
   };
 
+  const ClearForm = () => {
+    setTitle("");
+    setFoodType("");
+    setDescription("");
+    setFreshness(0);
+    setQuantity(0);
+    setImage("");
+  }
+
   return (
     <BoxContainer>
       <LogoTitle>Create a new Donation</LogoTitle>
+      {update}
       <Marginer direction="vertical" margin="3em" />
       <FormContainer>
         <Input
