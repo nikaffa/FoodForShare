@@ -17,7 +17,7 @@ export default function Donation(props) {
   return (
     <PageContainer>
       <Navbar />
-      <Marginer direction="vertical" margin="1em" />
+      <Marginer direction="vertical" margin="5em" />
       <Link to="/donations">
         <Button size="0.25px">Go Back</Button>
       </Link>

@@ -13,7 +13,7 @@ const NavbarContainer = styled.div`
   max-width: ${deviceSize.laptop}px;
   max-height: ${deviceSize.laptop}px;
   overflow:hidden;
-  position: sticky; top: 0px;
+  position: fixed; top: 0px;
   display: flex;
   align-items: center;
   justify-content: space-between;
