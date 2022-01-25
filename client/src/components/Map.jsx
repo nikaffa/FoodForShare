@@ -111,6 +111,7 @@ export function Map(props) {
           onClick={() => {
             setSelected(place);
             getFood(place.properties.ID);
+            console.log("food clicked", foods)
           }} />
         ))}
           
@@ -119,6 +120,7 @@ export function Map(props) {
             position={{ lat: selected.geometry.coordinates[1], lng: selected.geometry.coordinates[0] }}
             onCloseClick={() => {
               setSelected(null);
+              setFoods({});
             }}
           >
           <div>
