@@ -5,6 +5,11 @@ import {PageContainer, InnerPageContainer, BackgroundContainer}from "../componen
 import { Button } from "../components/Button"
 import Navbar from "../components/Navbar";
 import { Link } from "react-router-dom";
+import { Carousel } from "../components/Carousel";
+import styled from "styled-components";
+import Counter from "../components/Countup";
+
+
 
 export default function Main (props) {
   const { logoSize, hideLogo } = props;
