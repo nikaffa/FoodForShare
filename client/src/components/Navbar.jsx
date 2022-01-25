@@ -8,7 +8,9 @@ import { useMediaQuery } from "react-responsive";
 import UserDropDown from "./UserDropDown";
 
 const NavbarContainer = styled.div`
+
   width: 95.7%;
+  z-index: 100;
   height: 55px;
   max-width: ${deviceSize.laptop}px;
   max-height: ${deviceSize.laptop}px;
