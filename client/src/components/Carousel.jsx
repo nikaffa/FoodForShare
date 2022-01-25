@@ -1,35 +1,47 @@
-// import React from "react";
-// import styled from "styled-components";
-// import first from "./carousel_image/first"
-// const carouselContainer = styled.div`
-// width: 80%;
-// height: 50vh;
-// border: 1px solid black;
-// margin: 10px auto;
+import React from "react";
+import styled from "styled-components";
+import SimpleImageSlider from "react-simple-image-slider";
 
-// `
+const images = [
+  { url: "client/src/components/carousel_image/first.jpeg" },
+  { url: "client/src/components/carousel_image/second.jpg" },
+  { url: "client/src/components/carousel_image/third.jpg" }
+]
 
-// const imageContainer = styled.div`
-// width: 80%;
-// height: 80%;
-// display: flex;
+const carouselContainer = styled.div`
+width: 80%;
+height: 50vh;
+border: 1px solid black;
+margin: 10px auto;
 
-// `
+`
 
-// const image = styled.div `
-// width: 100%;
-// height: 100%;
+const imageContainer = styled.div`
+width: 80%;
+height: 80%;
+display: flex;
 
-// `
+`
 
-// export function Carousel() {
+const image = styled.div `
+width: 100%;
+height: 100%;
 
-//  return (
-//   <carouselContainer>
-//     <imageContainer>
-//       <image src={first}/>
-//     </imageContainer>
-//   </carouselContainer>
-//  )
+`
 
-// };
+export function Carousel() {
+
+ return (
+  <carouselContainer>
+    <SimpleImageSlider
+      width={896}
+      height={504}
+      images={images}
+      showBullets={true}
+      showNavs={true}
+      
+    />
+  </carouselContainer>
+
+  )
+};
