@@ -35,7 +35,7 @@ export function Carousel() {
   <carouselContainer>
     <SimpleImageSlider
       width={896}
-      height={504}
+      height={400}
       images={images}
       showBullets={true}
       showNavs={true}
