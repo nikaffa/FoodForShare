@@ -78,7 +78,7 @@ const ListItem = styled("li")`
   }
 `;
 
-const options = ["3 hours", "6 Hours", "9 Hours", "12 Hours", "1 Day", "2 Days", "3 Days"];
+const options = ["3 hours", "6 hours", "12 hours", "24 hours", "72 hours"];
 
 export default function DropDown(props) {
   const [isOpen, setIsOpen] = useState(false);
@@ -90,7 +90,7 @@ export default function DropDown(props) {
     setSelectedOption(value);
     props.setFreshness(value);
     setIsOpen(false);
-    console.log(selectedOption);
+   
   };
 
   return (

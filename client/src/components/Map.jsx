@@ -4,7 +4,7 @@ import { Marginer } from "./Marginer";
 import {
   BoxContainer
 } from "./Common";
-import FoodContainer from "../components/FoodContainer";
+import EmblaCarousel from "./EmblaCarousel";
 
 //map
 import {
@@ -42,15 +42,15 @@ const options = {
   disableDefaultUI: true,
   zoomControl: true,
 };
- 
+
 export function Map(props) {
 
   const [places, setPlaces] = useState([]);
   const [selected, setSelected] = useState(null);
   const [foods, setFoods] = useState({});
 
-  //sets places to be shown on the map
-  useEffect(() => {
+   //sets places to be shown on the map
+   useEffect(() => {
     axios.get("http://localhost:8080/users")
     .then(res => { 
       setPlaces(res.data); 
@@ -78,7 +78,6 @@ export function Map(props) {
     mapRef.current = map;
   }, []);
 
-
   //geolocating
   const panTo = useCallback(({ lat, lng }) => {
     mapRef.current.panTo({ lat, lng });
@@ -89,8 +88,8 @@ export function Map(props) {
   if (!isLoaded) return "Loading...";
 
   return (
-    <BoxContainer>
-      <GoogleMap
+   <BoxContainer>
+     <GoogleMap
           id="map"
           mapContainerStyle={mapContainerStyle}
           zoom={8}
@@ -124,18 +123,22 @@ export function Map(props) {
           >
           <div>
             <h2>{selected.properties.NAME}</h2>
-            {/* <h3>{}</h3> */}
+            
           </div>
         </InfoWindow>
         )}
-      </GoogleMap>
 
+        
+      </GoogleMap>
       <Marginer direction="vertical" margin="1em" />
 
       {selected && (
       <BoxContainer>
+        
         {foods && Object.keys(foods).length>0 &&
-        (<FoodContainer foods={foods} key="1" />)}
+        <EmblaCarousel foods={foods} key="1" />
+        }
+
       </BoxContainer>   
       )}    
     </BoxContainer>
@@ -195,8 +198,6 @@ const SearchMe = ({ panTo }) => {
   const handleInput = (e) => {
     setValue(e.target.value);
   };
-
-
 
   return (
     <div className="search">

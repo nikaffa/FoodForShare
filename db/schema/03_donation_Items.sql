@@ -8,8 +8,8 @@ CREATE TABLE donation_Items (
   name VARCHAR(64) NOT NULL,
   food_type VARCHAR(25) NOT NULL,
   description VARCHAR(255) NOT NULL,
-  image VARCHAR(164),
-  freshness VARCHAR(25) NOT NULL,
+  image VARCHAR(2048),
+  freshness SMALLINT NOT NULL,
   quantity SMALLINT NOT NULL,
   leftover SMALLINT NOT NULL
 );
