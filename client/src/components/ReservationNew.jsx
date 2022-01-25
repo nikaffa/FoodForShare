@@ -1,6 +1,7 @@
 import React from "react";
 import styled from 'styled-components'
 import useCart from "../hooks/useCart";
+import useUser from "../hooks/useUser";
 
 import { useState, useCallback, useRef, useEffect, useContext } from "react";
 import {
@@ -25,11 +26,12 @@ const FoodCard = styled.div`
 
 export default function ReservationCart() {
   const { cart, addItemToCart, removeItemFromCart, decreaseItemQty, EmptyCart} = useCart();
+  const { user } = useUser();
   console.log(cart)
 
   const submitForm = () => {
     console.log(cart);
-    axios.post(`http://localhost:8080/reservations/new`, cart).then((res)=>{
+    axios.post(`/reservations/new`, {user, cart}).then((res)=>{
       console.log(res.status)
       if(res.status === 222 || res.status === '222')
       {
@@ -45,8 +47,8 @@ export default function ReservationCart() {
 
   return (
     <div>
-      {localStorage.getItem("cart-status") && localStorage.getItem("cart-status").length>0 && (localStorage.getItem("cart-status"))}
-      {localStorage.getItem("cart-status") && localStorage.getItem("cart-status").length<1 && cart.map((food) => {
+      {localStorage.getItem("cart-status") && (localStorage.getItem("cart-status"))}
+      {!localStorage.getItem("cart-status") && cart.map((food) => {
         return(
           <FoodCard key={food.id}>
             <p>Name: {food.name}</p>
@@ -60,7 +62,7 @@ export default function ReservationCart() {
           )
         }
       )}
-      {localStorage.getItem("cart-status") && localStorage.getItem("cart-status").length<1 && (<SubmitButton size={'25px'} onClick={submitForm}>Save Reservation</SubmitButton>)}
+      {!localStorage.getItem("cart-status") && (<SubmitButton size={'25px'} onClick={submitForm}>Save Reservation</SubmitButton>)}
     </div>
   );  
 }

@@ -20,7 +20,7 @@ export default function UserDropDown() {
     let userList = users.length > 0
     	&& users.map((item, i) => {
       return (
-        <option v={user===item.id && "selected"} key={i} value={item.id}>{item.name}</option>
+        <option key={i} value={item.id}>{item.name}</option>
       )
     }, this);
 
