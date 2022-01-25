@@ -21,6 +21,7 @@
     "react-responsive": "*",
     "react-router-dom": "^6.2.1",
     "react-scripts": "5.0.0",
+    "react-simple-image-slider": "^2.3.0",
     "responsive": "^2.0.0",
     "styled-components": "^5.3.3",
     "use-places-autocomplete": "^1.11.0",

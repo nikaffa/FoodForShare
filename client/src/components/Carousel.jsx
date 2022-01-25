@@ -3,9 +3,9 @@ import styled from "styled-components";
 import SimpleImageSlider from "react-simple-image-slider";
 
 const images = [
-  { url: "client/src/components/carousel_image/first.jpeg" },
-  { url: "client/src/components/carousel_image/second.jpg" },
-  { url: "client/src/components/carousel_image/third.jpg" }
+  { url: 'https://www.industrialempathy.com/img/remote/ZiClJf-1920w.jpg' },
+  { url: 'https://www.publicdomainpictures.net/pictures/320000/nahled/background-image.png' },
+  { url: 'https://www.w3schools.com/w3css/img_lights.jpg' }
 ]
 
 const carouselContainer = styled.div`
@@ -39,6 +39,7 @@ export function Carousel() {
       images={images}
       showBullets={true}
       showNavs={true}
+      autoPlay={true}
       
     />
   </carouselContainer>

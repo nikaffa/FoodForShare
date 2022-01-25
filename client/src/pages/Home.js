@@ -19,6 +19,9 @@ export default function Main (props) {
       <Navbar useTransparent />
       <Marginer direction="vertical" margin="5em"/>
       <InnerPageContainer>
+
+        <Carousel />
+        
         <Counter/>
         <BackgroundContainer box-shadow="0px 0px 0px rgba(0, 0, 0, 0)">
           <Marginer direction="vertical" margin="5em" />
