@@ -45,10 +45,6 @@ export default function Card({ item: { title, foodType, freshness, description, 
 
   return (
     <InnerPageContainer>
-
-      {/* <div>hello</div> */}
-      {/* <ContentCard props={props}> */}
-
       <ContentCard>
         <div>
           <h2>{title}</h2>
