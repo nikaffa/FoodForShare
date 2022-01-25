@@ -3,9 +3,9 @@ import styled from "styled-components";
 import SimpleImageSlider from "react-simple-image-slider";
 
 const images = [
-  { url: 'https://www.industrialempathy.com/img/remote/ZiClJf-1920w.jpg' },
-  { url: 'https://www.publicdomainpictures.net/pictures/320000/nahled/background-image.png' },
-  { url: 'https://www.w3schools.com/w3css/img_lights.jpg' }
+  { url: 'https://www.themississaugafoodbank.org/wp-content/uploads/2017/06/hero-image@2x.png' },
+  { url: 'https://northyorkharvest.com/wp-content/uploads/2021/07/shutterstock_1707843961_rev.jpg' },
+  { url: 'https://www.ottawalife.com/admin/cms/images/small/91707h.jpg' }
 ]
 
 const carouselContainer = styled.div`
@@ -32,17 +32,16 @@ height: 100%;
 export function Carousel() {
 
  return (
-  <carouselContainer>
-    <SimpleImageSlider
-      width={896}
-      height={504}
-      images={images}
-      showBullets={true}
-      showNavs={true}
-      autoPlay={true}
-      
-    />
-  </carouselContainer>
+    <carouselContainer>
+      <SimpleImageSlider
+        width={896}
+        height={504}
+        images={images}
+        showBullets={true}
+        showNavs={true}
+        autoPlay={true}
+        />
+    </carouselContainer>
 
   )
 };
