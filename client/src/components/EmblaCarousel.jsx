@@ -67,7 +67,10 @@ export default function EmblaCarousel ({ foods }){
                     <h3>Ends in <strong><Countdown date={timeLeft} renderer={renderer} /></strong></h3>
                   </div> 
                   <h3 >{food.leftover} left</h3> 
-                  <button size={'25px'} onClick={() => addItemToCart(subset)}>Reserve</button>              
+                  <button size={'25px'} onClick={() => {
+                    addItemToCart(subset)
+                    
+                    }}>Reserve</button>              
                   </div>  
                 </div> 
                 </div>
