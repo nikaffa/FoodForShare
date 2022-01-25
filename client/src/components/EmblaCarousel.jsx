@@ -1,6 +1,9 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { PrevButton, NextButton } from "./EmblaCarouselButtons";
 import useEmblaCarousel from "embla-carousel-react";
+import {
+  SubmitButton,
+} from "./Common";
 
 import "../embla.css";
 
@@ -67,10 +70,12 @@ export default function EmblaCarousel ({ foods }){
                     <h3>Ends in <strong><Countdown date={timeLeft} renderer={renderer} /></strong></h3>
                   </div> 
                   <h3 >{food.leftover} left</h3> 
-                  <button size={'25px'} onClick={() => {
-                    addItemToCart(subset)
-                    
-                    }}>Reserve</button>              
+                  {/* <button size={'25px'} onClick={() => {
+                    addItemToCart(subset) 
+                    }}>Reserve</button>  */}
+
+                    <SubmitButton size={'25px'} onClick={()=>addItemToCart(subset)}>Reserve</SubmitButton>             
+                  
                   </div>  
                 </div> 
                 </div>
