@@ -20,6 +20,7 @@
     "create-react-app": "^5.0.0",
     "dotenv": "^2.0.0",
     "ejs": "^2.6.2",
+    "embla-carousel-react": "^6.1.1",
     "express": "^4.17.1",
     "morgan": "^1.9.1",
     "node-sass": "^7.0.1",
@@ -28,6 +29,7 @@
     "react-countdown": "^2.3.2",
     "react-icons": "^4.3.1",
     "react-router-dom": "^5.0.0",
+    "react-simple-image-slider": "^2.3.0",
     "sass": "^1.35.1",
     "styled-components": "^5.3.3",
     "use-places-autocomplete": "^1.11.0"
