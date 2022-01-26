@@ -62,17 +62,17 @@ export default function EmblaCarousel ({ foods }){
                   </div> 
                 </div>
                 <div className="embla_right">
-                  <div className="embla_right_text">
-                    <h3 >{food.name}</h3>
+                  <div className="embla_right_text" >
+                    <h2 >{food.name}</h2>
                     <h3 >{food.description}</h3>
                     <h3 >{food.food_type}</h3>
                     <div style={{backgroundColor: "lightcoral", display: "inline-block"}}>
-                    <h3>Ends in <strong><Countdown date={timeLeft} renderer={renderer} /></strong></h3>
-                  </div> 
-                  <h3 >{food.leftover} left</h3> 
-                  <SubmitButton size={'25px'} onClick={()=>{
-                    addItemToCart(subset);
-                    
+                      <h3>Ends in <strong><Countdown date={timeLeft} renderer={renderer} /></strong></h3>
+                    </div> 
+                    <h3 >{food.leftover} left</h3> 
+                    <SubmitButton size={'25px'} onClick={()=>{
+                      addItemToCart(subset);
+                      
                     
                     }}>Reserve</SubmitButton>             
                   </div>  

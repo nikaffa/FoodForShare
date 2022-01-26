@@ -8,6 +8,7 @@ import {
   SubmitButton,
 } from "./Common";
 import { Link } from "react-router-dom";
+import "../embla.css";
 
 const FoodCard = styled.div`
   display: grid;
@@ -49,7 +50,7 @@ export default function ReservationsList() {
   }, [user])
 
   return (
-    <BoxContainer>
+    <BoxContainer style={{width: "60%"}}>
       {reservations && Object.keys(reservations).length && (
         Object.keys(reservations).map((i) => {
           const reservation = reservations[i];
@@ -57,23 +58,29 @@ export default function ReservationsList() {
       
           return(
             <FoodCard key={reservations[i][0].reservation_id}>
-            <h3>RESERVATION # {reservations[i][0].reservation_id}</h3>
-            <p>Date: {reservations[i][0].reservation_date}</p>
-            <h3>Status: <span style={{backgroundColor: "lightcoral"}}>{reservations[i][0].status}</span></h3>
-            <h3>Food: </h3>
-            {Object.keys(reservation).map((j) => {
-              const sinres = reservation[j]
-              return(
-                <div className="reservation_inner">
-                  <div className="reservation_inner_left">
-                    <p>{sinres.name}</p>
+              <h3>RESERVATION # {reservations[i][0].reservation_id}</h3>
+              <p>Date: {reservations[i][0].reservation_date}</p>
+              <h3>Status: <span style={{backgroundColor: "lightcoral"}}>{reservations[i][0].status}</span></h3>
+              <h3>Food: </h3>
+              {Object.keys(reservation).map((j) => {
+                const sinres = reservation[j]
+                return(
+                  <div className="embla__slide__inner">
+                    <div className="embla_left">
+                      <div>
+                        <img className="embla__slide__img_fit" src={sinres.image} alt="food" />
+                      </div>  
+                    </div>
+                    <div className="embla_right">
+                      <div className="embla_right_text" style={{fontSize: "20px"}}>
+                        <h3>{sinres.name}</h3> 
+                      </div>
+                      <SubmitButton size={'25px'} onClick={()=> cancelReservations(sinres.reservation_id)}>Cancel</SubmitButton>              
+                    </div> 
                   </div>
-                  <div className="reservation_inner_right">
-                  <SubmitButton size={'25px'} onClick={()=> cancelReservations(sinres.reservation_id)}>Cancel</SubmitButton>              
-                  </div> 
-                </div>
-              )
-            })}
+      
+                )
+              })}
             </FoodCard>
           )
         })
