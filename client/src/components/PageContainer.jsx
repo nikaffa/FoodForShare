@@ -12,7 +12,7 @@ const PageWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: #FFF0A2;
+  background: #dbf5ee;
 `;
 
 export function PageContainer(props) {
@@ -32,7 +32,7 @@ export const InnerPageContainer = styled.div `
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: #FFF0A2;
+  background: #dbf5ee;
   @media screen and (max-width: ${deviceSize.mobile}px) {
     padding: 5px;
 `;
@@ -42,7 +42,7 @@ export const BackgroundContainer = styled.div `
   // flex-direction: column;
   // align-items: flex-start;
   padding: 1em;
-  background: ${({ color }) => (color ? color + "" : "FFF0A2")};
+  background: ${({ color }) => (color ? color + "" : "#dbf5ee")};
   box-shadow: ${({box})=> (box ? box + "" : "0px 4px 4px rgba(0, 0, 0, 0.25)")}; 
   border: ${({border}) => (border ? border + "" : "none")};
   @media screen and (max-width: ${deviceSize.mobile}px) {
