@@ -45,8 +45,13 @@ export default function ReservationNew() {
   }
 
   useEffect(() => {
-    //ReservationCart()
+    loadSave()
   }, [cart])
+
+  const loadSave = () => {
+    (localStorage.getItem("cart").length>2 && <SubmitButton size={'25px'} onClick={submitForm}>Save Reservation</SubmitButton>)
+    //(!localStorage.getItem("cart-status") && localStorage.getItem("cart").length<2 && "Your reservations cart is empty.")
+  }
 
   return (
     <>
@@ -67,7 +72,7 @@ export default function ReservationNew() {
             )
           }
         )}
-        {localStorage.getItem("cart").length>2 && (<SubmitButton size={'25px'} onClick={submitForm}>Save Reservation</SubmitButton>)}
+        {loadSave}
       </div>
     </>
   );  

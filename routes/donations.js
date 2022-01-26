@@ -45,10 +45,11 @@ module.exports = (db) => {
     db.query(
       `SELECT reservation_items.id as reservation_item_id, donation_items.id as donation_item_id, users.name as reservation_name, donation_date, 
       donation_id, reservation_date, donation_Items.name as item_name, food_type, description, image, freshness, 
-      reservations.status, reservation_id, reservation_items.quantity FROM reservations
-      INNER JOIN reservation_items ON reservations.id=reservation_id
-      INNER JOIN donation_Items ON donation_Items.id=donation_item_id
+      reservations.status, reservation_id, reservation_items.quantity FROM donation_Items
       INNER JOIN donations ON donations.id=donation_id
+      LEFT OUTER JOIN reservation_items ON reservation_items.id=donation_item_id
+      LEFT OUTER JOIN reservations ON reservations.id=reservation_id
+      
       INNER JOIN users ON users.id=reservations.user_id
       where donations.user_id=$1::integer`,
       [request.params.id]
@@ -57,7 +58,7 @@ module.exports = (db) => {
         donations.reduce(
           (groups, item) => ({
             ...groups,
-            [item.donation_id]: [...(groups[item.donation_id] || []), item],
+            [item.donation_item_id]: [...(groups[item.donation_item_id] || []), item],
           }),
           {}
         )
