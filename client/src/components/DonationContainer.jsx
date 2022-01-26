@@ -2,6 +2,7 @@ import styled from 'styled-components'
 import { InnerPageContainer } from './PageContainer'
 import useUser from "../hooks/useUser";
 import axios from "axios";
+import { Container } from 'react-bootstrap';
 
 const DonationCard = styled.div`
   display: grid;
@@ -30,8 +31,8 @@ const FoodBoxContainer= styled.div`
 export default function DonationContainer({ donations }) {
   const { user } = useUser();
 
-  const cancelReservations = (reservation_item_id, donation_item_id) => {
-    axios.post(`/reservations/cancel/`, {reservation_item_id, donation_item_id})
+  const cancelReservations = (reservation_item_id) => {
+    axios.post(`/reservations/cancel/`, {reservation_item_id})
       .then(res => { 
         //setReservations(res.data);
       })
@@ -57,16 +58,16 @@ export default function DonationContainer({ donations }) {
               <DonationCard key={donations[i][0].donation_id}>
               {<p>Date: {donations[i][0].donation_date}</p>}
               {<p>Status: {donations[i][0].status}</p>}
-              {<p>Status: {donations[i][0].item_name}</p>}
+              {<p>Name: {donations[i][0].item_name}</p>}
               {<p><img height="100" className="embla__slide__img_fit" src={donations[i][0].image} alt={donations[i][0].image} /></p>}
                 {Object.keys(donation).map((j) => {
                   const sindon = donation[j]
                   return(
                     <>
-                      <p>Name: {sindon.reservation_name}</p>
+                      <p>Name: {sindon.reserve_name}</p>
                       <p>Reservation: {sindon.reservation_date}</p>
                       <p>Quantity: {sindon.quantity}</p>
-                      <button size={'5px'} onClick={() => cancelReservations(sindon.reservation_item_id, sindon.donation_id)}>Cancel</button>
+                      <button size={'5px'} onClick={() => cancelReservations(sindon.reservation_item_id)}>Cancel</button>
                       <button size={'5px'} onClick={() => completeReservations(sindon.reservation_item_id)}>Picked Up</button>              
                     </>
                   )

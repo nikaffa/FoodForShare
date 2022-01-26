@@ -81,10 +81,11 @@ module.exports = (db) => {
 
   //(shows user their own reservations)
   router.post("/cancel", (request, response) => {
-    const {reservation_item_id, donation_item_id} = request.body
-    console.log(reservation_item_id, donation_item_id)
+    const {reservation_item_id} = request.body
+    console.log(reservation_item_id)
     db.query(
-      `update reservation_items set i_status='Cancel' where id=${reservation_item_id}::integer; update donation_items set leftover=(select quantity from reservation_items where id=${donation_item_id})`
+      `update reservation_items set i_status='Cancel' where id=${reservation_item_id}::integer; 
+       update donation_items set leftover=leftover+(select quantity from reservation_items where id=${reservation_item_id}) where id=(select donation_item_id from reservation_items where id=${reservation_item_id})`
     ).then(() => {
       setTimeout(() => {
         response.status(224).json("Reservation cancelled.");
