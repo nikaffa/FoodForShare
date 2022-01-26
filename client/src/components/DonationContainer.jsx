@@ -33,32 +33,32 @@ export default function DonationContainer({ donations }) {
   const { user } = useUser();
   const [cancel, setCancel] = useState();
 
-  const cancelReservations = (reservation_item_id) => {
-    axios.post(`/reservations/cancel/`, {reservation_item_id})
-      .then(res => { 
-        setCancel(res.data);
-      })
-      .catch((err) => {console.log(err)})
-  }
+  // const cancelReservations = (reservation_item_id) => {
+  //   axios.post(`/reservations/cancel/`, {reservation_item_id})
+  //     .then(res => { 
+  //       setCancel(res.data);
+  //     })
+  //     .catch((err) => {console.log(err)})
+  // }
 
-  useEffect(() => {
-    cancelReservations()
-  }, [cancel])
+  // useEffect(() => {
+  //   cancelReservations()
+  // }, [cancel])
 
-  const completeReservations = (reservation_item_id) => {
-    axios.post(`/reservations/completed/`, {reservation_item_id})
-      .then(res => { 
-        setCancel(res.data);
-      })
-      .catch((err) => {console.log(err)})
-  }
+  // const completeReservations = (reservation_item_id) => {
+  //   axios.post(`/reservations/completed/`, {reservation_item_id})
+  //     .then(res => { 
+  //       setCancel(res.data);
+  //     })
+  //     .catch((err) => {console.log(err)})
+  // }
 
 
-  const validateStatus = (status) => {
-    if(status === 'Completed' || status === 'Cancelled')
-      return false;
-    return true
-  }
+  // const validateStatus = (status) => {
+  //   if(status === 'Completed' || status === 'Cancelled')
+  //     return false;
+  //   return true
+  // }
 
   return (
     <InnerPageContainer>
@@ -69,19 +69,24 @@ export default function DonationContainer({ donations }) {
             return(
               <DonationCard key={donations[i][0].donation_id}>
                 <h3>DONATION # {donations[i][0].donation_id}</h3>
+                {<p>Food: {donations[i][0].item_name}</p>}
+
                 <div className="embla__slide__inner">
-                  <div className="embla_left">
+                  <div className="embla_left" style={{width: "30%"}}>
                     <div>
-                      <img className="embla__slide__img_fit" src={donations[i][0].image} alt={donations[i][0].image} />
+                      <img className="embla__slide__img_fit" src={donations[i][0].image} alt="food" />
                     </div>  
                   </div>
-                  <div className="embla_right">
-                    {<p>Date: {donations[i][0].donation_date}</p>}
-                    {<p>Status: {donations[i][0].status}</p>}
-                    {<p>Name: {donations[i][0].item_name}</p>}
+                  <div className="embla_right" style={{width: "70%"}}>
+                    <div className="embla_right_text" style={{fontSize: "15px"}}>
+                      {<p>Date: {donations[i][0].donation_date}</p>}
+                    </div>
+                    <div className="embla_right_text" style={{fontSize: "15px"}}>
+                      {<p>Status: {donations[i][0].status}</p>}
+                    </div>
                   </div>
                 </div>
-                {Object.keys(donation).map((j) => {
+                {/* {Object.keys(donation).map((j) => {
                   const sindon = donation[j]
                   return(
                     <div className="embla__slide__inner">
@@ -97,7 +102,7 @@ export default function DonationContainer({ donations }) {
                       </div>
                     </div>
                   )
-                })}
+                })} */}
               </DonationCard>
             )
           })
