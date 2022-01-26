@@ -72,8 +72,6 @@ export default function EmblaCarousel ({ foods }){
                     <h3 >{food.leftover} left</h3> 
                     <SubmitButton size={'25px'} onClick={()=>{
                       addItemToCart(subset);
-                      
-                    
                     }}>Reserve</SubmitButton>             
                   </div>  
                 </div> 

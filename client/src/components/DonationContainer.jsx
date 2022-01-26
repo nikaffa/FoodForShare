@@ -3,7 +3,7 @@ import { InnerPageContainer } from './PageContainer'
 import useUser from "../hooks/useUser";
 import axios from "axios";
 import { Container } from 'react-bootstrap';
-import { useState, useEffect } from "react";
+import { useState, useRef, useEffect } from "react";
 
 const DonationCard = styled.div`
   display: grid;
@@ -32,17 +32,20 @@ const FoodBoxContainer= styled.div`
 export default function DonationContainer({ donations }) {
   const { user } = useUser();
   const [cancel, setCancel] = useState();
+  const cancelRef = useRef(cancel);
+
 
   const cancelReservations = (reservation_item_id) => {
     axios.post(`/reservations/cancel/`, {reservation_item_id})
       .then(res => { 
-        setCancel(res.data);
+        setCancel(reservation_item_id);
+        cancelRef.current = reservation_item_id;
       })
       .catch((err) => {console.log(err)})
   }
 
   useEffect(() => {
-    cancelReservations()
+    validateStatus(cancel);
   }, [cancel])
 
   const completeReservations = (reservation_item_id) => {
@@ -55,7 +58,9 @@ export default function DonationContainer({ donations }) {
 
 
   const validateStatus = (status) => {
-    if(status === 'Completed' || status === 'Cancelled')
+    console.log('status', status)
+    console.log ('cancel', cancel)
+    if(status === 'Completed' || status === 'Cancelled' || cancel)
       return false;
     return true
   }
@@ -84,6 +89,7 @@ export default function DonationContainer({ donations }) {
                 {Object.keys(donation).map((j) => {
                   const sindon = donation[j]
                   return(
+                    (sindon.reserve_name &&
                     <div className="embla__slide__inner">
                       <div className="embla_left">
                         <p>Reserver Name: {sindon.reserve_name}</p>
@@ -91,11 +97,11 @@ export default function DonationContainer({ donations }) {
                         <p>Quantity: {sindon.quantity}</p>
                       </div>
                       <div className="embla_right">
-                        {validateStatus(sindon.i_status) && <button size={'5px'} onClick={() => cancelReservations(sindon.reservation_item_id)}>Cancel</button>}
-                        {validateStatus(sindon.i_status) && <button size={'5px'} onClick={() => completeReservations(sindon.reservation_item_id)}>Complete</button>}
-                        {!validateStatus(sindon.i_status) && sindon.i_status}
+                        {validateStatus(sindon.i_status) && <button size={'5px'} key={sindon.reservation_item_id+'_1'} onClick={() => cancelReservations(sindon.reservation_item_id)}>Cancel</button>}
+                        {validateStatus(sindon.i_status) && <button size={'5px'} key={sindon.reservation_item_id+'_2'} onClick={() => completeReservations(sindon.reservation_item_id)}>Complete</button>}
+                        {!validateStatus(sindon.i_status) && 'Cancelled'}
                       </div>
-                    </div>
+                    </div>)
                   )
                 })}
               </DonationCard>

@@ -76,7 +76,7 @@ export default function ReservationNew() {
                 <div className="embla_right">
                   <div className="embla_right_text" style={{fontSize: "20px"}}>
                     <h3>Quantity: {food.qty}</h3>
-                    <p>Freshness: {food.freshness}</p>
+                    <p>Freshness: {food.freshness} Hour(s)</p>
                   </div>
                   <div>
                     <button size={'5px'} onClick={() => addItemToCart(food)}>+</button>

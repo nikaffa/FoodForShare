@@ -179,8 +179,8 @@ const SearchMe = ({ panTo }) => {
     clearSuggestions,
   } = usePlacesAutocomplete({
     requestOptions: {
-      location: { lat: () => 43.6532, lng: () => -79.3832 },
-      radius: 50 * 1000,
+      location: { lat: () => 43.774910, lng: () => -79.326157 },
+      radius: 50 * 100000,
     },
   });
 
