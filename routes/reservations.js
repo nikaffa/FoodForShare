@@ -7,6 +7,9 @@
 
 const express = require("express");
 const router = express.Router();
+const accountSid = process.env.TWILIO_ACCOUNT_SID;
+const authToken = process.env.TWILIO_AUTH_TOKEN;
+const client = require("twilio")(accountSid, authToken);
 
 module.exports = (db) => {
   //(Adds a reservations)
@@ -42,7 +45,7 @@ module.exports = (db) => {
   //(shows user their own reservations)
   router.get("/user/:id", (request, response) => {
     db.query(
-      `SELECT reservation_date, name, food_type, description, image, freshness, status, reservation_id, reservation_items.quantity FROM reservations
+      `SELECT reservation_date, name, food_type, description, image, freshness, status, reservation_id, reservation_items.quantity, i_status FROM reservations
               INNER JOIN reservation_items ON reservations.id=reservation_id
               INNER JOIN donation_Items ON donation_Items.id=donation_item_id
               where user_id=$1::integer`,
@@ -82,11 +85,20 @@ module.exports = (db) => {
   //(shows user their own reservations)
   router.post("/cancel", (request, response) => {
     const {reservation_item_id} = request.body
+    console.log(request.body)
+    
     console.log(reservation_item_id)
     db.query(
-      `update reservation_items set i_status='Cancel' where id=${reservation_item_id}::integer; 
+      `update reservation_items set i_status='Cancelled' where id=${reservation_item_id}::integer; 
        update donation_items set leftover=leftover+(select quantity from reservation_items where id=${reservation_item_id}) where id=(select donation_item_id from reservation_items where id=${reservation_item_id})`
     ).then(() => {
+      client.messages
+        .create({
+          body: `Reservations # ${reservation_item_id} cancelled.`,
+          from: "+18022558617", //valid Twilio number
+          to: "+16478741655",
+        })
+        .then((message) => console.log(message.sid));
       setTimeout(() => {
         response.status(224).json("Reservation cancelled.");
       }, 1000);
@@ -96,18 +108,18 @@ module.exports = (db) => {
 
 
   //(shows user their own reservations)
-  router.post("/completed/:id", (request, response) => {
+  router.post("/completed", (request, response) => {
+    const {reservation_item_id} = request.body
+    console.log(request.body)
+    console.log(reservation_item_id)
     db.query(
-      `update reservation_items set i_status='Complete' where id=$1::integer`,
-      [Number(request.params.id)]
-    ).then(({ rows: reservations }) => {
-      response.json(
-        reservations.map(
-          (previous, current) => ({ ...previous, [current.id]: current }),
-          {}
-        )
-      );
-    });
+      `update reservation_items set i_status='Completed' where id=${reservation_item_id}::integer`
+    ).then(() => {
+      setTimeout(() => {
+        response.status(224).json("Reservation cancelled.");
+      }, 1000);
+    })
+    .catch((error) => console.log(error));
   });
 
   return router;

@@ -85,9 +85,7 @@ export default function ReservationNew() {
                   </div>
                   
                 </div> 
-            </div>
-            
-                         
+            </div>          
           </FoodCard>
           )
         }

@@ -8,6 +8,9 @@
 const express = require("express");
 const { redirect } = require("express/lib/response");
 const router = express.Router();
+const accountSid = process.env.TWILIO_ACCOUNT_SID;
+const authToken = process.env.TWILIO_AUTH_TOKEN;
+const client = require("twilio")(accountSid, authToken);
 
 module.exports = (db) => {
   //(shows all donations)
@@ -73,7 +76,7 @@ module.exports = (db) => {
           {}
         )
       );
-    });
+    }).catch((error) => console.log(error));
   });
 
   //(shows donations in a specific location)
