@@ -22,7 +22,9 @@ const FoodCard = styled.div`
   border-radius: 15px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
   padding: 60px;
-  margin: 10px;`
+  margin: 10px;
+  font-family: Roboto;
+  `
 
 
 export default function ReservationCart() {

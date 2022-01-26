@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 const BrandLogoContainer = styled.div`
   display: flex;
   align-items: center;
-  
+  font-family: Roboto;
 `;
 
 const LogoImage = styled.div`

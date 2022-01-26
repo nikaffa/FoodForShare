@@ -9,7 +9,7 @@ import UserDropDown from "./UserDropDown";
 
 const NavbarContainer = styled.div`
 
-  width: 100%;
+  width: 99%;
   z-index: 100;
   height: 55px;
   max-width: ${deviceSize.laptop}px;

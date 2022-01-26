@@ -17,12 +17,8 @@ export default function Main (props) {
   return (
     <PageContainer>
       <Navbar useTransparent />
-      <Marginer direction="vertical" margin="5em"/>
+      <Marginer direction="vertical" margin="4em"/>
       <InnerPageContainer>
-
-        <Carousel />
-        
-        <Counter/>
         <BackgroundContainer box-shadow="0px 0px 0px rgba(0, 0, 0, 0)">
           <Marginer direction="vertical" margin="5em" />
           <Link to="/donation/new">
@@ -33,6 +29,10 @@ export default function Main (props) {
             <Button>Search Food</Button>
           </Link>
         </BackgroundContainer>
+        <Carousel />
+        <Marginer direction="vertical" margin="2em" />
+        <Counter/>
+        
       </InnerPageContainer>
     </PageContainer>
 

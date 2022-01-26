@@ -43,6 +43,17 @@ export const BackgroundContainer = styled.div `
   // align-items: flex-start;
   padding: 1em;
   background: ${({ color }) => (color ? color + "" : "FFF0A2")};
+  border: ${({border}) => (border ? border + "" : "none")};
+  @media screen and (max-width: ${deviceSize.mobile}px) {
+    padding: 5px;
+  }
+`
+export const DonationBackgroundContainer = styled.div `
+  display: flex;
+  // flex-direction: column;
+  // align-items: flex-start;
+  padding: 1em;
+  background: ${({ color }) => (color ? color + "" : "FFF0A2")};
   box-shadow: ${({box})=> (box ? box + "" : "0px 4px 4px rgba(0, 0, 0, 0.25)")}; 
   border: ${({border}) => (border ? border + "" : "none")};
   @media screen and (max-width: ${deviceSize.mobile}px) {

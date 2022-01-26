@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Marginer } from "./Marginer";
 import { LogoTitle } from "./BrandLogo";
 import { BoxContainer, FormContainer, Input, SubmitButton } from "./Common";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import DropDown from "./FreshnessDropDown";
 import QuantityDropDown from "./QuantityDropDown";
 import axios from "axios";
@@ -18,6 +18,8 @@ export function DonationForm() {
   const [update, setUpdate] = useState(null);
   const { user } = useUser();
 
+  const navigate = useNavigate();
+  
   const onSubmitForm = function (event) {
     event.preventDefault();
 
@@ -42,13 +44,11 @@ export function DonationForm() {
     axios
       .post(`http://localhost:8080/donations/new`, { user, form_data })
       .then((response) => {
-        if(response.status === 222 || response.status === '222')
-        {
+        if(response.status === 222 || response.status === '222') {
           ClearForm();
           setUpdate("Thank you for your donation. Donation sucessfully saved.")
-          return(
-            <>Thank you for your donation. Donation sucessfully saved.</>
-          )
+          navigate('/donations');
+          
         }
       })
       .catch((err) => {

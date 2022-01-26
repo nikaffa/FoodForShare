@@ -5,30 +5,28 @@ import { Marginer } from "./Marginer";
 
 const CounterContainer = styled.div`
   display: flex;
-  width: 100%;
+  width: 99.5%;
   flex-direction: row;
   align-items: flex-start;
-  //height: 30vh;
+  height: 30vh;
   background: #fff;
   align-item: center;
   margin: 1em;
-  border-top: 10px double #707070;
-  border-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
   box-shadow: 0 0 25px rgba(0, 0, 0, 0.15);
 `;
 
 const Count = styled.div `
   font-family: roboto;
   font-weight: 600;
-  font-size: 80px;
-  padding: 60px;
-  margin-right: 80px;
+  font-size: 60px;
+  padding: 20px;
+  margin: 0 0 80px 80px;
 
 `;
 const CounterTitle = styled.div`
   display: flex;
   //align-item: flex-start;
-  margin-top: 2em;
+  margin-top: 1em;
   font-family: roboto;
   font-weight: 200;
   font-size: 21px;

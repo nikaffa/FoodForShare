@@ -17,6 +17,7 @@ function App() {
         <Route path="/donation/new" element={<Donation />}></Route>
         <Route path="/donation/search" element={<DonationSearch />}></Route>
         <Route path="/donations" element={<Donations />}></Route>
+        <Route path="/donation/:{id}/edit" element={<DonationEdit />}></Route>
         <Route path="/reservations/new" element={<ReservationNew />}></Route>
         <Route path="/reservations" element={<Reservations />}></Route>
       </Routes>

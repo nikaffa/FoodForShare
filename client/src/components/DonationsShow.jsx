@@ -2,9 +2,10 @@ import React, { useState, useCallback, useRef, useEffect } from "react";
 import axios from "axios";
 
 import {
-  BoxContainer
+  BoxContainer, SubmitButton
 } from "./Common";
 import DonationContainer from "./DonationContainer";
+import { Link } from "react-router-dom";
 
  
 export function DonationsShow(props) {
@@ -31,6 +32,7 @@ export function DonationsShow(props) {
         {donations && Object.keys(donations).length>0 && (
         <DonationContainer donations={donations} />
         )}
+        
     </BoxContainer>
   );
 }

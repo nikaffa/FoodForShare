@@ -28,10 +28,7 @@ export default function Donations(props) {
       
       <Marginer direction="vertical" margin="2em"/>
       <StyledInnerContainer>
-          <DonationsShow initialActive={action}>
-
-          </DonationsShow>
-       
+          <DonationsShow initialActive={action}/>
       </StyledInnerContainer>
     </PageContainer>
   );
