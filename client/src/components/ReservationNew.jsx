@@ -25,8 +25,8 @@ const FoodCard = styled.div`
   margin: 10px;`
 
 
-export default function ReservationCart() {
-  const { cart, addItemToCart, removeItemFromCart, decreaseItemQty, emptyCart} = useCart();
+export default function ReservationNew() {
+  const { cart, addItemToCart, removeItemFromCart, decreaseItemQty, EmptyCart} = useCart();
   const { user } = useUser();
 
   const submitForm = () => {
