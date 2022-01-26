@@ -26,7 +26,7 @@ const FoodCard = styled.div`
 
 
 export default function ReservationNew() {
-  const { cart, addItemToCart, removeItemFromCart, decreaseItemQty, EmptyCart} = useCart();
+  const { cart, addItemToCart, removeItemFromCart, decreaseItemQty, emptyCart} = useCart();
   const { user } = useUser();
 
   const submitForm = () => {
