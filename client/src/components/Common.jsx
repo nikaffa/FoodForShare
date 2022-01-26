@@ -8,6 +8,7 @@ export const BoxContainer = styled.div`
   align-items: center;
   margin: 10px;
   background: #white;
+  font-family: Roboto;
 `;
 
 export const FormContainer = styled.form`
@@ -17,6 +18,7 @@ export const FormContainer = styled.form`
   padding: 5px;
   flex-direction: column;
   border-radius: 5px;
+  font-family: Roboto;
 `;
 
 export const MutedLink = styled.a`
