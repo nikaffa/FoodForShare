@@ -20,17 +20,15 @@ const StyledInnerContainer = styled(InnerPageContainer)`
 export default function Donations(props) {
   const { action } = useParams();
 
-
   return (
     <PageContainer>
       <Navbar/>
-      <Marginer direction="vertical" margin="2em"/>
-      
-      <Marginer direction="vertical" margin="2em"/>
+      <Marginer direction="vertical" margin="4em"/>
       <StyledInnerContainer>
-          <DonationsShow initialActive={action}>
-
-          </DonationsShow>
+        <Link to="/donation/new">
+          <Button size="25px">Donate food</Button>
+        </Link>
+        <DonationsShow initialActive={action} />
        
       </StyledInnerContainer>
     </PageContainer>

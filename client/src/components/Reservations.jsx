@@ -60,7 +60,7 @@ export default function ReservationsList() {
   }
 
   return (
-    <BoxContainer style={{width: "60%"}}>
+    <BoxContainer >
       {reservations && Object.keys(reservations).length && (
         Object.keys(reservations).map((i) => {
           const reservation = reservations[i];
@@ -68,7 +68,32 @@ export default function ReservationsList() {
           return(
             <FoodCard key={reservations[i][0].reservation_id}>
               <h3>RESERVATION # {reservations[i][0].reservation_id}</h3>
-              <div className="embla__slide__inner">
+              <p>Date: {reservations[i][0].reservation_date}</p>
+              <h3>Status: <span style={{backgroundColor: "lightcoral"}}>{reservations[i][0].status}</span></h3>
+              <h3>Food: </h3>
+              {Object.keys(reservation).map((j) => {
+                const sinres = reservation[j]
+                return(
+                  <div className="embla__slide__inner">
+                    <div className="embla_left" style={{width: "30%"}}>
+                      <div>
+                        <img className="embla__slide__img_fit" src={sinres.image} alt="food" />
+                      </div>  
+                    </div>
+                    <div className="embla_right" style={{width: "70%"}}>
+                      <div className="embla_right_text" style={{fontSize: "20px"}}>
+                        <h3>{sinres.name}</h3> 
+                      </div>
+                      <div>
+                      <SubmitButton size={'25px'} onClick={()=> cancelReservations(sinres.reservation_id)}>Cancel</SubmitButton>              
+                      </div>  
+                    </div> 
+                  </div>
+
+                )
+              })}
+
+              {/* <div className="embla__slide__inner">
                 <div className="embla_left">
                   <div>
                     <img className="embla__slide__img_fit" src={reservations[i][0].image} alt="food" />
@@ -80,7 +105,7 @@ export default function ReservationsList() {
                     return(
                       <>
                         <p>Date: {reservations[i][0].reservation_date}</p>
-                        <p>Reservation Status: <span style={{backgroundColor: "lightcoral"}}>{reservations[i][0].status}</span></p>
+                        <p>Status: <span style={{backgroundColor: "lightcoral"}}>{reservations[i][0].status}</span></p>
                         <p>Food: {reservations[i][0].item_name}</p>
                         {validateStatus(sinres.i_status) && <SubmitButton size={'25px'} onClick={()=> cancelReservations(reservations[i][0].reservation_id)}>Cancel</SubmitButton>}
                         {!validateStatus(sinres.i_status) && <p>Item Status: {sinres.i_status}</p>}
@@ -88,7 +113,7 @@ export default function ReservationsList() {
                     )
                   })}
                 </div> 
-              </div>
+              </div> */}
               
             </FoodCard>
           )
