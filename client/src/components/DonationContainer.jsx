@@ -2,6 +2,7 @@ import styled from 'styled-components'
 import { InnerPageContainer } from './PageContainer'
 import useUser from "../hooks/useUser";
 import axios from "axios";
+import { Button } from './Button';
 
 const DonationCard = styled.div`
   display: grid;
@@ -24,6 +25,7 @@ const FoodBoxContainer= styled.div`
   align-items: center;
   margin: 0;
   background: #white;
+  font-family: Roboto;
   
 `;
 
@@ -66,8 +68,8 @@ export default function DonationContainer({ donations }) {
                       <p>Name: {sindon.reservation_name}</p>
                       <p>Reservation: {sindon.reservation_date}</p>
                       <p>Quantity: {sindon.quantity}</p>
-                      <button size={'5px'} onClick={() => cancelReservations(sindon.reservation_item_id, sindon.donation_id)}>Cancel</button>
-                      <button size={'5px'} onClick={() => completeReservations(sindon.reservation_item_id)}>Picked Up</button>              
+                      <Button size={'5px'} onClick={() => cancelReservations(sindon.reservation_item_id, sindon.donation_id)}>Cancel</Button>
+                      <Button size={'5px'} onClick={() => completeReservations(sindon.reservation_item_id)}>Picked Up</Button>              
                     </>
                   )
                 })}
