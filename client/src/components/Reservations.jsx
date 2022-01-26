@@ -26,7 +26,7 @@ export default function ReservationsShow() {
 
   function getReservations()
   {
-    console.log(user);
+    //console.log(user);
     {user && axios.get(`/reservations/user/${user}`)
       .then(res => { 
         setReservations(res.data);
@@ -36,43 +36,44 @@ export default function ReservationsShow() {
   }
 
   const cancelReservations = id => {
-
+    {user && axios.get(`/reservations/user/${user}`)
+      .then(res => { 
+        setReservations(res.data);
+      })
+      .catch((err) => {console.log(err)})
+    }
   }
 
   useEffect(() => {
     getReservations()
   }, [user])
-
-  // return (
-  //   <BoxContainer>
-  //     {reservations && Object.keys(reservations).length>0 && (
-  //      <DonationContainer donations={reservations} />
-  //     )}
-  //   </BoxContainer>
-  // );
  
   return (
-    <div>
-      {reservations && Object.keys(reservations).length && (
-        Object.keys(reservations).map((i) => {
-          const reservation = reservations[i];
-          return(
-            <FoodCard key={reservations[i][0].reservation_id}>
-            {<p>Date: {reservations[i][0].reservation_date}</p>}
-            {<p>Status: {reservations[i][0].status}</p>}
-              {Object.keys(reservation).map((j) => {
-                const sinres = reservation[j]
-                return(
-                  <>
-                    <p>Name: {sinres.name}</p>
-                    <button size={'5px'} onClick={() => cancelReservations(sinres.reservation_id)}>Cancel</button>              
-                  </>
-                )
-              })}
-            </FoodCard>
-          )
-        })
-      )}
-    </div>
+    <>
+      <h1>Reservataions History for User: {user}</h1>
+      <div>
+        {reservations && Object.keys(reservations).length && (
+          Object.keys(reservations).map((i) => {
+            const reservation = reservations[i];
+            return(
+              <FoodCard key={reservations[i][0].reservation_id}>
+              {<p>Date: {reservations[i][0].reservation_date}</p>}
+              {<p>Status: {reservations[i][0].status}</p>}
+                {Object.keys(reservation).map((j) => {
+                  const sinres = reservation[j]
+                  return(
+                    <>
+                      <p>Name: {sinres.name}</p>
+                      <></>
+                      <button size={'5px'} onClick={() => cancelReservations(sinres.reservation_id)}>Cancel</button>              
+                    </>
+                  )
+                })}
+              </FoodCard>
+            )
+          })
+        )}
+      </div>
+    </>
   );
 }

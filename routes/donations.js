@@ -37,6 +37,34 @@ module.exports = (db) => {
     });
   });
 
+  //donations (user_id, donation_date, Status)
+  //(donation_id, name, food_type, description, image, freshness, quantity, leftover)
+
+  //(shows user their own donations)
+  router.get("/user/:id", (request, response) => {
+    db.query(
+      `SELECT reservation_items.id as reservation_item_id, donation_items.id as donation_item_id, users.name as reservation_name, donation_date, 
+      donation_id, reservation_date, donation_Items.name as item_name, food_type, description, image, freshness, 
+      reservations.status, reservation_id, reservation_items.quantity FROM reservations
+      INNER JOIN reservation_items ON reservations.id=reservation_id
+      INNER JOIN donation_Items ON donation_Items.id=donation_item_id
+      INNER JOIN donations ON donations.id=donation_id
+      INNER JOIN users ON users.id=reservations.user_id
+      where donations.user_id=$1::integer`,
+      [request.params.id]
+    ).then(({ rows: donations }) => {
+      response.json(
+        donations.reduce(
+          (groups, item) => ({
+            ...groups,
+            [item.donation_id]: [...(groups[item.donation_id] || []), item],
+          }),
+          {}
+        )
+      );
+    });
+  });
+
   //(shows donations in a specific location)
   router.get("/search/:location", (request, response) => {
     db.query(
@@ -86,7 +114,8 @@ module.exports = (db) => {
     const { title, foodType, freshness, description, quantity, image } =
       form_data;
     //console.log(title, foodType, description, freshness, quantity);
-    db.query(`WITH inserted_id AS (INSERT INTO donations (user_id, donation_date, status) values ($1, Now(), 'Pick-Up') RETURNING id)
+    db.query(
+      `WITH inserted_id AS (INSERT INTO donations (user_id, donation_date, status) values ($1, Now(), 'Pick-Up') RETURNING id)
                                   INSERT INTO donation_items (donation_id, name, food_type, description, image, freshness, quantity, leftover)
                                   VALUES ((select id from inserted_id), $2, $3, $4, $5, $6, $7, $7)
                                   RETURNING (select id from inserted_id);`,

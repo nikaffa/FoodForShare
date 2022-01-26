@@ -1,5 +1,7 @@
 import styled from 'styled-components'
 import { InnerPageContainer } from './PageContainer'
+import useUser from "../hooks/useUser";
+import axios from "axios";
 
 const DonationCard = styled.div`
   display: grid;
@@ -26,27 +28,53 @@ const FoodBoxContainer= styled.div`
 `;
 
 export default function DonationContainer({ donations }) {
+  const { user } = useUser();
+
+  const cancelReservations = (reservation_item_id, donation_item_id) => {
+    axios.post(`/reservations/cancel/`, {reservation_item_id, donation_item_id})
+      .then(res => { 
+        //setReservations(res.data);
+      })
+      .catch((err) => {console.log(err)})
+  }
+
+
+  const completeReservations = (reservation_item_id) => {
+    axios.post(`/reservations/completed/`, {reservation_item_id})
+      .then(res => { 
+        //setReservations(res.data);
+      })
+      .catch((err) => {console.log(err)})
+  }
+
   return (
     <InnerPageContainer>
       <FoodBoxContainer>
-        {Object.keys(donations).map((i) => {
-          const donation = donations[i];
-
-           //check availability & freshness
-          if (donation.leftover > 0) {
-            return (
-            <DonationCard key={`{donation.id}.${i}`}>
-              <h3 >ID # {donation.id}</h3>
-              <h3 >Status {donation.status}</h3>
-              <h3 >Food {donation.name}</h3>
-              <h3 >Quantity {donation.quantity}</h3>
-              <h3 >Left {donation.leftover} portions</h3>
-            </DonationCard>
-            ) 
-          }else {
-            return null
-          }
-        })}
+        {donations && Object.keys(donations).length && (
+          Object.keys(donations).map((i) => {
+            const donation = donations[i];
+            return(
+              <DonationCard key={donations[i][0].donation_id}>
+              {<p>Date: {donations[i][0].donation_date}</p>}
+              {<p>Status: {donations[i][0].status}</p>}
+              {<p>Status: {donations[i][0].item_name}</p>}
+              {<p><img height="100" className="embla__slide__img_fit" src={donations[i][0].image} alt={donations[i][0].image} /></p>}
+                {Object.keys(donation).map((j) => {
+                  const sindon = donation[j]
+                  return(
+                    <>
+                      <p>Name: {sindon.reservation_name}</p>
+                      <p>Reservation: {sindon.reservation_date}</p>
+                      <p>Quantity: {sindon.quantity}</p>
+                      <button size={'5px'} onClick={() => cancelReservations(sindon.reservation_item_id, sindon.donation_id)}>Cancel</button>
+                      <button size={'5px'} onClick={() => completeReservations(sindon.reservation_item_id)}>Picked Up</button>              
+                    </>
+                  )
+                })}
+              </DonationCard>
+            )
+          })
+        )}
       </FoodBoxContainer>
     </InnerPageContainer>
   )

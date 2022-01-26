@@ -57,8 +57,14 @@ const Cart = ({ children }) => {
     setCart(newCart);
   };
 
-  const EmptyCart = () => {
+  const emptyCart = () => {
     setCart([]);
+  };
+
+  const cartCount = () => {
+    //const sumValues = obj => Object.values(obj).reduce((a, b) => a + b);
+    //console.log(cart.reduce((previous, current) => previous.qty + current.qty, 0))
+    return cart.reduce((previous, current) => previous.qty + current.qty, 0)
   };
 
   const exposed = {
@@ -66,7 +72,8 @@ const Cart = ({ children }) => {
     addItemToCart,
     removeItemFromCart,
     decreaseItemQty,
-    EmptyCart,
+    emptyCart,
+    cartCount,
   };
 
   return <Context.Provider value={exposed}>{children}</Context.Provider>;
