@@ -8,6 +8,9 @@
 const express = require("express");
 const { redirect } = require("express/lib/response");
 const router = express.Router();
+const accountSid = process.env.TWILIO_ACCOUNT_SID;
+const authToken = process.env.TWILIO_AUTH_TOKEN;
+const client = require("twilio")(accountSid, authToken);
 
 module.exports = (db) => {
   //(shows all donations)
@@ -43,27 +46,37 @@ module.exports = (db) => {
   //(shows user their own donations)
   router.get("/user/:id", (request, response) => {
     db.query(
-      `SELECT reservation_items.id as reservation_item_id, donation_items.id as donation_item_id, users.name as reservation_name, donation_date, 
-      donation_id, reservation_date, donation_Items.name as item_name, food_type, description, image, freshness, 
-      reservations.status, reservation_id, reservation_items.quantity FROM donation_Items
-      INNER JOIN donations ON donations.id=donation_id
-      LEFT OUTER JOIN reservation_items ON reservation_items.id=donation_item_id
-      LEFT OUTER JOIN reservations ON reservations.id=reservation_id
-      
-      INNER JOIN users ON users.id=reservations.user_id
-      where donations.user_id=$1::integer`,
+      `
+      select a.*, b.*, name as Reserve_name from
+       ((select 
+        donation_items.id as donation_item_id, donation_id, name as item_name, food_type, description, image, status,
+        freshness, quantity, leftover, donation_date, user_id
+        FROM donation_items
+        INNER Join donations on donations.id=donation_id
+        ) as A
+      LEFT OUTER JOIN
+       (select
+        reservation_items.id as reservation_item_id, reservation_id, quantity, donation_item_id as don_item_id, user_id, i_status, reservation_date
+        FROM reservation_items
+        LEFT OUTER JOIN reservations ON reservation_id=reservations.id
+        ) as B ON donation_item_id=don_item_id)
+      LEFT OUTER JOIN users ON users.id=B.user_id
+      where A.user_id=$1::integer`,
       [request.params.id]
     ).then(({ rows: donations }) => {
       response.json(
         donations.reduce(
           (groups, item) => ({
             ...groups,
-            [item.donation_item_id]: [...(groups[item.donation_item_id] || []), item],
+            [item.donation_item_id]: [
+              ...(groups[item.donation_item_id] || []),
+              item,
+            ],
           }),
           {}
         )
       );
-    });
+    }).catch((error) => console.log(error));
   });
 
   //(shows donations in a specific location)

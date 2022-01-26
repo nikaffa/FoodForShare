@@ -31,6 +31,9 @@ const FoodCard = styled.div`
 export default function ReservationNew() {
   const { cart, addItemToCart, removeItemFromCart, decreaseItemQty, emptyCart} = useCart();
   const { user } = useUser();
+  const [saveButton, setSaveButton] = useState();
+  const [cartStatus, setCartStatus] = useState();
+
 
   const submitForm = () => {
     // console.log(cart);
@@ -38,7 +41,7 @@ export default function ReservationNew() {
       //console.log(res.status)
       if(res.status === 222 || res.status === '222')
       {
-        localStorage.setItem('cart-status', res.data);
+        setCartStatus(res.data);
         emptyCart();
       }
     })
@@ -48,20 +51,21 @@ export default function ReservationNew() {
   }
 
   useEffect(() => {
-    loadSave()
-  }, [cart])
+    localStorage.setItem('cart-status', "");
+    (localStorage.getItem("cart").length<3 && setSaveButton(""));
+    (localStorage.getItem("cart").length>2 && setSaveButton(<SubmitButton size={'25px'} onClick={submitForm}>Save Reservation</SubmitButton>));
+  }, [cart, saveButton, cartStatus])
 
-  const loadSave = () => {
-    (localStorage.getItem("cart").length>2 && <SubmitButton size={'25px'} onClick={submitForm}>Save Reservation</SubmitButton>)
-    //(!localStorage.getItem("cart-status") && localStorage.getItem("cart").length<2 && "Your reservations cart is empty.")
-  }
+
 
   
   return (
     <BoxContainer style={{width: "60%"}}>  
       {/* <h1>Your Cart</h1> */}
-      {localStorage.getItem("cart-status") && (localStorage.getItem("cart-status"))}
-      {!localStorage.getItem("cart-status") && cart.map((food) => {
+      <h1>Reservations Cart</h1>
+      {cartStatus}
+      {!cartStatus && localStorage.getItem("cart").length<3 && "Your reservation cart is empty."}
+      {!cartStatus && cart.map((food) => {
         return(
           <FoodCard key={food.id}>
             <h2>FOOD: {food.name}</h2>
@@ -74,6 +78,7 @@ export default function ReservationNew() {
                 <div className="embla_right">
                   <div className="embla_right_text" style={{fontSize: "20px"}}>
                     <h3>Quantity: {food.qty}</h3>
+                    <p>Freshness: {food.freshness}</p>
                   </div>
                   <div>
                     <button size={'5px'} onClick={() => addItemToCart(food)}>+</button>
@@ -82,14 +87,12 @@ export default function ReservationNew() {
                   </div>
                   
                 </div> 
-            </div>
-            
-                         
+            </div>          
           </FoodCard>
           )
         }
       )}
-      {loadSave}
+      {saveButton}
     </BoxContainer>
   );  
 }

@@ -62,9 +62,11 @@ const Cart = ({ children }) => {
   };
 
   const cartCount = () => {
-    //const sumValues = obj => Object.values(obj).reduce((a, b) => a + b);
-    //console.log(cart.reduce((previous, current) => previous.qty + current.qty, 0))
-    return cart.reduce((previous, current) => previous.qty + current.qty, 0)
+    let qty = 0;
+    cart.forEach((item)=>{
+      qty+=item.qty;
+    })
+    return qty;
   };
 
   const exposed = {
