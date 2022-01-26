@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import { BrandLogo, LogoTitle } from "./BrandLogo";
 import { Marginer } from "./Marginer";
@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { deviceSize } from "../responsive";
 import { useMediaQuery } from "react-responsive";
 import UserDropDown from "./UserDropDown";
+import useCart from "../hooks/useCart";
 
 const NavbarContainer = styled.div`
 
@@ -74,7 +75,12 @@ const Seperator = styled.div `
 export default function Navbar(props) {
   const isMobile = useMediaQuery({ maxWidth: deviceSize });
   const { logoSize, color,} = props;
-  
+  const { cartCount } = useCart();
+
+  useEffect(() => {
+    cartCount();
+  }, [cartCount])
+
   return (
     <NavbarContainer>
       <BrandLogo size={logoSize}>
@@ -83,13 +89,15 @@ export default function Navbar(props) {
         </AnchorLink>
       </BrandLogo>
       <AccessibilityContainer>
-        {!isMobile && <AnchorLink to="/donation/new">Donate</AnchorLink>}
+        {/* {!isMobile && <AnchorLink to="/donation/search">Search Donations</AnchorLink>} */}
+        {/* {!isMobile && <Marginer direction="horizontal" margin={25} />}
+        {!isMobile && <AnchorLink to="/donation/new">Donate</AnchorLink>} */}
         {!isMobile && <Marginer direction="horizontal" margin={25} />}
-        {!isMobile && <AnchorLink to="/donations">Donations</AnchorLink>}
+        {!isMobile && <AnchorLink to="/donations">My Donations</AnchorLink>}
         {!isMobile && <Marginer direction="horizontal" margin={25} />}
-        {!isMobile && <AnchorLink to="/reservations">Reservations</AnchorLink>}
+        {!isMobile && <AnchorLink to="/reservations">My Reservations</AnchorLink>}
         {!isMobile && <Marginer direction="horizontal" margin={25} />}
-        {!isMobile && <AnchorLink to="/reservations/new">Reservation Cart</AnchorLink>}
+        {!isMobile && <AnchorLink to="/reservations/new">My Cart {cartCount}</AnchorLink>}
         {!isMobile && <Marginer direction="horizontal" margin={20} />}
         {!isMobile && <Seperator />}
         {!isMobile && <Marginer direction="horizontal" margin={20} />}

@@ -12,7 +12,7 @@ const PageWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: #FFF0A2;
+  background: #dbf5ee;
 `;
 
 export function PageContainer(props) {
@@ -32,7 +32,7 @@ export const InnerPageContainer = styled.div `
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: #FFF0A2;
+  background: #dbf5ee;
   @media screen and (max-width: ${deviceSize.mobile}px) {
     padding: 5px;
 `;

@@ -11,6 +11,7 @@ import {
   SubmitButton,
 } from "./Common";
 import { Link } from "react-router-dom";
+import Countdown from 'react-countdown';
 import axios from "axios";
 
 const FoodCard = styled.div`
@@ -27,19 +28,18 @@ const FoodCard = styled.div`
   `
 
 
-export default function ReservationCart() {
-  const { cart, addItemToCart, removeItemFromCart, decreaseItemQty, EmptyCart} = useCart();
+export default function ReservationNew() {
+  const { cart, addItemToCart, removeItemFromCart, decreaseItemQty, emptyCart} = useCart();
   const { user } = useUser();
-  console.log(cart)
 
   const submitForm = () => {
-    console.log(cart);
+    // console.log(cart);
     axios.post(`/reservations/new`, {user, cart}).then((res)=>{
       //console.log(res.status)
       if(res.status === 222 || res.status === '222')
       {
         localStorage.setItem('cart-status', res.data);
-        EmptyCart();
+        emptyCart();
       }
     })
     .catch((err)=> {
@@ -47,25 +47,49 @@ export default function ReservationCart() {
     });
   }
 
+  useEffect(() => {
+    loadSave()
+  }, [cart])
 
+  const loadSave = () => {
+    (localStorage.getItem("cart").length>2 && <SubmitButton size={'25px'} onClick={submitForm}>Save Reservation</SubmitButton>)
+    //(!localStorage.getItem("cart-status") && localStorage.getItem("cart").length<2 && "Your reservations cart is empty.")
+  }
+
+  
   return (
-    <div>
+    <BoxContainer style={{width: "60%"}}>  
+      {/* <h1>Your Cart</h1> */}
       {localStorage.getItem("cart-status") && (localStorage.getItem("cart-status"))}
       {!localStorage.getItem("cart-status") && cart.map((food) => {
         return(
           <FoodCard key={food.id}>
-            <p>Name: {food.name}</p>
-            <p>Freshness: {food.freshness}</p>
-            <p><image src={food.image} alt={food.name} /></p>
-            <p>Quantity: {food.qty}</p>
-            <button size={'5px'} onClick={() => addItemToCart(food)}>+</button>
-            <button size={'5px'} onClick={() => decreaseItemQty(food.id)}>-</button>
-            <button size={'5px'} onClick={() => removeItemFromCart(food.id)}>x</button>              
+            <h2>FOOD: {food.name}</h2>
+            <div className="embla__slide__inner">
+                <div className="embla_left">
+                  <div>
+                    <img className="embla__slide__img_fit" src={food.image} alt="food" />
+                  </div>
+                </div>
+                <div className="embla_right">
+                  <div className="embla_right_text" style={{fontSize: "20px"}}>
+                    <h3>Quantity: {food.qty}</h3>
+                  </div>
+                  <div>
+                    <button size={'5px'} onClick={() => addItemToCart(food)}>+</button>
+                    <button size={'5px'} onClick={() => decreaseItemQty(food.id)}>-</button>
+                    <button size={'5px'} onClick={() => removeItemFromCart(food.id)}>x</button> 
+                  </div>
+                  
+                </div> 
+            </div>
+            
+                         
           </FoodCard>
           )
         }
       )}
-      {!localStorage.getItem("cart-status") && (<SubmitButton size={'25px'} onClick={submitForm}>Save Reservation</SubmitButton>)}
-    </div>
+      {loadSave}
+    </BoxContainer>
   );  
 }

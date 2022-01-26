@@ -7,6 +7,8 @@ import {
   InnerPageContainer,
   PageContainer,
 } from "../components/PageContainer";
+import { SubmitButton } from "../components/Common";
+
 import { Link, useParams } from "react-router-dom";
 import { Button } from "../components/Button";
 import { Marginer } from "../components/Marginer";
@@ -20,15 +22,14 @@ export default function Reservation(props) {
 
   return (
     <PageContainer>
-      <Navbar />
-      <Marginer direction="vertical" margin="1em" />
-      <Link to="/reservations">
-        <Button size="25px">Go Back</Button>
-      </Link>
+      <Navbar/>
+      <Marginer direction="vertical" margin="1em"/>
       <StyledInnerContainer>
-        <BackgroundContainer>
-          <ReservationNew initialActive={action} />
-        </BackgroundContainer>
+        <Link to="/donation/search">
+          <Button size="25px">Search food</Button>
+        </Link>
+        <Marginer direction="vertical" margin="1em"/>
+        <ReservationNew initialActive={action} />
       </StyledInnerContainer>
     </PageContainer>
   );

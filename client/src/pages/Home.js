@@ -19,18 +19,19 @@ export default function Main (props) {
       <Navbar useTransparent />
       <Marginer direction="vertical" margin="4em"/>
       <InnerPageContainer>
+      <Marginer direction="vertical" margin="1em"/>
         <BackgroundContainer box-shadow="0px 0px 0px rgba(0, 0, 0, 0)">
-          <Marginer direction="vertical" margin="5em" />
+          <Marginer direction="vertical" margin="3em" />
           <Link to="/donation/new">
-            <Button>Share Food</Button>
+            <Button>Donate Food</Button>
           </Link>
           <Marginer direction="horizontal" margin="5em" />
           <Link to="/donation/search">
             <Button>Search Food</Button>
           </Link>
         </BackgroundContainer>
-        <Carousel />
         <Marginer direction="vertical" margin="2em" />
+        <Carousel />
         <Counter/>
         
       </InnerPageContainer>
