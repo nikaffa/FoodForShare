@@ -69,7 +69,7 @@ export default function ReservationsList() {
                     <p>{sinres.name}</p>
                   </div>
                   <div className="reservation_inner_right">
-                  <SubmitButton size={'25px'} onClick={()=> cancelReservations(sinres.reservation_id)}>Cancel</SubmitButton>              
+                  <SubmitButton size={'25px'} onClick={()=> f(sinres.reservation_id)}>Cancel</SubmitButton>              
                   </div> 
                 </div>
               )
