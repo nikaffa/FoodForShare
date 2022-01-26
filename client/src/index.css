@@ -41,25 +41,3 @@ code {
   width: 30px;
   cursor: pointer;
 }
-
-.reservation_inner {
-  position: relative;
-  overflow: hidden;
-  align-items: baseline;
-}
-.reservation_inner_left {
-  float: left;
-  width: 50%;
-  height: 100%;
-  margin: 20px, 0;
-  
-  
-}
-.reservation_inner_rigth {
-  float: right;
-  width: 50%;
-  height: 100%;
-  margin: 20px, 0;
-
- 
-}

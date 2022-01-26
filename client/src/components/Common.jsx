@@ -64,14 +64,14 @@ export const SubmitButton = styled.button`
   padding: 6px 1em;
   width: ${({ size }) => (size ? size + "px" : "18px")};
   color: #fff;
-  font-size: 15px;
+  font-size: 20px;
   font-weight: 600;
   border: none;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 100px 100px 100px 100px;
   cursor: pointer;
   transition: all, 240ms ease-in-out;
-  background: #38B6FF;
+  background: #58d3b2;
   &:hover {
     background-color: #707070;
     color: #fff;

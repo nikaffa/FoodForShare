@@ -3,8 +3,8 @@ insert into users (id, name, email, password, address, location, phone )
 insert into users (id, name, email, password, address, location, phone ) 
             values(2, 'Meadowvale Food Bank', 'xyz@foodbank.com', 'pwd', '6650 Meadowvale Town Centre Cir, Mississauga, ON L5N 4B7', '(43.581501, -79.759941)', '6476474677');
 
-insert into donations (user_id, donation_date, Status) values(1, '1-25-2022', 'Pick-Up');
-insert into donations (user_id, donation_date, Status) values(2, '1-25-2022', 'Pick-Up');
+insert into donations (user_id, donation_date, Status) values(1, '1-26-2022', 'Pick-Up');
+insert into donations (user_id, donation_date, Status) values(2, '1-26-2022', 'Pick-Up');
 
 
 insert into donation_Items (donation_id, name, food_type, description, image, freshness, quantity, leftover) 
@@ -20,8 +20,8 @@ insert into donation_Items (donation_id, name, food_type, description, image, fr
                      values(2, 'Gala apples', 'Raw', '5lbs of local apples', 'https://images.heb.com/is/image/HEBGrocery/000320644', '72', 5, 2);
 
 
-insert into reservations (user_id, reservation_date, status) values (2, '1-25-2022', 'Waiting');
-insert into reservations (user_id, reservation_date, status) values (2, '1-25-2022', 'Waiting');
+insert into reservations (user_id, reservation_date, status) values (2, '1-26-2022', 'Waiting');
+insert into reservations (user_id, reservation_date, status) values (2, '1-26-2022', 'Waiting');
 
 insert into reservation_items (reservation_id, donation_item_id , quantity) values (1, 1, 2);
 insert into reservation_items (reservation_id, donation_item_id , quantity) values (1, 2, 2);

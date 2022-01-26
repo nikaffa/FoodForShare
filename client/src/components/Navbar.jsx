@@ -89,15 +89,15 @@ export default function Navbar(props) {
         </AnchorLink>
       </BrandLogo>
       <AccessibilityContainer>
-        {!isMobile && <AnchorLink to="/donation/search">Search Donations</AnchorLink>}
+        {/* {!isMobile && <AnchorLink to="/donation/search">Search Donations</AnchorLink>} */}
+        {/* {!isMobile && <Marginer direction="horizontal" margin={25} />}
+        {!isMobile && <AnchorLink to="/donation/new">Donate</AnchorLink>} */}
         {!isMobile && <Marginer direction="horizontal" margin={25} />}
-        {!isMobile && <AnchorLink to="/donation/new">Donate</AnchorLink>}
+        {!isMobile && <AnchorLink to="/donations">My Donations</AnchorLink>}
         {!isMobile && <Marginer direction="horizontal" margin={25} />}
-        {!isMobile && <AnchorLink to="/donations">Donation Hsitory</AnchorLink>}
+        {!isMobile && <AnchorLink to="/reservations">My Reservations</AnchorLink>}
         {!isMobile && <Marginer direction="horizontal" margin={25} />}
-        {!isMobile && <AnchorLink to="/reservations">Reservation History</AnchorLink>}
-        {!isMobile && <Marginer direction="horizontal" margin={25} />}
-        {!isMobile && <AnchorLink to="/reservations/new">Reservation Cart {cartCount}</AnchorLink>}
+        {!isMobile && <AnchorLink to="/reservations/new">My Cart {cartCount}</AnchorLink>}
         {!isMobile && <Marginer direction="horizontal" margin={20} />}
         {!isMobile && <Seperator />}
         {!isMobile && <Marginer direction="horizontal" margin={20} />}
