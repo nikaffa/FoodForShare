@@ -59,10 +59,9 @@ export default function ReservationNew() {
   
   return (
     <BoxContainer style={{width: "60%"}}>  
-      {/* <h1>Your Cart</h1> */}
-      <h1>Reservations Cart</h1>
+      <h1>My Cart</h1>
       {cartStatus}
-      {!cartStatus && localStorage.getItem("cart").length<3 && "Your reservation cart is empty."}
+      {!cartStatus && localStorage.getItem("cart").length<3 && "Your cart is empty."}
       {!cartStatus && cart.map((food) => {
         return(
           <FoodCard key={food.id}>

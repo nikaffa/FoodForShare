@@ -33,7 +33,7 @@ export function DonationsShow(props) {
 
   return (
     <>
-      <h1>Donations List for User: {user}</h1>
+      <h1>Donations of User {user}</h1>
       <BoxContainer>
           {donations && Object.keys(donations).length>0 && (
           <DonationContainer donations={donations} />
