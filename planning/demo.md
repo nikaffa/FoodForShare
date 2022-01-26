@@ -13,11 +13,11 @@
 ### Person … -  User behaviour continuing - creating/modifying/completing the order:
 - Click on place->choose food->reserve->reservation cart->search more food->reservation history
 
-# Person …  - Donor behaviour - creating donation:
+### Person …  - Donor behaviour - creating donation:
 - {example: Our app can also help rest/food banks or individuals to share their leftover food with their community and eliminate food wasting}
 - Donate->save donation->donation history
 
-# Person … - Wrap up (depending on time left):
+### Person … - Wrap up (depending on time left):
 - That was our app for sharing food.
 
 - Tech stack we used:
