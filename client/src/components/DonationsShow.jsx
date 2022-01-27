@@ -9,6 +9,8 @@ import DonationContainer from "./DonationContainer";
 import { Link } from "react-router-dom";
 
  
+const title = ` styled.div`
+
 export function DonationsShow(props) {
   const { user } = useUser();
   const [donations, setDonations] = useState({});

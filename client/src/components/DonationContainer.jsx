@@ -5,13 +5,14 @@ import axios from "axios";
 import { Button } from './Button';
 import { Container } from 'react-bootstrap';
 import { useState, useEffect } from "react";
+import { SubmitButton } from './Common';
 
 const DonationCard = styled.div`
   display: grid;
   width:70%;
   justify-items: stretch;
   background-color: #fff;
-  border: solid 0.25px #707070;
+  // border: solid 0.25px #707070;
   border-radius: 15px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
   padding: 60px;
@@ -93,8 +94,8 @@ export default function DonationContainer({ donations }) {
                         <p>Quantity: {sindon.quantity}</p>
                       </div>
                       <div className="embla_right">
-                        {validateStatus(sindon.i_status) && <button size={'5px'} onClick={() => cancelReservations(sindon.reservation_item_id)}>Cancel</button>}
-                        {validateStatus(sindon.i_status) && <button size={'5px'} onClick={() => completeReservations(sindon.reservation_item_id)}>Complete</button>}
+                        {validateStatus(sindon.i_status) && <SubmitButton onClick={() => cancelReservations(sindon.reservation_item_id)}>Cancel</SubmitButton>}
+                        {validateStatus(sindon.i_status) && <SubmitButton onClick={() => completeReservations(sindon.reservation_item_id)}>Complete</SubmitButton>}
                         {!validateStatus(sindon.i_status) && sindon.i_status}
                       </div>
                     </div>

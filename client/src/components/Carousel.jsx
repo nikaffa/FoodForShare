@@ -12,7 +12,7 @@ const images = [
 const carouselContainer = styled.div`
 width: 60%;
 height: 20vh;
-border: 1px solid black;
+// border: 1px solid black;
 margin: 10px auto;
 box-shadow: 0 0 25px rgba(0, 0, 0, 0.15);
 `

@@ -9,7 +9,7 @@ export const ContentCard = styled.div`
   width:70%;
   align-items: flex-start;
   background-color: #fff;
-  border: solid 0.25px #707070;
+  // border: solid 0.25px #707070;
   border-radius: 15px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
   margin: 40px 0;

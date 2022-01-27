@@ -13,13 +13,13 @@ import {
 import { Link } from "react-router-dom";
 import Countdown from 'react-countdown';
 import axios from "axios";
+import { Button } from "./Button";
 
 const FoodCard = styled.div`
   display: grid;
-  width:70%;
+  width:80%;
   justify-items: stretch;
   background-color: #fff;
-  border: solid 0.25px #707070;
   border-radius: 15px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
   padding: 60px;
@@ -81,9 +81,9 @@ export default function ReservationNew() {
                     <p>Freshness: {food.freshness}</p>
                   </div>
                   <div>
-                    <button size={'5px'} onClick={() => addItemToCart(food)}>+</button>
-                    <button size={'5px'} onClick={() => decreaseItemQty(food.id)}>-</button>
-                    <button size={'5px'} onClick={() => removeItemFromCart(food.id)}>x</button> 
+                    <button size={'1px'} onClick={() => addItemToCart(food)}>+</button>
+                    <button size={'1px'} onClick={() => decreaseItemQty(food.id)}>-</button>
+                    <button size={'1px'} onClick={() => removeItemFromCart(food.id)}>x</button> 
                   </div>
                   
                 </div> 

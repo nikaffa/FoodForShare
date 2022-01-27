@@ -17,7 +17,7 @@ export const FormContainer = styled.form`
   align-items: flex-start;
   padding: 5px;
   flex-direction: column;
-  border-radius: 5px;
+  // border-radius: 5px;
   font-family: Roboto;
 `;
 
@@ -58,7 +58,7 @@ export const Input = styled.input`
   &:focus {
     outline: none;
     //box-shadow: 0px 0px 2px rgba(200, 200, 200, 1);
-    border-bottom: 2px solid #black;
+    //border-bottom: 2px solid #black;
   }
 `;
 

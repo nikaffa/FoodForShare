@@ -8,14 +8,14 @@ import {
   SubmitButton,
 } from "./Common";
 import "../embla.css";
+import { Button } from "./Button";
 
 const FoodCard = styled.div`
   display: grid;
-  width:70%;
+  width:90%;
   justify-items: stretch;
   align-items: center;
   background-color: #fff;
-  border: solid 0.25px #707070;
   border-radius: 15px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
   padding: 20px;
@@ -81,10 +81,10 @@ export default function ReservationsList() {
                     const sinres = reservation[j]
                     return(
                       <>
-                        <p>Date: {reservations[i][0].reservation_date}</p>
+                        <nl>Date: {reservations[i][0].reservation_date}</nl>
                         <p>Reservation Status: <span style={{backgroundColor: "lightcoral"}}>{reservations[i][0].status}</span></p>
                         <p>Food: {reservations[i][0].item_name}</p>
-                        {validateStatus(sinres.i_status) && <SubmitButton size={'25px'} onClick={()=> cancelReservations(reservations[i][0].reservation_id)}>Cancel</SubmitButton>}
+                        {validateStatus(sinres.i_status) && <Button size={'5px'} onClick={()=> cancelReservations(reservations[i][0].reservation_id)}>Cancel</Button>}
                         {!validateStatus(sinres.i_status) && <p>Item Status: {sinres.i_status}</p>}
                       </>
                     )

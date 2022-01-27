@@ -45,8 +45,12 @@ export function DonationForm() {
       .post(`http://localhost:8080/donations/new`, { user, form_data })
       .then((response) => {
         if(response.status === 222 || response.status === '222') {
-          // ClearForm();
-          // setUpdate("Thank you for your donation. Donation sucessfully saved.")
+          setTimeout(
+            ClearForm(),
+           setUpdate("Thank you for your donation. Donation sucessfully saved.")
+            ,[1000]
+          );
+          
           navigate('/donations');
           
         }
@@ -56,14 +60,14 @@ export function DonationForm() {
       });
   };
 
-  // const ClearForm = () => {
-  //   setTitle("");
-  //   setFoodType("");
-  //   setDescription("");
-  //   setFreshness(0);
-  //   setQuantity(0);
-  //   setImage("");
-  // }
+  const ClearForm = () => {
+    setTitle("");
+    setFoodType("");
+    setDescription("");
+    setFreshness(0);
+    setQuantity(0);
+    setImage("");
+  }
 
   return (
     <BoxContainer>
@@ -114,11 +118,9 @@ export function DonationForm() {
         />
       </FormContainer>
       <Marginer direction="vertical" margin="1em" />
-      <Link to="/donations">
         <SubmitButton size={"25px"} onClick={onSubmitForm}>
           Save Donation
         </SubmitButton>
-      </Link>
       <Marginer direction="vertical" margin={5} />
     </BoxContainer>
   );
