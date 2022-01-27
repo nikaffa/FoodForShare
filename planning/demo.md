@@ -12,8 +12,8 @@ Anam: Today we will be talking about our web development project FoodforShare. T
 
 ### Person …  - Donor behaviour - creating donation ANAM:
 
-Anam: For the purpose of the presentation we have created seperate users to demonstrate the features. User 1 will showcase the donor's who will donate food. User 2 will showcase the users when they want to search and reserve food. For a user to donate or search food they will be first signed-in. User 1 is already logged in click on donate food. 
-This lead them to donation form where they will enter the details such the name of the food, the description if application, there will be cooked food so we have added the freshness which will indicate how long they food is fresh to eat until expiry. The quantity and an image to allow a user who is searching for food to see how it will look like. Once you click on save donation, it will redirect you to the donations dashboard where the particular donor in our case user 1 can see the list of food they have donated. If by any chance the donor choose to cancel an item from donation, they can click on the cancel button and it will eliminate the item from the list as well, it will give a twilio message to people who if they have reserved the item on the cancelation. Next Veronika will show you the user experience for searching for food.
+Anam: For the purpose of the presentation we have created seperate users who are already logged in to demonstrate the features. User 1 will showcase the donor's who will donate food. User 2 will showcase the users when they want to search and reserve food. User 1 will on the home page click on donate food button. 
+This lead them to donation form where they will enter the details such the name of the food, the description if application, there will be cooked food so we have added the freshness field to indicate how long they food is fresh to eat until expiry. The quantity and an image to allow a user who is searching for food to see how it will look like. Once you click on save donation, it will redirect you to the donations dashboard where the particular donor in our case user 1 can see the list of food they have donated. If by any chance the donor chooses to cancel an item from donation, they can simply click on the cancel button and it will eliminate the item from the list as well, it will give a twilio sms message to anyone who had reserved the item on the cancelation. Next Veronika will show you the user experience for searching for food.
 
 
 ### Person … - User behaviour - searching VERONIKA :
@@ -29,16 +29,7 @@ Kashif: Thanks Veronika. Once a user is finished reserving items they can go to 
 
 
 ### Person … - Wrap up (depending on time left) KASHIF:
-Kashif: This concludes our presentation. Thank you everyone for watching. 
+Kashif: For our tech stack we used Node, Express from backend PostgreSQL in db and React for frontend. Some of the features we would like to expand on is allowing a pickup / drop-off location with drop-off time closer to individuals. Also, we would like to expand our donation feature to incorporate individuals who would like to share their food.
 
-
-
-
-- That was our app for sharing food.
-
-- Tech stack we used:
-- Node, Express, React, PostgreSQL
-- Our next steps will be including user that are individuals who have extra food to share.
-
-- Thanking the audience
+Kashif: This concludes our presentation. Thank you everyone for watching. If you have any questions regarding our app feel free to join in our breakout room.
 
