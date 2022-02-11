@@ -1,20 +1,28 @@
-## Getting Started
+# FoodForShare
+- FoodForShare is a multi-page web application for restaurants and food banks to donate their extra meal and food items to the local community. 
+- The idea behind the project is to resolve the food-wasting problem. This is a web platform that works as a bridge between food donors and local charities.
 
-1. Create the `.env` by using `.env.example` as a reference: `cp .env.example .env`
-2. Update the .env file with your correct local information 
-  - username: `labber` 
-  - password: `labber` 
-  - database: `food_donations`
-3. Install dependencies: `npm i`
-4. Fix to binaries for sass: `npm rebuild node-sass`
-5. Reset database: `npm run db:reset`
-  - Check the db folder to see what gets created and seeded in the SDB
-7. Run the server: `npm run local`
-  - Note: nodemon is used, so you should not have to restart your server
-8. Visit `http://localhost:8080/`
+## Tech Stack
+### Back-end
+- Node.js
+- Express.js
+- PostgreSQL
 
-## Dependencies
+### Front-end
+- React.js
+- Axios
+- Bootstrap
+- SASS
+- Google map API
+- Twilio API
 
-- Node 10.x or above
-- NPM 5.x or above
-- PG 6.x
+## Setup
+
+1. Install back-end dependencies: `npm i`
+2. Reset database: `npm run db:reset`
+3. Run the server: `npm start`
+ - The back-end will be served at `http://localhost:8080/`
+4. Install front-end dependencies and start the web server: `cd /client` `npm i`
+5. Run the web server: `npm start`
+
+
