@@ -43,7 +43,7 @@ export const BackgroundContainer = styled.div `
   // align-items: flex-start;
   padding: 1em;
   background: ${({ color }) => (color ? color + "" : "#dbf5ee")};
-  box-shadow: ${({box})=> (box ? box + "" : "0px 4px 4px rgba(0, 0, 0, 0.25)")}; 
+  // box-shadow: ${({box})=> (box ? box + "" : "0px 4px 4px rgba(0, 0, 0, 0.25)")}; 
   border: ${({border}) => (border ? border + "" : "none")};
   @media screen and (max-width: ${deviceSize.mobile}px) {
     padding: 5px;

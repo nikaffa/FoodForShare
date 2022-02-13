@@ -8,6 +8,7 @@ const CounterContainer = styled.div`
   width: 100%;
   flex-direction: row;
   align-items: flex-start;
+  justify-content: center;
   //height: 30vh;
   background: #fff;
   align-item: center;
