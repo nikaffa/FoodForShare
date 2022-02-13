@@ -18,11 +18,18 @@
 
 ## Setup
 
-1. Install back-end dependencies: `npm i`
-2. Reset database: `npm run db:reset`
-3. Run the server: `npm start`
+1. Install back-end dependencies, reset database and run the server: 
+```bash
+npm i
+npm run db:reset
+npm start
+```
  - The back-end will be served at `http://localhost:8080/`
-4. Install front-end dependencies and start the web server: `cd /client` `npm i`
-5. Run the web server: `npm start`
+2. Install front-end dependencies and run the web server: 
+```bash
+cd /client
+npm i
+npm start
+```
 
 
