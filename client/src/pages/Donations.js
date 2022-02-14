@@ -1,20 +1,16 @@
-import React, {useEffect, useState} from "react";
+import React from "react";
 import styled from "styled-components";
 import Navbar from "../components/Navbar";
 import { InnerPageContainer, PageContainer } from "../components/PageContainer";
 import { Link, useParams } from "react-router-dom";
 import { Button } from "../components/Button";
 import { Marginer } from "../components/Marginer";
-import { SubmitButton } from "../components/Common";
-import { ContentCard } from "../components/ContentCard";
 import { DonationsShow } from "../components/DonationsShow";
-// import axios from "axios";
 
 const StyledInnerContainer = styled(InnerPageContainer)`
   margin-left: 4em;
   margin-right: 4em;
   margin-bottom: 4em;
-
 `;
 
 export default function Donations(props) {
@@ -28,8 +24,7 @@ export default function Donations(props) {
         <Link to="/donation/new">
           <Button size="25px">Donate food</Button>
         </Link>
-        <DonationsShow initialActive={action} />
-       
+        <DonationsShow initialActive={action} /> 
       </StyledInnerContainer>
     </PageContainer>
   );

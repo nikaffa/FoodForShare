@@ -2,12 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import ReservationNew from "../components/ReservationNew";
 import Navbar from "../components/Navbar";
-import {
-  BackgroundContainer,
-  InnerPageContainer,
-  PageContainer,
-} from "../components/PageContainer";
-import { SubmitButton } from "../components/Common";
+import { InnerPageContainer, PageContainer } from "../components/PageContainer";
 
 import { Link, useParams } from "react-router-dom";
 import { Button } from "../components/Button";

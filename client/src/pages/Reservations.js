@@ -1,11 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import Navbar from "../components/Navbar";
-import {
-  BackgroundContainer,
-  InnerPageContainer,
-  PageContainer,
-} from "../components/PageContainer";
+import { InnerPageContainer, PageContainer } from "../components/PageContainer";
 import { Marginer } from "../components/Marginer";
 import ReservationsList from "../components/Reservations"
 import { Link } from "react-router-dom";
@@ -25,10 +21,6 @@ export default function Reservations() {
         </Link>
         <ReservationsList />
       </StyledInnerContainer>
-        
-      {/* <StyledInnerContainer>
-        <BackgroundContainer></BackgroundContainer>
-      </StyledInnerContainer> */}
     </PageContainer>
   );
 }
