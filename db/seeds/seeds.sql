@@ -16,9 +16,6 @@ insert into donations (user_id, donation_date, Status) values(2, '2-13-2022', 'P
 insert into donations (user_id, donation_date, Status) values(2, '2-13-2022', 'Pick-Up');
 insert into donations (user_id, donation_date, Status) values(2, '2-13-2022', 'Pick-Up');
 insert into donations (user_id, donation_date, Status) values(2, '2-13-2022', 'Pick-Up');
-insert into donations (user_id, donation_date, Status) values(3, '2-13-2022', 'Pick-Up');
-insert into donations (user_id, donation_date, Status) values(3, '2-13-2022', 'Pick-Up');
-insert into donations (user_id, donation_date, Status) values(3, '2-13-2022', 'Pick-Up');
 
 
 insert into donation_Items (donation_id, name, food_type, description, image, freshness, quantity, leftover) 

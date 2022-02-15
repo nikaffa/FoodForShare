@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import styled from "styled-components";
 import useUser from "../hooks/useUser";
 
 export default function UserDropDown() {
@@ -13,8 +12,7 @@ export default function UserDropDown() {
 
    const users = [
       {id: '1', name: 'User 1'},
-      {id: '2', name: 'User 2'},
-      {id: '3', name: 'User 3'}
+      {id: '2', name: 'User 2'}
     ]
   
     let userList = users.length > 0
