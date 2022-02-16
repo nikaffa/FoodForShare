@@ -111,7 +111,6 @@ export function Map(props) {
           onClick={() => {
             setSelected(place);
             getFood(place.properties.ID);
-            console.log("food clicked", foods)
           }} />
         ))}
           
@@ -124,13 +123,11 @@ export function Map(props) {
             }}
           >
           <div>
-            <h2>{selected.properties.NAME}</h2>
-            
+            <h2>{selected.properties.NAME}</h2>   
           </div>
         </InfoWindow>
         )}
-
-        
+  
       </GoogleMap>
       <Marginer direction="vertical" margin="1em" />
 
