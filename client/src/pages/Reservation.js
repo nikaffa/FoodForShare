@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import ReservationNew from "../components/ReservationNew";
+import MyCart from "../components/MyCart";
 import Navbar from "../components/Navbar";
 import { InnerPageContainer, PageContainer } from "../components/PageContainer";
 
@@ -24,7 +24,7 @@ export default function Reservation(props) {
           <Button size="25px">Search food</Button>
         </Link>
         <Marginer direction="vertical" margin="1em"/>
-        <ReservationNew initialActive={action} />
+        <MyCart initialActive={action} />
       </StyledInnerContainer>
     </PageContainer>
   );

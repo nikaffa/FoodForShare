@@ -28,9 +28,9 @@ insert into donation_Items (donation_id, name, food_type, description, image, fr
                      values(1, 'Pasta', 'Cooked', '10lbs of Pasta', 'https://upload.wikimedia.org/wikipedia/commons/d/dc/The_Only_Original_Alfredo_Sauce_with_Butter_and_Parmesano-Reggiano_Cheese.png', '72', 10, 8);
 
 insert into donation_Items (donation_id, name, food_type, description, image, freshness, quantity, leftover) 
-                     values(2, 'Sandwiches', 'Cooked', 'Vegetarian sandwiches', 'https://simply-delicious-food.com/wp-content/uploads/2020/07/Easy-salad-sandwiches-with-herb-mayo-5.jpg', '72', 15, 13);
+                     values(2, 'Sandwiches', 'Cooked', 'Vegetarian sandwiches', 'https://static.toiimg.com/thumb/83740315.cms?width=1200&height=900', '72', 15, 13);
 insert into donation_Items (donation_id, name, food_type, description, image, freshness, quantity, leftover) 
-                     values(2, 'Fried chicken', 'Cooked', 'Fried chicken drumsticks', 'https://thestayathomechef.com/wp-content/uploads/2016/06/Fried-Chicken-4-1.jpg', '72', 18, 5);
+                     values(2, 'Fried chicken', 'Cooked', 'Fried chicken drumsticks', 'https://insanelygoodrecipes.com/wp-content/uploads/2020/04/Fried_Chicken-1024x536.png', '72', 18, 5);
 
 insert into donation_Items (donation_id, name, food_type, description, image, freshness, quantity, leftover) 
                      values(3, 'Baked beans', 'Canned', '10 cans of beans in sause', 'https://media.zenfs.com/en/insider_articles_922/d08341acf94c0784230abbb57a87fd01', '72', 10, 10);
@@ -54,11 +54,5 @@ insert into donation_Items (donation_id, name, food_type, description, image, fr
 
 insert into donation_Items (donation_id, name, food_type, description, image, freshness, quantity, leftover) 
                      values(8, 'Sub of the day', 'Cooked', 'Tuna sub', 'https://www.subway.com/ns/images/menu/CAN/ENG/Subway_6in_Tuna_594x334_72_RGB.jpg', '72', 4, 3);
-
-
-insert into reservations (user_id, reservation_date, status) values (2, '2-15-2022', 'Waiting');
-
-insert into reservation_items (reservation_id, donation_item_id , quantity) values (1, 1, 2);
-insert into reservation_items (reservation_id, donation_item_id , quantity) values (1, 2, 2);
 
 
