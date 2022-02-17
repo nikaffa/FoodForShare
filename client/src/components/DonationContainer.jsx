@@ -68,8 +68,8 @@ export default function DonationContainer({ donations }) {
           Object.keys(donations).map((i) => {
             const donation = donations[i];
             return(
-              <DonationCard key={donations[i][0].donation_id}>
-                {console.log(donations[i][0])}
+              <DonationCard key={`{donation.id}.${i}`}>
+                {/* {console.log(donations[i][0])} */}
     
                 <h2>{donations[i][0].item_name}</h2>
                 <div className="embla__slide__inner">
@@ -91,12 +91,12 @@ export default function DonationContainer({ donations }) {
                       <div className="embla_left">
                         <p><b>Reserved by:</b> {sindon.reserve_name}</p>
                         {/* <p>Reservation: {sindon.reservation_date}</p> */}
-                        <p>Quantity: {sindon.quantity}</p>
+                        <p><b>Quantity: </b>{sindon.quantity}</p>
                       </div>
                       <div className="embla_right">
                       <p><b>Status:</b> {donations[i][0].status}</p>
                         {/* {validateStatus(sindon.i_status) && <button size={'5px'} key={sindon.reservation_item_id+'_1'} onClick={() => cancelReservations(sindon.reservation_item_id)}>Cancel</button>} */}
-                        {validateStatus(sindon.i_status) && <SubmitButton size={'25px'} key={sindon.reservation_item_id+'_2'} onClick={() => completeReservation(sindon.reservation_item_id)}>Complete</SubmitButton>}
+                        {validateStatus(sindon.i_status) && <SubmitButton size={'25px'} key={sindon.reservation_item_id+'j'} onClick={() => completeReservation(sindon.reservation_item_id)}>Complete</SubmitButton>}
                         {/* {!validateStatus(sindon.i_status) && 'Cancelled'} */}
                       </div>
                     </div>)
