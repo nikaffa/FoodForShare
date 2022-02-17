@@ -13,14 +13,14 @@ insert into users (id, name, email, password, address, location, phone )
 insert into users (id, name, email, password, address, location, phone ) 
             values(7, 'Subway', 'abc@restaurant.com', 'pwd', '267 Queen St W Ground Fl, Toronto, ON M5V 1Z4', '(43.65646891134814, -79.3862201486041)', '6476474677');
 
-insert into donations (user_id, donation_date, Status) values(1, '2-15-2022', 'Ready for pick-Up');
-insert into donations (user_id, donation_date, Status) values(2, '2-15-2022', 'Ready for pick-Up');
-insert into donations (user_id, donation_date, Status) values(3, '2-15-2022', 'Ready for pick-Up');
-insert into donations (user_id, donation_date, Status) values(3, '2-15-2022', 'Ready for pick-Up');
-insert into donations (user_id, donation_date, Status) values(4, '2-15-2022', 'Ready for pick-Up');
-insert into donations (user_id, donation_date, Status) values(5, '2-15-2022', 'Ready for pick-Up');
-insert into donations (user_id, donation_date, Status) values(6, '2-15-2022', 'Ready for pick-Up');
-insert into donations (user_id, donation_date, Status) values(7, '2-15-2022', 'Ready for pick-Up');
+insert into donations (user_id, donation_date, Status) values(1, '2-17-2022', 'Ready for pick-Up');
+insert into donations (user_id, donation_date, Status) values(2, '2-17-2022', 'Ready for pick-Up');
+insert into donations (user_id, donation_date, Status) values(3, '2-17-2022', 'Ready for pick-Up');
+insert into donations (user_id, donation_date, Status) values(3, '2-17-2022', 'Ready for pick-Up');
+insert into donations (user_id, donation_date, Status) values(4, '2-17-2022', 'Ready for pick-Up');
+insert into donations (user_id, donation_date, Status) values(5, '2-17-2022', 'Ready for pick-Up');
+insert into donations (user_id, donation_date, Status) values(6, '2-17-2022', 'Ready for pick-Up');
+insert into donations (user_id, donation_date, Status) values(7, '2-17-2022', 'Ready for pick-Up');
 
 insert into donation_Items (donation_id, name, food_type, description, image, freshness, quantity, leftover) 
                      values(1, 'Pizza', 'Cooked', 'A few slices of pizza', 'https://upload.wikimedia.org/wikipedia/commons/a/a3/Eq_it-na_pizza-margherita_sep2005_sml.jpg', '72', 5, 3);
