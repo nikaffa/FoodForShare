@@ -13,14 +13,14 @@ insert into users (id, name, email, password, address, location, phone )
 insert into users (id, name, email, password, address, location, phone ) 
             values(7, 'Subway', 'abc@restaurant.com', 'pwd', '267 Queen St W Ground Fl, Toronto, ON M5V 1Z4', '(43.65646891134814, -79.3862201486041)', '6476474677');
 
-insert into donations (user_id, donation_date, Status) values(1, '2-15-2022', 'Pick-Up');
-insert into donations (user_id, donation_date, Status) values(2, '2-15-2022', 'Pick-Up');
-insert into donations (user_id, donation_date, Status) values(3, '2-15-2022', 'Pick-Up');
-insert into donations (user_id, donation_date, Status) values(3, '2-15-2022', 'Pick-Up');
-insert into donations (user_id, donation_date, Status) values(4, '2-15-2022', 'Pick-Up');
-insert into donations (user_id, donation_date, Status) values(5, '2-15-2022', 'Pick-Up');
-insert into donations (user_id, donation_date, Status) values(6, '2-15-2022', 'Pick-Up');
-insert into donations (user_id, donation_date, Status) values(7, '2-15-2022', 'Pick-Up');
+insert into donations (user_id, donation_date, Status) values(1, '2-15-2022', 'Ready for pick-Up');
+insert into donations (user_id, donation_date, Status) values(2, '2-15-2022', 'Ready for pick-Up');
+insert into donations (user_id, donation_date, Status) values(3, '2-15-2022', 'Ready for pick-Up');
+insert into donations (user_id, donation_date, Status) values(3, '2-15-2022', 'Ready for pick-Up');
+insert into donations (user_id, donation_date, Status) values(4, '2-15-2022', 'Ready for pick-Up');
+insert into donations (user_id, donation_date, Status) values(5, '2-15-2022', 'Ready for pick-Up');
+insert into donations (user_id, donation_date, Status) values(6, '2-15-2022', 'Ready for pick-Up');
+insert into donations (user_id, donation_date, Status) values(7, '2-15-2022', 'Ready for pick-Up');
 
 insert into donation_Items (donation_id, name, food_type, description, image, freshness, quantity, leftover) 
                      values(1, 'Pizza', 'Cooked', 'A few slices of pizza', 'https://upload.wikimedia.org/wikipedia/commons/a/a3/Eq_it-na_pizza-margherita_sep2005_sml.jpg', '72', 5, 3);
@@ -51,6 +51,8 @@ insert into donation_Items (donation_id, name, food_type, description, image, fr
 
 insert into donation_Items (donation_id, name, food_type, description, image, freshness, quantity, leftover) 
                      values(7, 'Lasagna', 'Cooked', '2lbs of meat lasagna', 'https://www.cookingclassy.com/wp-content/uploads/2013/03/lasagna15.jpg', '72', 2, 2);
+insert into donation_Items (donation_id, name, food_type, description, image, freshness, quantity, leftover) 
+                     values(7, 'Triangles', 'Cooked', 'Russian savory pies', 'https://receptisalatov.com/content/recipes/556/main_b_echpochmak-po-tatarski.jpg', '72', 8, 6);
 
 insert into donation_Items (donation_id, name, food_type, description, image, freshness, quantity, leftover) 
                      values(8, 'Sub of the day', 'Cooked', 'Tuna sub', 'https://www.subway.com/ns/images/menu/CAN/ENG/Subway_6in_Tuna_594x334_72_RGB.jpg', '72', 4, 3);

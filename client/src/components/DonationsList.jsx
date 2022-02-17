@@ -1,21 +1,18 @@
-import React, { useState, useCallback, useRef, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import useUser from "../hooks/useUser";
 
-import {
-  BoxContainer
-} from "./Common";
+import { BoxContainer } from "./Common";
 import DonationContainer from "./DonationContainer";
 
- 
-export function DonationsShow(props) {
+export function DonationsList(props) {
   const { user } = useUser();
   const [donations, setDonations] = useState({});
 
   //sets donations to be shown on the page
   useEffect(() => {
     getDonations (user)
-  }, [])
+  }, [user])
 
   useEffect(() => {
     getDonations (user)
@@ -33,7 +30,6 @@ export function DonationsShow(props) {
 
   return (
     <>
-      {/* <h1>Donations of User {user}</h1> */}
       <BoxContainer>
           {donations && Object.keys(donations).length>0 && (
           <DonationContainer donations={donations} />

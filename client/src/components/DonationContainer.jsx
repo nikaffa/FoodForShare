@@ -1,9 +1,9 @@
-import styled from 'styled-components'
-import { InnerPageContainer } from './PageContainer'
+import { useState, useRef, useEffect } from "react";
+import styled from 'styled-components';
+import { InnerPageContainer } from './PageContainer';
+import { SubmitButton } from "./Common";
 import useUser from "../hooks/useUser";
 import axios from "axios";
-import { Container } from 'react-bootstrap';
-import { useState, useRef, useEffect } from "react";
 
 const DonationCard = styled.div`
   display: grid;
@@ -31,36 +31,32 @@ const FoodBoxContainer= styled.div`
 
 export default function DonationContainer({ donations }) {
   const { user } = useUser();
-  const [cancel, setCancel] = useState();
-  const cancelRef = useRef(cancel);
+  const [complete, setComplete] = useState();
+  // const cancelRef = useRef(cancel);
 
+  // const cancelReservations = (reservation_item_id) => {
+  //   axios.post(`/reservations/cancel/`, {reservation_item_id})
+  //     .then(res => { 
+  //       setCancel(reservation_item_id);
+  //       cancelRef.current = reservation_item_id;
+  //     })
+  //     .catch((err) => {console.log(err)})
+  // }
 
-  const cancelReservations = (reservation_item_id) => {
-    axios.post(`/reservations/cancel/`, {reservation_item_id})
+  const completeReservation = (reservation_item_id) => {
+    axios.post(`/reservations/completed`, {reservation_item_id})
       .then(res => { 
-        setCancel(reservation_item_id);
-        cancelRef.current = reservation_item_id;
+        setComplete(reservation_item_id);
       })
       .catch((err) => {console.log(err)})
   }
 
   useEffect(() => {
-    validateStatus(cancel);
-  }, [cancel])
-
-  const completeReservations = (reservation_item_id) => {
-    axios.post(`/reservations/completed/`, {reservation_item_id})
-      .then(res => { 
-        setCancel(res.data);
-      })
-      .catch((err) => {console.log(err)})
-  }
-
+    validateStatus(complete);
+  }, [complete])
 
   const validateStatus = (status) => {
-    console.log('status', status)
-    console.log ('cancel', cancel)
-    if(status === 'Completed' || status === 'Cancelled' || cancel)
+    if(status === 'Completed')
       return false;
     return true
   }
@@ -73,7 +69,9 @@ export default function DonationContainer({ donations }) {
             const donation = donations[i];
             return(
               <DonationCard key={donations[i][0].donation_id}>
-                <h3>DONATION # {donations[i][0].donation_id}</h3>
+                {console.log(donations[i][0])}
+    
+                <h2>{donations[i][0].item_name}</h2>
                 <div className="embla__slide__inner">
                   <div className="embla_left">
                     <div>
@@ -81,9 +79,8 @@ export default function DonationContainer({ donations }) {
                     </div>  
                   </div>
                   <div className="embla_right">
-                    {<p>Date: {donations[i][0].donation_date}</p>}
-                    {<p>Status: {donations[i][0].status}</p>}
-                    {<p>Name: {donations[i][0].item_name}</p>}
+                    {/* {<p>Date: {donations[i][0].donation_date}</p>} */}
+                    {<h3>Portions left: {donations[i][0].leftover}</h3>}  
                   </div>
                 </div>
                 {Object.keys(donation).map((j) => {
@@ -92,14 +89,15 @@ export default function DonationContainer({ donations }) {
                     (sindon.reserve_name &&
                     <div className="embla__slide__inner">
                       <div className="embla_left">
-                        <p>Reserver Name: {sindon.reserve_name}</p>
-                        <p>Reservation: {sindon.reservation_date}</p>
+                        <p><b>Reserved by:</b> {sindon.reserve_name}</p>
+                        {/* <p>Reservation: {sindon.reservation_date}</p> */}
                         <p>Quantity: {sindon.quantity}</p>
                       </div>
                       <div className="embla_right">
-                        {validateStatus(sindon.i_status) && <button size={'5px'} key={sindon.reservation_item_id+'_1'} onClick={() => cancelReservations(sindon.reservation_item_id)}>Cancel</button>}
-                        {validateStatus(sindon.i_status) && <button size={'5px'} key={sindon.reservation_item_id+'_2'} onClick={() => completeReservations(sindon.reservation_item_id)}>Complete</button>}
-                        {!validateStatus(sindon.i_status) && 'Cancelled'}
+                      <p><b>Status:</b> {donations[i][0].status}</p>
+                        {/* {validateStatus(sindon.i_status) && <button size={'5px'} key={sindon.reservation_item_id+'_1'} onClick={() => cancelReservations(sindon.reservation_item_id)}>Cancel</button>} */}
+                        {validateStatus(sindon.i_status) && <SubmitButton size={'25px'} key={sindon.reservation_item_id+'_2'} onClick={() => completeReservation(sindon.reservation_item_id)}>Complete</SubmitButton>}
+                        {/* {!validateStatus(sindon.i_status) && 'Cancelled'} */}
                       </div>
                     </div>)
                   )
