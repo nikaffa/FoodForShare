@@ -45,9 +45,10 @@ module.exports = (db) => {
   //(shows user their own reservations)
   router.get("/user/:id", (request, response) => {
     db.query(
-      `SELECT reservation_date, name, food_type, description, image, freshness, status, reservation_id, reservation_items.quantity, i_status FROM reservations
+      `SELECT reservation_date, donation_Items.name, food_type, description, image, freshness, status, reservation_id, reservation_items.quantity, i_status, users.name as donor FROM reservations
               INNER JOIN reservation_items ON reservations.id=reservation_id
               INNER JOIN donation_Items ON donation_Items.id=donation_item_id
+              INNER JOIN users ON users.id=user_id
               where user_id=$1::integer`,
       [request.params.id]
     ).then(({ rows: reservations }) => {

@@ -3,10 +3,7 @@ import styled from 'styled-components'
 import useUser from "../hooks/useUser";
 import axios from "axios";
 import { useState, useEffect } from "react";
-import {
-  BoxContainer,
-  SubmitButton,
-} from "./Common";
+import { BoxContainer, SubmitButton } from "./Common";
 import "../embla.css";
 
 const FoodCard = styled.div`
@@ -28,7 +25,6 @@ export default function ReservationsList() {
 
   function getReservations()
   {
-    // console.log(user);
     user && axios.get(`/reservations/user/${user}`)
       .then(res => { 
         setReservations(res.data);
@@ -41,8 +37,7 @@ export default function ReservationsList() {
       .then(res => { 
         setCancel(res.data);
       })
-      .catch((err) => {console.log(err)})
-    
+      .catch((err) => {console.log(err)})  
   }
 
   useEffect(() => {
@@ -64,11 +59,11 @@ export default function ReservationsList() {
       {reservations && Object.keys(reservations).length && (
         Object.keys(reservations).map((i) => {
           const reservation = reservations[i];
-          // const date = new Date(reservations[i][0].reservation_date)
+          console.log(reservations[i][0])
           return(
             <FoodCard key={reservations[i][0].reservation_id}>
               <h3>RESERVATION # {reservations[i][0].reservation_id}</h3>
-              <p>Date: {reservations[i][0].reservation_date}</p>
+              <p><b>From: </b>{reservations[i][0].donor}</p>
               {/* <h3>Status: <span style={{backgroundColor: "lightcoral"}}>{reservations[i][0].status}</span></h3> */}
               {Object.keys(reservation).map((j) => {
                 const sinres = reservation[j]
@@ -81,7 +76,7 @@ export default function ReservationsList() {
                     </div>
                     <div className="embla_right" style={{width: "70%"}}>
                       <div className="embla_right_text" style={{fontSize: "20px"}}>
-                        <h3>Food: {sinres.name}</h3> 
+                        <h3>{sinres.name}</h3> 
                       </div>
                       <div>
                       <SubmitButton size={'25px'} onClick={()=> cancelReservations(sinres.reservation_id)}>Cancel</SubmitButton>              
