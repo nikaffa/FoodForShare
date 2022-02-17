@@ -138,7 +138,7 @@ module.exports = (db) => {
       .then((result) => {
         console.log("DB RESULT", result);
         setTimeout(() => {
-          response.status(222).json("Donation stored in DB.");
+          response.status(222).json("Donation successfully saved!");
         }, 1000);
       })
       .catch((error) => console.log(error));
