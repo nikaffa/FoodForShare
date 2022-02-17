@@ -12,7 +12,7 @@ const authToken = process.env.TWILIO_AUTH_TOKEN;
 const client = require("twilio")(accountSid, authToken);
 
 module.exports = (db) => {
-  //(Adds a reservations)
+  //Saves a reservation
   router.post("/new", (request, response) => {
     if (process.env.TEST_ERROR) {
       setTimeout(() => response.status(500).json({}), 1000);
@@ -36,13 +36,13 @@ module.exports = (db) => {
     db.query(queryString)
       .then(() => {
         setTimeout(() => {
-          response.status(222).json("Donation stored in DB.");
-        }, 1000);
+          response.status(222).json("Reservation successfully saved!");
+        }, 500);
       })
       .catch((error) => console.log(error));
   });
 
-  //(shows user their own reservations)
+  //Shows My reservations
   router.get("/user/:id", (request, response) => {
     db.query(
       `SELECT reservation_date, donation_Items.name, food_type, description, image, freshness, status, reservation_id, reservation_items.quantity, i_status, users.name as donor FROM reservations
@@ -67,10 +67,13 @@ module.exports = (db) => {
     });
   });
 
-  //(shows user their own reservations)
+  //Shows My cart
   router.get("/:id", (request, response) => {
     db.query(
-      `SELECT reservations.*, reservation_id, donation_item_id, quantity FROM reservations right JOIN reservation_items ON reservations.id=reservation_id where reservations.id=$1::integer`,
+      `SELECT reservations.*, reservation_id, donation_item_id, quantity, users.name as donor FROM reservations
+              RIGHT JOIN reservation_items ON reservations.id=reservation_id
+              INNER JOIN users ON users.id=user_id
+              WHERE reservations.id=$1::integer`,
       [Number(request.params.id)]
     ).then(({ rows: reservations }) => {
       response.json(
@@ -83,7 +86,7 @@ module.exports = (db) => {
   });
 
 
-  //(shows user their own reservations)
+  //Cancel reservation
   router.post("/cancel", (request, response) => {
     const {reservation_item_id} = request.body
     console.log(request.body)
@@ -96,8 +99,8 @@ module.exports = (db) => {
       client.messages
         .create({
           body: `Reservations # ${reservation_item_id} cancelled.`,
-          from: "+18022558617", //valid Twilio number
-          to: "+16478741655",
+          from: "+1", //valid Twilio number
+          to: "+1",
         })
         .then((message) => console.log(message.sid));
       setTimeout(() => {
@@ -108,7 +111,7 @@ module.exports = (db) => {
   });
 
 
-  //(shows user their own reservations)
+  //Complete reservation
   router.post("/completed", (request, response) => {
     const {reservation_item_id} = request.body
     console.log(request.body)

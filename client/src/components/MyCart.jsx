@@ -51,11 +51,11 @@ export default function ReservationNew() {
   useEffect(() => {
     localStorage.setItem('cart-status', "");
     (localStorage.getItem("cart").length<3 && setSaveButton(""));
-    (localStorage.getItem("cart").length>2 && setSaveButton(<SubmitButton size={'25px'} onClick={submitForm}>Save Reservation</SubmitButton>));
+    (localStorage.getItem("cart").length>2 && setSaveButton(<SubmitButton size={'25px'} onClick={submitForm}>Save</SubmitButton>));
   }, [cart, saveButton, cartStatus])
 
 
-
+  
   
   return (
     <BoxContainer style={{width: "60%"}}>  
@@ -65,7 +65,7 @@ export default function ReservationNew() {
       {!cartStatus && cart.map((food) => {
         return(
           <FoodCard key={food.id}>
-            <h2>FOOD: {food.name}</h2>
+            <h2>{food.name}</h2>
             <div className="embla__slide__inner">
                 <div className="embla_left">
                   <div>
@@ -75,14 +75,13 @@ export default function ReservationNew() {
                 <div className="embla_right">
                   <div className="embla_right_text" style={{fontSize: "20px"}}>
                     <h3>Quantity: {food.qty}</h3>
-                    <p>Freshness: {food.freshness} Hour(s)</p>
+                    {/* <p>Freshness: {food.freshness} Hour(s)</p> */}
                   </div>
                   <div>
-                    <button size={'5px'} onClick={() => addItemToCart(food)}>+</button>
                     <button size={'5px'} onClick={() => decreaseItemQty(food.id)}>-</button>
-                    <button size={'5px'} onClick={() => removeItemFromCart(food.id)}>x</button> 
-                  </div>
-                  
+                    <button size={'5px'} onClick={() => addItemToCart(food)}>+</button>  
+                    <button size={'5px'} onClick={() => removeItemFromCart(food.id)}>Delete</button> 
+                  </div> 
                 </div> 
             </div>          
           </FoodCard>

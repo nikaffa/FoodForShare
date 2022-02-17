@@ -59,7 +59,7 @@ export default function ReservationsList() {
       {reservations && Object.keys(reservations).length && (
         Object.keys(reservations).map((i) => {
           const reservation = reservations[i];
-          console.log(reservations[i][0])
+          
           return(
             <FoodCard key={reservations[i][0].reservation_id}>
               <h3>RESERVATION # {reservations[i][0].reservation_id}</h3>
