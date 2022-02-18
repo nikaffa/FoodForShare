@@ -12,17 +12,14 @@ module.exports = (db) => {
   //Route for
   router.get("/", (req, res) => {
   
-    // const places = {
-    //   "places": []
-    // }
     const places = [];
-    let loc={};
+    let loc = {};
 
     db.query(`SELECT * FROM users`)
       .then(data => {
         const users = data.rows;
         users.forEach(element => {
-          loc={
+          loc = {
             "properties": {
               "ID": element.id,
               "NAME": element.name,
@@ -32,8 +29,7 @@ module.exports = (db) => {
               "type": "Point",
               "coordinates": [element.location.y, element.location.x]
             }
-          }
-          // places['places'].push(loc);
+          };
           places.push(loc);
         });
         res.json(places);
@@ -64,7 +60,6 @@ module.exports = (db) => {
     db.query(`SELECT * FROM users where id = ${req.params.id};`)
       .then(data => {
         const users = data.rows;
-        //req.session.user_id = req.params.id
         res.json({ users });
       })
       .catch(err => {

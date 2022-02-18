@@ -19,12 +19,10 @@ module.exports = (db) => {
       return;
     }
     const { user, cart } = request.body;
-    console.log(request.body);
     let val = "";
     let don = "";
     for (const key in cart) {
-      const { id, qty } = cart[key];
-      console.log(id, qty);
+      const { qty } = cart[key];
       val += `((select id from inserted_id), ${cart[key].id}, ${cart[key].qty}), `;
       don += `update donation_Items set leftover=leftover-${qty} where donation_id=${cart[key].donation_id}; `;
     }
@@ -32,7 +30,6 @@ module.exports = (db) => {
     const queryString = `WITH inserted_id AS (INSERT INTO reservations (user_id, reservation_date, status) values (${user}, Now(), 'Waiting') RETURNING id)
                          INSERT INTO reservation_items (reservation_id, donation_item_id, quantity)
                          VALUES ${val} RETURNING (select id from inserted_id); ${don}`;
-                         console.log(queryString)
     db.query(queryString)
       .then(() => {
         setTimeout(() => {
@@ -88,17 +85,15 @@ module.exports = (db) => {
 
   //Cancel reservation
   router.post("/cancel", (request, response) => {
-    const {reservation_item_id} = request.body
-    console.log(request.body)
-    
-    console.log(reservation_item_id)
+    const {reservationItemId} = request.body;
+  
     db.query(
-      `update reservation_items set i_status='Cancelled' where id=${reservation_item_id}::integer; 
-       update donation_items set leftover=leftover+(select quantity from reservation_items where id=${reservation_item_id}) where id=(select donation_item_id from reservation_items where id=${reservation_item_id})`
+      `update reservation_items set i_status='Cancelled' where id=${reservationItemId}::integer; 
+       update donation_items set leftover=leftover+(select quantity from reservation_items where id=${reservationItemId}) where id=(select donation_item_id from reservation_items where id=${reservationItemId})`
     ).then(() => {
       client.messages
         .create({
-          body: `Reservations # ${reservation_item_id} cancelled.`,
+          body: `Reservations # ${reservationItemId} cancelled.`,
           from: "+1", //valid Twilio number
           to: "+1",
         })
@@ -107,23 +102,21 @@ module.exports = (db) => {
         response.status(224).json("Reservation cancelled.");
       }, 1000);
     })
-    .catch((error) => console.log(error));
+      .catch((error) => console.log(error));
   });
 
 
   //Complete reservation
   router.post("/completed", (request, response) => {
-    const {reservation_item_id} = request.body
-    console.log(request.body)
-    console.log(reservation_item_id)
+    const {reservationItemId} = request.body;
     db.query(
-      `update reservation_items set i_status='Completed' where id=${reservation_item_id}::integer`
+      `update reservation_items set i_status='Completed' where id=${reservationItemId}::integer`
     ).then(() => {
       setTimeout(() => {
         response.status(224).json("Reservation cancelled.");
       }, 1000);
     })
-    .catch((error) => console.log(error));
+      .catch((error) => console.log(error));
   });
 
   return router;

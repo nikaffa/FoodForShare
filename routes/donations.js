@@ -6,11 +6,7 @@
  */
 
 const express = require("express");
-const { redirect } = require("express/lib/response");
 const router = express.Router();
-const accountSid = process.env.TWILIO_ACCOUNT_SID;
-const authToken = process.env.TWILIO_AUTH_TOKEN;
-const client = require("twilio")(accountSid, authToken);
 
 module.exports = (db) => {
   //(shows all donations)
@@ -39,9 +35,6 @@ module.exports = (db) => {
       );
     });
   });
-
-  //donations (user_id, donation_date, Status)
-  //(donation_id, name, food_type, description, image, freshness, quantity, leftover)
 
   //(shows user their own donations)
   router.get("/user/:id", (request, response) => {
@@ -104,14 +97,13 @@ module.exports = (db) => {
     db.query(
       `
       WITH inserted_id AS (INSERT INTO donations (user_id, donation_date, status) values ($1, Now(), 'Pick-Up', 0) RETURNING id)
-      INSERT INTO donation_items (donation_id, menu_item_id, quantity) VALUES ${val} RETURNING (select id from inserted_id)
+      INSERT INTO donation_items (donation_id, menu_item_id, quantity) VALUES ${val1} RETURNING (select id from inserted_id)
     `,
       [val1, val2, Number(request.params.id)]
     )
       .then(() => {
         setTimeout(() => {
           response.status(204).json({});
-          //updateAppointment(Number(request.params.id), request.body.donations);
         }, 1000);
       })
       .catch((error) => console.log(error));
@@ -124,10 +116,9 @@ module.exports = (db) => {
       return;
     }
     console.log(request.body);
-    const { user, form_data } = request.body;
+    const { user, formData } = request.body;
     const { title, foodType, freshness, description, quantity, image } =
-      form_data;
-    //console.log(title, foodType, description, freshness, quantity);
+      formData;
     db.query(
       `WITH inserted_id AS (INSERT INTO donations (user_id, donation_date, status) values ($1, Now(), 'Pick-Up') RETURNING id)
                                   INSERT INTO donation_items (donation_id, name, food_type, description, image, freshness, quantity, leftover)
@@ -169,14 +160,13 @@ module.exports = (db) => {
     const { val1, val2 } = request.body;
     db.query(
       `UPDATE donations (user_id, donation_date, status) values ($1, Now(), 'Pick-Up', 0) RETURNING id)
-                        INSERT INTO donation_items (donation_id, menu_item_id, quantity) VALUES ${val} RETURNING (select id from inserted_id)
+                        INSERT INTO donation_items (donation_id, menu_item_id, quantity) VALUES ${val1} RETURNING (select id from inserted_id)
     `,
       [val1, val2, Number(request.params.id)]
     )
       .then(() => {
         setTimeout(() => {
           response.status(204).json({});
-          //updateAppointment(Number(request.params.id), request.body.donations);
         }, 1000);
       })
       .catch((error) => console.log(error));
