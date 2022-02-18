@@ -1,6 +1,6 @@
 import React from "react";
 import { Marginer } from "../components/Marginer";
-import {PageContainer, InnerPageContainer, BackgroundContainer}from "../components/PageContainer";
+import { PageContainer, InnerPageContainer, BackgroundContainer }from "../components/PageContainer";
 import { Button } from "../components/Button"
 import Navbar from "../components/Navbar";
 import { Link } from "react-router-dom";

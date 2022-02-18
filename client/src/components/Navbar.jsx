@@ -74,7 +74,7 @@ const Seperator = styled.div `
 
 export default function Navbar(props) {
   const isMobile = useMediaQuery({ maxWidth: deviceSize });
-  const { logoSize, color,} = props;
+  const { logoSize } = props;
   const { cartCount } = useCart();
 
   useEffect(() => {
@@ -89,9 +89,6 @@ export default function Navbar(props) {
         </AnchorLink>
       </BrandLogo>
       <AccessibilityContainer>
-        {/* {!isMobile && <AnchorLink to="/donation/search">Search Donations</AnchorLink>} */}
-        {/* {!isMobile && <Marginer direction="horizontal" margin={25} />}
-        {!isMobile && <AnchorLink to="/donation/new">Donate</AnchorLink>} */}
         {!isMobile && <Marginer direction="horizontal" margin={25} />}
         {!isMobile && <AnchorLink to="/donations">My Donations</AnchorLink>}
         {!isMobile && <Marginer direction="horizontal" margin={25} />}

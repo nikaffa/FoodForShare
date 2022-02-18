@@ -32,17 +32,7 @@ const FoodBoxContainer= styled.div`
 export default function DonationContainer({ donations }) {
   const { user } = useUser();
   const [complete, setComplete] = useState();
-  // const cancelRef = useRef(cancel);
-
-  // const cancelReservations = (reservation_item_id) => {
-  //   axios.post(`/reservations/cancel/`, {reservation_item_id})
-  //     .then(res => { 
-  //       setCancel(reservation_item_id);
-  //       cancelRef.current = reservation_item_id;
-  //     })
-  //     .catch((err) => {console.log(err)})
-  // }
-
+  
   const completeReservation = (reservation_item_id) => {
     axios.post(`/reservations/completed`, {reservation_item_id})
       .then(res => { 
@@ -69,7 +59,6 @@ export default function DonationContainer({ donations }) {
             const donation = donations[i];
             return(
               <DonationCard key={`{donation.id}.${i}`}>
-                {/* {console.log(donations[i][0])} */}
     
                 <h2>{donations[i][0].item_name}</h2>
                 <div className="embla__slide__inner">
@@ -79,7 +68,6 @@ export default function DonationContainer({ donations }) {
                     </div>  
                   </div>
                   <div className="embla_right">
-                    {/* {<p>Date: {donations[i][0].donation_date}</p>} */}
                     {<h3>Portions left: {donations[i][0].leftover}</h3>}  
                   </div>
                 </div>
@@ -90,14 +78,12 @@ export default function DonationContainer({ donations }) {
                     <div className="embla__slide__inner">
                       <div className="embla_left">
                         <p><b>Reserved by:</b> {sindon.reserve_name}</p>
-                        {/* <p>Reservation: {sindon.reservation_date}</p> */}
                         <p><b>Quantity: </b>{sindon.quantity}</p>
                       </div>
                       <div className="embla_right">
                       <p><b>Status:</b> {donations[i][0].status}</p>
-                        {/* {validateStatus(sindon.i_status) && <button size={'5px'} key={sindon.reservation_item_id+'_1'} onClick={() => cancelReservations(sindon.reservation_item_id)}>Cancel</button>} */}
                         {validateStatus(sindon.i_status) && <SubmitButton size={'25px'} key={sindon.reservation_item_id+'j'} onClick={() => completeReservation(sindon.reservation_item_id)}>Complete</SubmitButton>}
-                        {/* {!validateStatus(sindon.i_status) && 'Cancelled'} */}
+                      
                       </div>
                     </div>)
                   )

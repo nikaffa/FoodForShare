@@ -6,7 +6,6 @@ import Donation from "./pages/Donation";
 import DonationSearch from "./pages/DonationSearch";
 import Donations from "./pages/Donations";
 import Reservations from "./pages/Reservations";
-import DonationEdit from "./pages/DonationEdit";
 import Reservation from "./pages/Reservation";
 
 function App() {

@@ -20,16 +20,7 @@ export function DonationForm() {
 
   const onSubmitForm = function (event) {
     event.preventDefault();
-
-    // console.log({
-    //   title: title,
-    //   foodType: foodType,
-    //   freshness: Number(freshness.split(" ")[0]),
-    //   description: description,
-    //   quantity: quantity,
-    //   image: image,
-    // });
-
+    
     const form_data = {
       title: title,
       foodType: foodType,

@@ -48,12 +48,6 @@ export default function ReservationsList() {
     getReservations()
   }, [user])
 
-  const validateStatus = (status) => {
-    if(status === 'Completed' || status === 'Cancelled')
-      return false;
-    return true
-  }
-
   return (
     <BoxContainer >
       {reservations && Object.keys(reservations).length && (
@@ -64,8 +58,7 @@ export default function ReservationsList() {
             <FoodCard key={reservations[i][0].reservation_id}>
               <h3>RESERVATION # {reservations[i][0].reservation_id}</h3>
               <p><b>From: </b>{reservations[i][0].donor}</p>
-              {/* <h3>Status: <span style={{backgroundColor: "lightcoral"}}>{reservations[i][0].status}</span></h3> */}
-              {Object.keys(reservation).map((j) => {
+               {Object.keys(reservation).map((j) => {
                 const sinres = reservation[j]
                 return(
                   <div className="embla__slide__inner">
@@ -85,30 +78,7 @@ export default function ReservationsList() {
                   </div>
 
                 )
-              })}
-
-              {/* <div className="embla__slide__inner">
-                <div className="embla_left">
-                  <div>
-                    <img className="embla__slide__img_fit" src={reservations[i][0].image} alt="food" />
-                  </div>  
-                </div>
-                <div className="embla_right">
-                  {Object.keys(reservation).map((j) => {
-                    const sinres = reservation[j]
-                    return(
-                      <>
-                        <p>Date: {reservations[i][0].reservation_date}</p>
-                        <p>Status: <span style={{backgroundColor: "lightcoral"}}>{reservations[i][0].status}</span></p>
-                        <p>Food: {reservations[i][0].item_name}</p>
-                        {validateStatus(sinres.i_status) && <SubmitButton size={'25px'} onClick={()=> cancelReservations(reservations[i][0].reservation_id)}>Cancel</SubmitButton>}
-                        {!validateStatus(sinres.i_status) && <p>Item Status: {sinres.i_status}</p>}
-                      </>
-                    )
-                  })}
-                </div> 
-              </div> */}
-              
+              })} 
             </FoodCard>
           )
         })

@@ -85,11 +85,9 @@ export default function QuantityDropDown(props) {
   const toggling = () => setIsOpen(!isOpen);
   
   const onOptionClicked = value => () => {
-    console.log(value);
     setSelectedOption(value);
     props.setQuantity(value);
     setIsOpen(false);
-    // console.log(selectedOption);
   };
 
   return (

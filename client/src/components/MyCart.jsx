@@ -3,15 +3,8 @@ import styled from 'styled-components'
 import useCart from "../hooks/useCart";
 import useUser from "../hooks/useUser";
 
-import { useState, useCallback, useRef, useEffect, useContext } from "react";
-import {
-  BoxContainer,
-  FormContainer,
-  Input,
-  SubmitButton,
-} from "./Common";
-import { Link } from "react-router-dom";
-import Countdown from 'react-countdown';
+import { useState, useEffect } from "react";
+import { BoxContainer, SubmitButton } from "./Common";
 import axios from "axios";
 
 const FoodCard = styled.div`
@@ -34,9 +27,7 @@ export default function ReservationNew() {
 
 
   const submitForm = () => {
-    // console.log(cart);
     axios.post(`/reservations/new`, {user, cart}).then((res)=>{
-      //console.log(res.status)
       if(res.status === 222 || res.status === '222')
       {
         setCartStatus(res.data);
@@ -75,7 +66,6 @@ export default function ReservationNew() {
                 <div className="embla_right">
                   <div className="embla_right_text" style={{fontSize: "20px"}}>
                     <h3>Quantity: {food.qty}</h3>
-                    {/* <p>Freshness: {food.freshness} Hour(s)</p> */}
                   </div>
                   <div>
                     <button size={'5px'} onClick={() => decreaseItemQty(food.id)}>-</button>

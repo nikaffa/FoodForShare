@@ -1,7 +1,6 @@
 import React, {useEffect} from "react";
 import styled from "styled-components";
 import { deviceSize } from "../responsive";
-//import { scrollToTop } from "utils/pages";
 
 const PageWrapper = styled.div`
   width: 100%;
